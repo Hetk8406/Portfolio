@@ -362,7 +362,7 @@ const AnantaShowcase = ({ limit }) => {
                 width: 'calc(100% - 40px)',
                 maxWidth: '450px'
               }}>
-                If the document doesn't display,{' '}
+                If the document doesn&apos;t display,{' '}
                 <a
                   href={activeBook.pdfUrl}
                   download={activeBook.title + ".pdf"}

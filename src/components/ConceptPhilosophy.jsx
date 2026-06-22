@@ -95,7 +95,7 @@ const ConceptPhilosophy = () => {
                 letterSpacing: '-0.02em',
                 color: 'var(--text-primary)'
               }}>
-                "{frag.thought}"
+                &ldquo;{frag.thought}&rdquo;
               </h3>
 
               {/* Context Explanation */}
