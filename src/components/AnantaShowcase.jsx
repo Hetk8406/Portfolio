@@ -10,7 +10,7 @@ const AnantaShowcase = () => {
     {
       title: "Ananta: The Infinite Cycle",
       volume: "VOLUME 01",
-      pdfUrl: "/Novel Ananta1.pdf",
+      pdfUrl: "/Ananta - The Infinite Cycle.pdf",
       description: "A deep dive into recursive loops, identity containment, and the boundaries of human recollection. Where time behaves like an unhandled loop, and memory is only a reconstruction.",
       coverSvg: (
         <svg width="100%" height="100%" viewBox="0 0 200 300" fill="none">
@@ -28,7 +28,7 @@ const AnantaShowcase = () => {
     {
       title: "Ananta: The Unwritten Dark",
       volume: "VOLUME 02",
-      pdfUrl: "/Novel Ananta2.pdf",
+      pdfUrl: "/Ananta - The Unwritten Dark.pdf",
       description: "Exploring the edge of memory erosion, the silence between code segments, and the final state of empty information. An existential sci-fi narrative mapping reality onto entropy.",
       coverSvg: (
         <svg width="100%" height="100%" viewBox="0 0 200 300" fill="none">
