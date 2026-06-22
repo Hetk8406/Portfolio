@@ -1,8 +1,9 @@
 import React from 'react';
 import { motion } from 'framer-motion';
+import Link from 'next/link';
 import WordReveal from './WordReveal';
 
-const AboutSection = ({ userData }) => {
+const AboutSection = ({ userData, limit }) => {
   const experiences = userData?.linkedin?.experience || [];
   const education = userData?.linkedin?.education || [];
   
@@ -40,6 +41,54 @@ const AboutSection = ({ userData }) => {
       transition: { duration: 0.8, ease: [0.16, 1, 0.3, 1] }
     }
   };
+
+  if (limit) {
+    return (
+      <section id="about" style={{ padding: '120px 0', borderBottom: '1px solid var(--border-subtle)', background: '#050505' }}>
+        <div className="container" style={{ maxWidth: '800px', margin: '0 auto', textAlign: 'center' }}>
+          <span className="section-tag">Biography</span>
+          <h2 className="font-heading" style={{ fontSize: 'clamp(32px, 5vw, 54px)', lineHeight: '1.1', marginBottom: '32px' }}>
+            <WordReveal text="About Me" />
+          </h2>
+          <p style={{ color: 'var(--text-secondary)', fontSize: '16px', lineHeight: '1.8', marginBottom: '24px' }}>
+            Currently pursuing a Bachelor of Engineering in Computer Science and Engineering, specializing in Data Science at Gujarat Technological University (GTU). My work exists at the intersection of engineering systems and statistical learning, with a secondary channel dedicated to philosophical sci-fi writing.
+          </p>
+          <div style={{ marginTop: '40px' }}>
+            <Link
+              href="/about"
+              style={{
+                display: 'inline-flex',
+                alignItems: 'center',
+                gap: '8px',
+                padding: '12px 28px',
+                borderRadius: '8px',
+                border: '1px solid rgba(255, 255, 255, 0.08)',
+                background: 'rgba(255, 255, 255, 0.02)',
+                color: 'var(--text-primary)',
+                textDecoration: 'none',
+                fontSize: '13px',
+                fontFamily: 'JetBrains Mono, monospace',
+                textTransform: 'uppercase',
+                letterSpacing: '1px',
+                transition: 'all 0.3s ease',
+                cursor: 'pointer'
+              }}
+              onMouseEnter={(e) => {
+                e.target.style.background = 'rgba(255,255,255,0.06)';
+                e.target.style.borderColor = 'rgba(255,255,255,0.15)';
+              }}
+              onMouseLeave={(e) => {
+                e.target.style.background = 'rgba(255,255,255,0.02)';
+                e.target.style.borderColor = 'rgba(255,255,255,0.08)';
+              }}
+            >
+              Read Full Biography
+            </Link>
+          </div>
+        </div>
+      </section>
+    );
+  }
 
   return (
     <section id="about" style={{ padding: '120px 0', borderBottom: '1px solid var(--border-subtle)', background: '#050505' }}>

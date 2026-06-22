@@ -46,15 +46,15 @@ export default function Home() {
       
       <HeroSection />
       
+      <AboutSection userData={profileData} limit={true} />
+      
       <DualIdentity />
       
-      <ProjectsGallery userData={profileData} />
+      <ProjectsGallery userData={profileData} limit={2} />
       
       <AnantaShowcase />
       
       <ConceptPhilosophy />
-      
-      <AboutSection userData={profileData} />
       
       <KeepInteractionWarm />
       

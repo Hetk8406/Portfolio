@@ -211,4 +211,8 @@ html.lenis body {
   .subtle-line-hero, .subtle-line-hero-right {
     display: none;
   }
+  #work .container > div:last-child,
+  #ananta .container > div:last-child {
+    grid-template-columns: 1fr !important;
+  }
 }

@@ -1,49 +1,36 @@
 import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Eye, Download, X } from 'lucide-react';
+import Link from 'next/link';
 import WordReveal from './WordReveal';
 
-const AnantaShowcase = () => {
+const AnantaShowcase = ({ limit }) => {
   const [activeBook, setActiveBook] = useState(null);
 
+  // HOW TO ADD A BOOK COVER IMAGE:
+  //   1. Place your cover image in  public/images/books/
+  //   2. Set the `coverImage` field below to the filename (e.g. "ananta-vol1.jpg")
+  //   3. The card will automatically display it.
+  //   4. Customize `fit` ("contain", "cover") and `position` to adjust alignment.
+  //   If `coverImage` is null, a styled text placeholder is shown.
   const books = [
     {
       title: "Ananta: The Infinite Cycle",
       volume: "VOLUME 01",
       pdfUrl: "/Ananta - The Infinite Cycle.pdf",
+      coverImage: "ananta-vol1.png", // ← drop your cover in public/images/books/ and put the filename here
+      fit: "contain", // Use "contain" so the cover isn't cropped, or change to "cover" depending on choice
+      position: "center",
       description: "A deep dive into recursive loops, identity containment, and the boundaries of human recollection. Where time behaves like an unhandled loop, and memory is only a reconstruction.",
-      coverSvg: (
-        <svg width="100%" height="100%" viewBox="0 0 200 300" fill="none">
-          <rect width="200" height="300" rx="8" fill="#0C0C0F" />
-          <rect width="200" height="300" rx="8" stroke="rgba(255,255,255,0.06)" strokeWidth="1" />
-          <circle cx="100" cy="130" r="45" stroke="rgba(255, 255, 255, 0.1)" strokeWidth="2" />
-          <circle cx="100" cy="130" r="45" stroke="rgba(255, 255, 255, 0.4)" strokeWidth="1" strokeDasharray="6 4" />
-          <path d="M 60 130 C 60 70, 140 70, 140 130 C 140 190, 60 190, 60 130" stroke="rgba(255,255,255,0.2)" strokeWidth="1" />
-          <text x="100" y="240" fill="#EAEAEA" fontSize="11" fontFamily="Syne" fontWeight="bold" textAnchor="middle" letterSpacing="2">ANANTA</text>
-          <text x="100" y="258" fill="#9CA3AF" fontSize="7" fontFamily="JetBrains Mono" textAnchor="middle" letterSpacing="1">THE INFINITE CYCLE</text>
-          <text x="100" y="40" fill="#52525B" fontSize="6" fontFamily="JetBrains Mono" textAnchor="middle" letterSpacing="3">VOL. 01</text>
-        </svg>
-      )
     },
     {
       title: "Ananta: The Unwritten Dark",
       volume: "VOLUME 02",
       pdfUrl: "/Ananta - The Unwritten Dark.pdf",
+      coverImage: "ananta-vol2.png",
+      fit: "contain",
+      position: "center",
       description: "Exploring the edge of memory erosion, the silence between code segments, and the final state of empty information. An existential sci-fi narrative mapping reality onto entropy.",
-      coverSvg: (
-        <svg width="100%" height="100%" viewBox="0 0 200 300" fill="none">
-          <rect width="200" height="300" rx="8" fill="#0C0C0F" />
-          <rect width="200" height="300" rx="8" stroke="rgba(255,255,255,0.06)" strokeWidth="1" />
-          <line x1="50" y1="100" x2="150" y2="100" stroke="rgba(255,255,255,0.2)" strokeWidth="1.5" />
-          <line x1="50" y1="120" x2="130" y2="120" stroke="rgba(255,255,255,0.15)" strokeWidth="1" />
-          <line x1="50" y1="140" x2="100" y2="140" stroke="rgba(255,255,255,0.1)" strokeWidth="1" />
-          <line x1="50" y1="160" x2="70" y2="160" stroke="rgba(255,255,255,0.05)" strokeWidth="1" />
-          <circle cx="150" cy="100" r="3" fill="#EAEAEA" opacity="0.6" />
-          <text x="100" y="240" fill="#EAEAEA" fontSize="11" fontFamily="Syne" fontWeight="bold" textAnchor="middle" letterSpacing="2">ANANTA</text>
-          <text x="100" y="258" fill="#9CA3AF" fontSize="7" fontFamily="JetBrains Mono" textAnchor="middle" letterSpacing="1">THE UNWRITTEN DARK</text>
-          <text x="100" y="40" fill="#52525B" fontSize="6" fontFamily="JetBrains Mono" textAnchor="middle" letterSpacing="3">VOL. 02</text>
-        </svg>
-      )
     }
   ];
 
@@ -89,13 +76,13 @@ const AnantaShowcase = () => {
           viewport={{ once: true, margin: "-10%" }}
           style={{
             display: 'grid',
-            gridTemplateColumns: 'repeat(auto-fit, minmax(320px, 1fr))',
+            gridTemplateColumns: 'repeat(2, 1fr)',
             gap: '48px',
             maxWidth: '1000px',
             margin: '0 auto'
           }}
         >
-          {books.map((book, idx) => (
+          {books.slice(0, limit || books.length).map((book, idx) => (
             <motion.div
               key={idx}
               variants={cardVariants}
@@ -118,13 +105,47 @@ const AnantaShowcase = () => {
                 borderRadius: '12px',
                 background: '#050505',
                 border: '1px solid rgba(255,255,255,0.03)',
-                padding: '30px',
+                padding: book.coverImage ? '0' : '30px',
                 boxShadow: 'inset 0 4px 20px rgba(0,0,0,0.8)',
-                zIndex: 2
+                zIndex: 2,
+                overflow: 'hidden'
               }}>
-                <div style={{ width: '180px', height: '260px', filter: 'drop-shadow(0 15px 30px rgba(0,0,0,0.6))' }}>
-                  {book.coverSvg}
-                </div>
+                {book.coverImage ? (
+                  <img
+                    src={`/images/books/${book.coverImage}`}
+                    alt={book.title}
+                    style={{
+                      width: '100%',
+                      height: '100%',
+                      objectFit: book.fit || 'contain',
+                      objectPosition: book.position || 'center',
+                      display: 'block'
+                    }}
+                  />
+                ) : (
+                  /* Styled text placeholder when no cover image is set */
+                  <div style={{
+                    width: '180px',
+                    height: '260px',
+                    background: '#0C0C0F',
+                    borderRadius: '8px',
+                    border: '1px solid rgba(255,255,255,0.06)',
+                    display: 'flex',
+                    flexDirection: 'column',
+                    alignItems: 'center',
+                    justifyContent: 'center',
+                    gap: '12px',
+                    filter: 'drop-shadow(0 15px 30px rgba(0,0,0,0.6))'
+                  }}>
+                    <span style={{ fontSize: '14px', fontFamily: 'Syne', fontWeight: 'bold', color: '#EAEAEA', letterSpacing: '2px' }}>ANANTA</span>
+                    <span className="font-mono" style={{ fontSize: '8px', color: '#9CA3AF', letterSpacing: '1px' }}>
+                      {book.title.split(': ')[1]?.toUpperCase() || book.title.toUpperCase()}
+                    </span>
+                    <span className="font-mono" style={{ fontSize: '7px', color: '#52525B', letterSpacing: '3px' }}>
+                      {book.volume.replace('VOLUME ', 'VOL. ')}
+                    </span>
+                  </div>
+                )}
               </div>
 
               {/* Text Info */}
@@ -195,6 +216,41 @@ const AnantaShowcase = () => {
             </motion.div>
           ))}
         </motion.div>
+
+        {limit && books.length > limit && (
+          <div style={{ textAlign: 'center', marginTop: '56px' }}>
+            <Link
+              href="/ananta"
+              style={{
+                display: 'inline-flex',
+                alignItems: 'center',
+                gap: '8px',
+                padding: '12px 28px',
+                borderRadius: '8px',
+                border: '1px solid rgba(255, 255, 255, 0.08)',
+                background: 'rgba(255, 255, 255, 0.02)',
+                color: 'var(--text-primary)',
+                textDecoration: 'none',
+                fontSize: '13px',
+                fontFamily: 'JetBrains Mono, monospace',
+                textTransform: 'uppercase',
+                letterSpacing: '1px',
+                transition: 'all 0.3s ease',
+                cursor: 'pointer'
+              }}
+              onMouseEnter={(e) => {
+                e.target.style.background = 'rgba(255,255,255,0.06)';
+                e.target.style.borderColor = 'rgba(255,255,255,0.15)';
+              }}
+              onMouseLeave={(e) => {
+                e.target.style.background = 'rgba(255,255,255,0.02)';
+                e.target.style.borderColor = 'rgba(255,255,255,0.08)';
+              }}
+            >
+              View All Volumes
+            </Link>
+          </div>
+        )}
       </div>
 
       {/* Full-Screen PDF Reader Overlay */}
@@ -286,7 +342,7 @@ const AnantaShowcase = () => {
                 style={{ border: 'none' }}
                 title={activeBook.title}
               />
-              
+
               {/* Responsive mobile support message */}
               <div style={{
                 position: 'absolute',

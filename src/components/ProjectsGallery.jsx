@@ -1,73 +1,55 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { motion, useMotionValue, useSpring, useTransform } from 'framer-motion';
 import { Github } from 'lucide-react';
+import Link from 'next/link';
 import WordReveal from './WordReveal';
 
-const ProjectsGallery = ({ userData }) => {
+const ProjectsGallery = ({ userData, limit }) => {
   const repositories = userData?.github?.repositories || [];
 
-  const projectMocks = {
-    "Indian Stock Predictor": {
+  // Index-based array — order must match the repositories array in userProfileData.json.
+  // Renaming a project in the JSON will NOT cause its card to disappear.
+  //
+  // HOW TO ADD A PROJECT IMAGE:
+  //   1. Place your image in  public/images/projects/
+  //   2. Set the `image` field below to the filename (e.g. "quantcore.png")
+  //   3. The card will automatically display it.
+  //   4. Customize `fit` ("cover", "contain", "fill") and `position` ("center", "top", etc.) to adjust alignment.
+  //   If `image` is null, a dark placeholder is shown.
+  const projectMocks = [
+    {
+      // Index 0 → repositories[0] (currently "QuantCore")
+      image: "quantcore.png", // ← drop your image in public/images/projects/ and put the filename here
+      fit: "cover", // Change to "contain" if you cropped your image exactly and don't want it cut off
+      position: "center", // E.g., "top", "bottom", "center", "50% 20%" to adjust crop position
       impact: "Algorithmic forecasting of equity prices using sequence regression models.",
       tags: ["Python", "LSTM", "Pandas", "Scikit-Learn"],
-      link: "https://github.com/Hetk8406/Indian-Stock-Predictor",
-      vector: (
-        <svg width="100%" height="100" viewBox="0 0 300 100" fill="none" style={{ opacity: 0.8 }}>
-          <path d="M 20 80 Q 80 50, 140 60 T 260 20" stroke="rgba(255,255,255,0.3)" strokeWidth="1.5" />
-          <path d="M 20 80 Q 80 50, 140 60 T 260 20" stroke="rgba(255,255,255,0.05)" strokeWidth="8" />
-          <circle cx="260" cy="20" r="3" fill="#EAEAEA" />
-          <line x1="260" y1="20" x2="260" y2="80" stroke="rgba(255,255,255,0.1)" strokeWidth="1" strokeDasharray="2 2" />
-          <line x1="20" y1="80" x2="280" y2="80" stroke="rgba(255,255,255,0.05)" strokeWidth="1" />
-        </svg>
-      )
     },
-    "LAWYER.AI": {
+    {
+      // Index 1 → repositories[1] (currently "LegalPal")
+      image: "legalpal.png",
+      fit: "cover",
+      position: "center",
       impact: "Full-stack legal assistant platform built with high-throughput inference nodes.",
       tags: ["React", "Python", "FastAPI", "LLM Integration"],
-      link: "https://github.com/lawyerai-system",
-      vector: (
-        <svg width="100%" height="100" viewBox="0 0 300 100" fill="none" style={{ opacity: 0.8 }}>
-          <rect x="50" y="20" width="200" height="60" rx="4" stroke="rgba(255,255,255,0.1)" strokeWidth="1" />
-          <rect x="70" y="35" width="160" height="30" rx="2" stroke="rgba(255,255,255,0.2)" strokeWidth="1" />
-          <line x1="90" y1="50" x2="210" y2="50" stroke="rgba(255,255,255,0.3)" strokeWidth="1" />
-          <line x1="90" y1="56" x2="170" y2="56" stroke="rgba(255,255,255,0.15)" strokeWidth="1" />
-        </svg>
-      )
     },
-    "FoundIt!": {
+    {
+      // Index 2 → repositories[2] (currently "FoundIt!")
+      image: null,
+      fit: "cover",
+      position: "center",
       impact: "Distributed architecture for categorizing and mapping lost assets.",
       tags: ["JavaScript", "HTML", "Node.js", "Express"],
-      link: "https://github.com/lostfound-system",
-      vector: (
-        <svg width="100%" height="100" viewBox="0 0 300 100" fill="none" style={{ opacity: 0.8 }}>
-          <circle cx="150" cy="50" r="30" stroke="rgba(255,255,255,0.1)" strokeWidth="1" />
-          <circle cx="150" cy="50" r="15" stroke="rgba(255,255,255,0.05)" strokeWidth="1" strokeDasharray="3 2" />
-          <line x1="150" y1="10" x2="150" y2="90" stroke="rgba(255,255,255,0.05)" strokeWidth="1" />
-          <line x1="100" y1="50" x2="200" y2="50" stroke="rgba(255,255,255,0.05)" strokeWidth="1" />
-          <circle cx="165" cy="35" r="2.5" fill="#EAEAEA" />
-        </svg>
-      )
     },
-    "ConceptLens": {
+    {
+      // Index 3 → repositories[3] (currently "ConceptLens")
+      image: null,
+      fit: "cover",
+      position: "center",
       impact: "Visual exploration node framework to map concept relationships.",
       tags: ["React", "D3.js", "GraphDB", "TailwindCSS"],
-      link: "https://github.com/conceptlens-system",
-      vector: (
-        <svg width="100%" height="100" viewBox="0 0 300 100" fill="none" style={{ opacity: 0.8 }}>
-          <circle cx="90" cy="50" r="4" fill="#EAEAEA" />
-          <circle cx="150" cy="30" r="4" fill="rgba(255,255,255,0.6)" />
-          <circle cx="150" cy="70" r="4" fill="rgba(255,255,255,0.6)" />
-          <circle cx="210" cy="50" r="4" fill="#EAEAEA" />
-          <line x1="94" y1="50" x2="146" y2="30" stroke="rgba(255,255,255,0.15)" strokeWidth="1" />
-          <line x1="94" y1="50" x2="146" y2="70" stroke="rgba(255,255,255,0.15)" strokeWidth="1" />
-          <line x1="154" y1="30" x2="206" y2="50" stroke="rgba(255,255,255,0.25)" strokeWidth="1.5" />
-          <line x1="154" y1="70" x2="206" y2="50" stroke="rgba(255,255,255,0.15)" strokeWidth="1" />
-        </svg>
-      )
     }
-  };
-
-  const projectsToDisplay = repositories.filter(repo => projectMocks[repo.name]);
+  ];
 
   const containerVariants = {
     hidden: {},
@@ -98,12 +80,13 @@ const ProjectsGallery = ({ userData }) => {
           viewport={{ once: true, margin: "-10%" }}
           style={{
             display: 'grid',
-            gridTemplateColumns: 'repeat(auto-fit, minmax(320px, 1fr))',
+            gridTemplateColumns: 'repeat(2, 1fr)',
             gap: '32px'
           }}
         >
-          {projectsToDisplay.map((project, idx) => {
-            const details = projectMocks[project.name];
+          {repositories.slice(0, limit || repositories.length).map((project, idx) => {
+            const details = projectMocks[idx];
+            if (!details) return null;
             return (
               <ProjectCard
                 key={idx}
@@ -113,6 +96,41 @@ const ProjectsGallery = ({ userData }) => {
             );
           })}
         </motion.div>
+
+        {limit && repositories.length > limit && (
+          <div style={{ textAlign: 'center', marginTop: '56px' }}>
+            <Link
+              href="/projects"
+              style={{
+                display: 'inline-flex',
+                alignItems: 'center',
+                gap: '8px',
+                padding: '12px 28px',
+                borderRadius: '8px',
+                border: '1px solid rgba(255, 255, 255, 0.08)',
+                background: 'rgba(255, 255, 255, 0.02)',
+                color: 'var(--text-primary)',
+                textDecoration: 'none',
+                fontSize: '13px',
+                fontFamily: 'JetBrains Mono, monospace',
+                textTransform: 'uppercase',
+                letterSpacing: '1px',
+                transition: 'all 0.3s ease',
+                cursor: 'pointer'
+              }}
+              onMouseEnter={(e) => {
+                e.target.style.background = 'rgba(255,255,255,0.06)';
+                e.target.style.borderColor = 'rgba(255,255,255,0.15)';
+              }}
+              onMouseLeave={(e) => {
+                e.target.style.background = 'rgba(255,255,255,0.02)';
+                e.target.style.borderColor = 'rgba(255,255,255,0.08)';
+              }}
+            >
+              View All Projects
+            </Link>
+          </div>
+        )}
       </div>
     </section>
   );
@@ -120,6 +138,7 @@ const ProjectsGallery = ({ userData }) => {
 
 // Sub-component to encapsulate subtle 3D spring-tilt logic per card
 const ProjectCard = ({ project, details }) => {
+  const [imgError, setImgError] = useState(false);
   const x = useMotionValue(0);
   const y = useMotionValue(0);
 
@@ -160,9 +179,11 @@ const ProjectCard = ({ project, details }) => {
     }
   };
 
+  const hasImage = details.image && !imgError;
+
   return (
     <motion.a
-      href={details.link}
+      href={project.url}
       target="_blank"
       rel="noreferrer"
       variants={cardVariants}
@@ -192,20 +213,49 @@ const ProjectCard = ({ project, details }) => {
         whileHover={{ y: -6 }}
         transition={{ duration: 0.3, ease: 'easeOut' }}
       >
-        {/* Visual Representation Area */}
+        {/* Project Image Area */}
         <div style={{
-          height: '140px',
-          background: '#050505',
+          height: '220px',
+          background: '#080808',
           borderRadius: '10px',
-          border: '1px solid rgba(255,255,255,0.03)',
-          display: 'flex',
-          alignItems: 'center',
-          justifyContent: 'center',
-          padding: '20px',
+          border: '1px solid rgba(255,255,255,0.04)',
           overflow: 'hidden',
-          zIndex: 2
+          zIndex: 2,
+          position: 'relative'
         }}>
-          {details.vector}
+          {hasImage ? (
+            <img
+              src={`/images/projects/${details.image}`}
+              alt={project.name}
+              onError={() => setImgError(true)}
+              style={{
+                width: '100%',
+                height: '100%',
+                objectFit: details.fit || 'cover',
+                objectPosition: details.position || 'center',
+                display: 'block'
+              }}
+            />
+          ) : (
+            /* Minimal placeholder when no image is set */
+            <div style={{
+              width: '100%',
+              height: '100%',
+              display: 'flex',
+              alignItems: 'center',
+              justifyContent: 'center',
+              background: 'linear-gradient(135deg, #0A0A0D 0%, #0E0E12 100%)',
+            }}>
+              <span className="font-mono" style={{
+                fontSize: '11px',
+                color: 'rgba(255,255,255,0.12)',
+                letterSpacing: '2px',
+                textTransform: 'uppercase'
+              }}>
+                {project.name}
+              </span>
+            </div>
+          )}
         </div>
 
         {/* Metadata & Actions */}
@@ -214,7 +264,7 @@ const ProjectCard = ({ project, details }) => {
             {project.role}
           </span>
           <div style={{ display: 'flex', gap: '12px' }}>
-            {details.link && (
+            {project.url && (
               <span
                 style={{ color: 'var(--text-secondary)', transition: 'color 0.2s' }}
               >

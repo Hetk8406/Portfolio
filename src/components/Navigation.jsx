@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Menu, X } from 'lucide-react';
+import Link from 'next/link';
 
 const Navigation = () => {
   const [scrolled, setScrolled] = useState(false);
@@ -13,12 +14,12 @@ const Navigation = () => {
   }, []);
 
   const navLinks = [
-    { name: 'Home', href: '#home' },
-    { name: 'Work', href: '#work' },
-    { name: 'Ananta', href: '#ananta' },
-    { name: 'Concepts', href: '#concept' },
-    { name: 'About', href: '#about' },
-    { name: 'Contact', href: '#contact' }
+    { name: 'Home', href: '/#home' },
+    { name: 'Work', href: '/#work' },
+    { name: 'Ananta', href: '/#ananta' },
+    { name: 'Concepts', href: '/#concept' },
+    { name: 'About', href: '/#about' },
+    { name: 'Contact', href: '/#contact' }
   ];
 
   return (
@@ -40,14 +41,14 @@ const Navigation = () => {
       }}
     >
       <div style={{ maxWidth: '1200px', margin: '0 auto', display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
-        <a href="#home" style={{ textDecoration: 'none', color: 'var(--text-primary)', fontSize: '18px', fontWeight: '800', letterSpacing: '-0.02em', fontFamily: 'Syne' }}>
+        <Link href="/#home" style={{ textDecoration: 'none', color: 'var(--text-primary)', fontSize: '18px', fontWeight: '800', letterSpacing: '-0.02em', fontFamily: 'Syne' }}>
           HET<span style={{ color: 'var(--text-secondary)', opacity: 0.4 }}>.</span>K
-        </a>
+        </Link>
 
         {/* Desktop Links */}
         <div style={{ display: 'flex', gap: '32px' }} className="nav-links-desktop">
           {navLinks.map((link) => (
-            <a
+            <Link
               key={link.name}
               href={link.href}
               style={{
@@ -64,7 +65,7 @@ const Navigation = () => {
               onMouseLeave={(e) => e.target.style.color = 'var(--text-secondary)'}
             >
               {link.name}
-            </a>
+            </Link>
           ))}
         </div>
 
@@ -101,7 +102,7 @@ const Navigation = () => {
             }}
           >
             {navLinks.map((link) => (
-              <a
+              <Link
                 key={link.name}
                 href={link.href}
                 onClick={() => setIsMobileMenuOpen(false)}
@@ -116,7 +117,7 @@ const Navigation = () => {
                 }}
               >
                 {link.name}
-              </a>
+              </Link>
             ))}
           </motion.div>
         )}

@@ -60,13 +60,13 @@
       "username": "Hetk8406",
       "repositories": [
         {
-          "name": "Indian Stock Predictor",
+          "name": "QuantCore",
           "role": "Creator",
           "description": "Predicting Indian stock market prices using machine learning algortihms.",
           "url": "https://github.com/Hetk8406/Indian-Stock-Predictor"
         },
         {
-          "name": "LAWYER.AI",
+          "name": "LegalPal",
           "role": "Core Contributor",
           "description": "Organization housing the complete full-stack infrastructure for the LAWYER.AI legal assistance platform.",
           "url": "https://github.com/lawyerai-system"
