@@ -86,8 +86,8 @@ const ContactFooter = ({ userData }) => {
                 <Mail size={18} color="var(--text-secondary)" />
                 <div>
                   <div className="font-mono" style={{ fontSize: '10px', color: 'var(--text-muted)', textTransform: 'uppercase' }}>EMAIL</div>
-                  <a href={`mailto:${userData?.personalInfo?.email || "hetkikani990@gmail.com"}`} style={{ fontSize: '14px', color: 'var(--text-primary)', textDecoration: 'none', fontWeight: '500' }}>
-                    {userData?.personalInfo?.email || "hetkikani990@gmail.com"}
+                  <a href={`mailto:${userData?.personalInfo?.email || "hetkikani880@gmail.com"}`} style={{ fontSize: '14px', color: 'var(--text-primary)', textDecoration: 'none', fontWeight: '500' }}>
+                    {userData?.personalInfo?.email || "hetkikani880@gmail.com"}
                   </a>
                 </div>
               </div>
