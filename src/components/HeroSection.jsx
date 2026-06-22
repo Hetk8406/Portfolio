@@ -148,37 +148,44 @@ const HeroSection = () => {
             flexWrap: 'wrap'
           }}
         >
-          <a
+          <motion.a
             ref={workBtnRef}
             href="#work"
+            whileHover={{
+              scale: 1.02,
+              boxShadow: "0 0 15px rgba(255, 255, 255, 0.12)",
+              backgroundColor: "transparent",
+              color: "var(--text-primary)",
+              borderColor: "var(--text-primary)"
+            }}
+            transition={{ type: "spring", stiffness: 400, damping: 25 }}
             style={{
               display: 'inline-block',
               padding: '14px 28px',
               borderRadius: '8px',
               background: 'var(--text-primary)',
-              color: '#050505',
+              color: '#020202',
               textDecoration: 'none',
               fontSize: '13px',
               fontWeight: '600',
               textTransform: 'uppercase',
               letterSpacing: '1px',
               border: '1px solid var(--text-primary)',
-              transition: 'background 0.3s ease, color 0.3s ease, border-color 0.3s ease'
-            }}
-            onMouseEnter={(e) => {
-              e.target.style.background = 'transparent';
-              e.target.style.color = 'var(--text-primary)';
-            }}
-            onMouseLeave={(e) => {
-              e.target.style.background = 'var(--text-primary)';
-              e.target.style.color = '#050505';
+              cursor: 'pointer'
             }}
           >
             Explore Work
-          </a>
-          <a
+          </motion.a>
+          <motion.a
             ref={bookBtnRef}
             href="#ananta"
+            whileHover={{
+              scale: 1.02,
+              borderColor: "var(--text-primary)",
+              backgroundColor: "rgba(255,255,255,0.02)",
+              boxShadow: "0 0 15px rgba(255, 255, 255, 0.03)"
+            }}
+            transition={{ type: "spring", stiffness: 400, damping: 25 }}
             style={{
               display: 'inline-block',
               padding: '14px 28px',
@@ -191,19 +198,11 @@ const HeroSection = () => {
               textTransform: 'uppercase',
               letterSpacing: '1px',
               border: '1px solid var(--border-subtle)',
-              transition: 'border-color 0.3s ease, background-color 0.3s ease'
-            }}
-            onMouseEnter={(e) => {
-              e.target.style.borderColor = 'var(--text-primary)';
-              e.target.style.backgroundColor = 'rgba(255,255,255,0.02)';
-            }}
-            onMouseLeave={(e) => {
-              e.target.style.borderColor = 'var(--border-subtle)';
-              e.target.style.backgroundColor = 'transparent';
+              cursor: 'pointer'
             }}
           >
             Explore Ananta
-          </a>
+          </motion.a>
         </motion.div>
       </motion.div>
 

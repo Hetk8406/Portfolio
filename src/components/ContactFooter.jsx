@@ -165,10 +165,18 @@ const ContactFooter = ({ userData }) => {
               </div>
 
               <div style={{ display: 'flex' }}>
-                <button
+                <motion.button
                   ref={submitBtnRef}
                   type="submit"
                   disabled={isSubmitting}
+                  whileHover={{
+                    scale: 1.015,
+                    boxShadow: "0 0 15px rgba(255, 255, 255, 0.12)",
+                    backgroundColor: "transparent",
+                    color: "var(--text-primary)",
+                    borderColor: "var(--text-primary)"
+                  }}
+                  transition={{ type: "spring", stiffness: 400, damping: 25 }}
                   style={{
                     flex: 1,
                     display: 'inline-block',
@@ -176,27 +184,18 @@ const ContactFooter = ({ userData }) => {
                     borderRadius: '8px',
                     border: '1px solid var(--text-primary)',
                     background: 'var(--text-primary)',
-                    color: '#050505',
+                    color: '#020202',
                     fontWeight: '600',
                     fontSize: '13px',
                     textTransform: 'uppercase',
                     letterSpacing: '1px',
-                    cursor: 'pointer',
-                    transition: 'background 0.3s ease, color 0.3s ease, border-color 0.3s ease'
-                  }}
-                  onMouseEnter={(e) => {
-                    e.target.style.background = 'transparent';
-                    e.target.style.color = 'var(--text-primary)';
-                  }}
-                  onMouseLeave={(e) => {
-                    e.target.style.background = 'var(--text-primary)';
-                    e.target.style.color = '#050505';
+                    cursor: 'pointer'
                   }}
                 >
                   <span style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '8px' }}>
                     {isSubmitting ? "Transmitting..." : "Send Transmission"} <Send size={14} />
                   </span>
-                </button>
+                </motion.button>
               </div>
             </form>
           </motion.div>
