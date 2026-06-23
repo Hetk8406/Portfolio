@@ -147,6 +147,13 @@
           "category": "Mobile Apps",
           "description": "Personal finance management and tracking application designed for mobile devices.",
           "url": "https://github.com/Hetk8406/Finora"
+        },
+        {
+          "name": "Bank Marketing Predictor",
+          "role": "Creator",
+          "category": "Data Science",
+          "description": "Predictive classification system modeling client term-deposit subscriptions using socio-economic indicators and campaign attributes.",
+          "url": "https://github.com/Hetk8406/Portuguese-Bank-Marketing-Prediction--Data-Science-Project-1"
         }
       ]
     }

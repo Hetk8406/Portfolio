@@ -84,6 +84,19 @@ const ProjectsGallery = ({ userData, limit }) => {
         "finora-page2.png"
       ],
       fullDescription: "A modern personal finance and expense tracking mobile application designed to help users structure budgets, track expenses, and visualize financial habits in real-time. Employs secure local storage capabilities, custom categorization, budget capping alert thresholds, and interactive graphical analytics outputs."
+    },
+    {
+      // Index 5 → repositories[5] (currently "Bank Marketing Predictor")
+      image: "DS1-Portuguese.png",
+      fit: "cover",
+      position: "center",
+      impact: "Classifying and predicting client subscription conversion rates for banking campaigns.",
+      tags: ["Python", "Scikit-Learn", "XGBoost", "SMOTE", "Seaborn"],
+      demoUrl: null,
+      screenshots: [
+        "DS1-Portuguese.png"
+      ],
+      fullDescription: "A high-performance machine learning classifier designed to predict client subscriptions to long-term deposits for a Portuguese banking institution. The system leverages extensive socio-economic datasets, resolves class imbalance using SMOTE techniques, trains ensemble classifiers (Random Forests, XGBoost, and LightGBM), and delivers actionable campaign insights using SHAP explainability matrices."
     }
   ];
 
