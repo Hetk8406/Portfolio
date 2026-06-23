@@ -118,42 +118,82 @@
           "role": "Creator",
           "category": "Data Science",
           "description": "Predicting Indian stock market prices using machine learning algortihms.",
-          "url": "https://github.com/Hetk8406/Indian-Stock-Predictor"
+          "url": "https://github.com/Hetk8406/Indian-Stock-Predictor",
+          "languages": {
+            "JavaScript": 79.5,
+            "Python": 18.9,
+            "Other": 1.6
+          }
         },
         {
           "name": "LegalPal",
           "role": "Core Contributor",
           "category": "Web Apps",
           "description": "Organization housing the complete full-stack infrastructure for the LAWYER.AI legal assistance platform.",
-          "url": "https://github.com/lawyerai-system"
+          "url": "https://github.com/lawyerai-system/Lawyer.AI--v3",
+          "languages": {
+            "JavaScript": 99,
+            "Python": 0.8,
+            "CSS": 0.1,
+            "HTML": 0
+          }
         },
         {
           "name": "FoundIt!",
           "role": "Core Contributor",
           "category": "Web Apps",
           "description": "Dedicated GitHub organization for the Lost & Found System architecture and repositories.",
-          "url": "https://github.com/lostfound-system"
+          "url": "https://github.com/lostfound-system/FoundIt-App",
+          "languages": {
+            "TypeScript": 98.8,
+            "CSS": 0.9,
+            "JavaScript": 0.2
+          }
         },
         {
           "name": "ConceptLens",
           "role": "Core Contributor",
           "category": "Web Apps",
           "description": "Organization for ConceptLens system repositories and exploration tools.",
-          "url": "https://github.com/conceptlens-system"
+          "url": "https://github.com/conceptlens-system/CONCEPTLENS-v4.0",
+          "languages": {
+            "TypeScript": 82,
+            "Python": 17.2,
+            "JavaScript": 0.3,
+            "CSS": 0.3,
+            "PowerShell": 0.1,
+            "Batchfile": 0.1,
+            "Dockerfile": 0
+          }
         },
         {
           "name": "Finora",
           "role": "Creator",
           "category": "Mobile Apps",
           "description": "Personal finance management and tracking application designed for mobile devices.",
-          "url": "https://github.com/Hetk8406/Finora"
+          "url": "https://github.com/Hetk8406/Finora",
+          "languages": {
+            "Dart": 58.3,
+            "C++": 20.1,
+            "CMake": 15.5,
+            "HTML": 2.6,
+            "Swift": 2.2,
+            "C": 1.2
+          }
         },
         {
           "name": "Bank Marketing Predictor",
           "role": "Creator",
           "category": "Data Science",
           "description": "Predictive classification system modeling client term-deposit subscriptions using socio-economic indicators and campaign attributes.",
-          "url": "https://github.com/Hetk8406/Portuguese-Bank-Marketing-Prediction--Data-Science-Project-1"
+          "url": "https://github.com/Hetk8406/Portuguese-Bank-Marketing-Prediction--Data-Science-Project-1",
+          "languages": {
+            "Jupyter Notebook": 83,
+            "HTML": 5.5,
+            "Python": 5.2,
+            "JavaScript": 3.3,
+            "CSS": 3
+          }
         }
       ]
     }

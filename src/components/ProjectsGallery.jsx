@@ -385,6 +385,22 @@ const ProjectCard = ({ project, onClick }) => {
               {tag}
             </span>
           ))}
+          {project.languages && Object.keys(project.languages).slice(0, 3).map((lang, lIdx) => (
+            <span
+              key={`lang-${lIdx}`}
+              className="font-mono"
+              style={{
+                fontSize: '10px',
+                background: 'rgba(0, 240, 255, 0.03)',
+                border: '1px solid rgba(0, 240, 255, 0.1)',
+                borderRadius: '4px',
+                padding: '2px 8px',
+                color: '#00f0ff'
+              }}
+            >
+              {lang}
+            </span>
+          ))}
         </div>
       </motion.div>
     </motion.div>
@@ -565,6 +581,33 @@ const ProjectDetailModal = ({ project, onClose }) => {
                   ))}
                 </div>
               </div>
+
+              {/* Language Composition Spec List */}
+              {project.languages && Object.keys(project.languages).length > 0 && (
+                <div>
+                  <h4 className="font-mono" style={{ fontSize: '11px', color: 'var(--text-muted)', textTransform: 'uppercase', letterSpacing: '1px', marginBottom: '12px', display: 'flex', alignItems: 'center', gap: '6px' }}>
+                    <Layers size={12} /> Language Composition
+                  </h4>
+                  <div style={{ display: 'flex', flexWrap: 'wrap', gap: '6px' }}>
+                    {Object.entries(project.languages).map(([lang, pct], lIdx) => (
+                      <span
+                        key={lIdx}
+                        className="font-mono"
+                        style={{
+                          fontSize: '11px',
+                          background: 'rgba(0, 240, 255, 0.03)',
+                          border: '1px solid rgba(0, 240, 255, 0.15)',
+                          borderRadius: '4px',
+                          padding: '4px 10px',
+                          color: '#00f0ff'
+                        }}
+                      >
+                        {lang}: {pct}%
+                      </span>
+                    ))}
+                  </div>
+                </div>
+              )}
 
               {/* Action Buttons */}
               <div style={{ display: 'flex', flexDirection: 'column', gap: '10px' }}>

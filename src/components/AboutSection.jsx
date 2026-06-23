@@ -176,13 +176,43 @@ const AboutSection = ({ userData, limit }) => {
     }
   ];
 
+  // Dynamic Language Aggregation from GitHub repositories
+  const githubRepos = userData?.github?.repositories || [];
+  const dynamicLanguages = new Set();
+  githubRepos.forEach(repo => {
+    if (repo.languages) {
+      Object.keys(repo.languages).forEach(lang => {
+        dynamicLanguages.add(lang);
+      });
+    }
+  });
+
+  const staticTechNames = new Set(techStack.map(t => t.name.toLowerCase()));
+  const dynamicTechItems = [];
+  dynamicLanguages.forEach(lang => {
+    if (!staticTechNames.has(lang.toLowerCase())) {
+      dynamicTechItems.push({
+        name: lang,
+        category: "Languages",
+        icon: (
+          <svg viewBox="0 0 24 24" width="36" height="36" fill="none" stroke="#00f0ff" stroke-width="1.5">
+            <path d="M16 18l6-6-6-6M8 6l-6 6 6 6" stroke-linecap="round" stroke-linejoin="round" />
+            <path d="M12 4l-4 16" stroke-linecap="round" stroke-linejoin="round" />
+          </svg>
+        )
+      });
+    }
+  });
+
+  const fullTechStack = [...techStack, ...dynamicTechItems];
+
   // Filtering Logic
-  const categories = ["All", "Frontend / Web", "Backend", "Database", "Data Science & AI", "Tools"];
+  const categories = ["All", "Frontend / Web", "Backend", "Database", "Data Science & AI", "Tools", "Languages"];
   const [activeCategory, setActiveCategory] = useState("All");
 
   const filteredTech = activeCategory === "All"
-    ? techStack
-    : techStack.filter(item => item.category === activeCategory);
+    ? fullTechStack
+    : fullTechStack.filter(item => item.category === activeCategory);
 
   const columnVariantsLeft = {
     hidden: { opacity: 0, x: -20, scale: 0.99 },
