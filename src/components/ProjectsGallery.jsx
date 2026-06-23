@@ -69,6 +69,21 @@ const ProjectsGallery = ({ userData, limit }) => {
       demoUrl: null,
       screenshots: [],
       fullDescription: "An interactive, visual concept-mapping node network. Allows researchers to input text datasets and automatically generate node-relationship schemas using Graph databases and dynamic D3.js physics renders."
+    },
+    {
+      // Index 4 → repositories[4] (currently "Finora")
+      image: "finora-logo.png",
+      fit: "contain",
+      position: "center",
+      impact: "Comprehensive personal finance and budget management mobile app.",
+      tags: ["React Native", "Expo", "SQLite", "Chart.js"],
+      demoUrl: null,
+      screenshots: [
+        "finora-logo.png",
+        "finora-page1.png",
+        "finora-page2.png"
+      ],
+      fullDescription: "A modern personal finance and expense tracking mobile application designed to help users structure budgets, track expenses, and visualize financial habits in real-time. Employs secure local storage capabilities, custom categorization, budget capping alert thresholds, and interactive graphical analytics outputs."
     }
   ];
 
@@ -143,6 +158,7 @@ const ProjectsGallery = ({ userData, limit }) => {
 
         {/* Grid List */}
         <motion.div
+          key={activeCategory}
           variants={containerVariants}
           initial="hidden"
           whileInView="visible"
@@ -154,9 +170,9 @@ const ProjectsGallery = ({ userData, limit }) => {
           }}
           className="projects-grid"
         >
-          {displayedProjects.map((project, idx) => (
+          {displayedProjects.map((project) => (
             <ProjectCard
-              key={idx}
+              key={project.name}
               project={project}
               onClick={() => setActiveProject(project)}
             />

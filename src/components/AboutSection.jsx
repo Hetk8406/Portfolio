@@ -346,6 +346,7 @@ const AboutSection = ({ userData, limit }) => {
           {/* Cards Grid */}
           <motion.div
             layout
+            className="tech-stack-grid"
             style={{
               display: 'grid',
               gridTemplateColumns: 'repeat(auto-fill, minmax(180px, 1fr))',
@@ -642,6 +643,16 @@ const AboutSection = ({ userData, limit }) => {
           </motion.div>
         )}
       </AnimatePresence>
+
+      {/* Responsive adjustments for tech grid and filters */}
+      <style>{`
+        @media (max-width: 540px) {
+          .tech-stack-grid {
+            grid-template-columns: repeat(auto-fill, minmax(130px, 1fr)) !important;
+            gap: 12px !important;
+          }
+        }
+      `}</style>
 
     </section>
   );

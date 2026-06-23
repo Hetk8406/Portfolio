@@ -140,6 +140,13 @@
           "category": "Web Apps",
           "description": "Organization for ConceptLens system repositories and exploration tools.",
           "url": "https://github.com/conceptlens-system"
+        },
+        {
+          "name": "Finora",
+          "role": "Creator",
+          "category": "Mobile Apps",
+          "description": "Personal finance management and tracking application designed for mobile devices.",
+          "url": "https://github.com/Hetk8406/Finora"
         }
       ]
     }

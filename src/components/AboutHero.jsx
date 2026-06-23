@@ -233,12 +233,15 @@ const AboutHero = ({ userData, isSummary }) => {
             </div>
 
             {/* Stats Counter Boxes */}
-            <div style={{
-              display: 'grid',
-              gridTemplateColumns: 'repeat(3, 1fr)',
-              gap: '16px',
-              marginTop: '16px'
-            }}>
+            <div
+              className="about-hero-stats-grid"
+              style={{
+                display: 'grid',
+                gridTemplateColumns: 'repeat(3, 1fr)',
+                gap: '16px',
+                marginTop: '16px'
+              }}
+            >
               <div style={statBoxStyle}>
                 <span className="font-heading" style={{ fontSize: '24px', fontWeight: '800', color: 'var(--text-primary)' }}>3+ yrs</span>
                 <span className="font-mono" style={{ fontSize: '9px', color: 'var(--text-muted)', textTransform: 'uppercase', letterSpacing: '1px' }}>Technical Training</span>
@@ -437,6 +440,12 @@ const AboutHero = ({ userData, isSummary }) => {
           .about-hero-grid {
             grid-template-columns: 1fr !important;
             gap: 48px !important;
+          }
+        }
+        @media (max-width: 540px) {
+          .about-hero-stats-grid {
+            grid-template-columns: 1fr !important;
+            gap: 12px !important;
           }
         }
       `}</style>
