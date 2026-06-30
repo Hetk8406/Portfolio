@@ -137,6 +137,20 @@ const ProjectsGallery = ({ userData, limit }) => {
         "DS3_project-7.png"
       ],
       fullDescription: "An interactive exploratory data analysis and clustering engine built to evaluate player attributes, wage structures, and potential ratings across a database of football players. Features dimensionality reduction and unsupervised clustering visualizers to classify player traits."
+    },
+    {
+      // Index 8 → repositories[8] (currently "Bike Rental Demand Prediction")
+      image: "DS4-Project-1.png",
+      fit: "cover",
+      position: "center",
+      impact: "Modeling and forecasting daily bike sharing demands dynamically.",
+      tags: ["Python", "Machine Learning", "Regression Analysis", "Data Visualisation", "JavaScript"],
+      demoUrl: null,
+      screenshots: [
+        "DS4-Project-1.png",
+        "DS4-Project-2.png"
+      ],
+      fullDescription: "A predictive regression analysis system built to model daily bike rental sharing demands. Leverages historical weather trends, seasonal parameters, and user demographic data to build robust demand forecasting models."
     }
   ];
 
