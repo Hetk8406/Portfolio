@@ -18,33 +18,33 @@ const ProjectsGallery = ({ userData, limit }) => {
   const projectMocks = [
     {
       // Index 0 → repositories[0] (currently "QuantCore")
-      image: "quantcore.png",
+      image: "QuantCore/quantcore.png",
       fit: "cover",
       position: "center",
       impact: "Algorithmic forecasting of equity prices using sequence regression models.",
       tags: ["Python", "LSTM", "Pandas", "Scikit-Learn"],
       demoUrl: null,
-      screenshots: ["quantcore.png"], // Add screenshots here later
+      screenshots: ["QuantCore/quantcore.png"], // Add screenshots here later
       fullDescription: "An advanced algorithmic forecasting engine designed to predict equity price movements in the Indian Stock Market. Built using Deep Learning LSTM sequence models, the system processes historical tick data, computes volatility metrics, and runs predictive regressions to map trading signals."
     },
     {
       // Index 1 → repositories[1] (currently "LegalPal")
-      image: "legalpal.png",
+      image: "LegalPal/legalpal.png",
       fit: "cover",
       position: "center",
       impact: "Full-stack legal assistant platform built with high-throughput inference nodes.",
       tags: ["React", "Python", "FastAPI", "LLM Integration"],
       // demoUrl: "https://lawyerai.vercel.app",
       screenshots: [
-        "legalpal-dashboard.png",
-        "legalpal-chat.png",
-        "legalpal-chat2.png",
-        "legalpal-chatAI.png",
-        "legalpal-ChatAI2.png",
-        "legalpal-docanalzer.png",
-        "legalpal-docanalzer (2).png",
-        "legalpal-IPCpage.png",
-        "legalpal-mocktrail.png"
+        "LegalPal/legalpal-dashboard.png",
+        "LegalPal/legalpal-chat.png",
+        "LegalPal/legalpal-chat2.png",
+        "LegalPal/legalpal-chatAI.png",
+        "LegalPal/legalpal-ChatAI2.png",
+        "LegalPal/legalpal-docanalzer.png",
+        "LegalPal/legalpal-docanalzer (2).png",
+        "LegalPal/legalpal-IPCpage.png",
+        "LegalPal/legalpal-mocktrail.png"
       ],
       fullDescription: "A complete full-stack infrastructure for the LegalPal legal assistance assistant. Integrates high-throughput inference nodes with customized legal context indexing, allowing lawyers and clients to draft contracts, analyze statutes, and query regulations with high precision."
     },
@@ -72,83 +72,83 @@ const ProjectsGallery = ({ userData, limit }) => {
     },
     {
       // Index 4 → repositories[4] (currently "Finora")
-      image: "finora-logo.png",
+      image: "Finora/finora-logo.png",
       fit: "contain",
       position: "center",
       impact: "Comprehensive personal finance and budget management mobile app.",
       tags: ["React Native", "Expo", "SQLite", "Chart.js"],
       demoUrl: null,
       screenshots: [
-        "finora-logo.png",
-        "finora-page1.png",
-        "finora-page2.png"
+        "Finora/finora-logo.png",
+        "Finora/finora-page1.png",
+        "Finora/finora-page2.png"
       ],
       fullDescription: "A modern personal finance and expense tracking mobile application designed to help users structure budgets, track expenses, and visualize financial habits in real-time. Employs secure local storage capabilities, custom categorization, budget capping alert thresholds, and interactive graphical analytics outputs."
     },
     {
       // Index 5 → repositories[5] (currently "Bank Marketing Predictor")
-      image: "DS _project 1-1.png",
+      image: "Bank Marketing Prediction/DS _project 1-1.png",
       fit: "cover",
       position: "center",
       impact: "Classifying and predicting client subscription conversion rates for banking campaigns.",
       tags: ["Python", "Scikit-Learn", "XGBoost", "SMOTE", "Seaborn"],
       demoUrl: null,
       screenshots: [
-        "DS _project 1-1.png",
-        "DS _project 1-2.png",
-        "DS _project 1-3.png",
-        "DS _project 1-4.png",
-        "DS _project 1-5.png",
-        "DS _project 1-6.png",
-        "DS _project 1-7.png",
-        "DS _project 1-8.png",
-        "DS _project 1-9.png"
+        "Bank Marketing Prediction/DS _project 1-1.png",
+        "Bank Marketing Prediction/DS _project 1-2.png",
+        "Bank Marketing Prediction/DS _project 1-3.png",
+        "Bank Marketing Prediction/DS _project 1-4.png",
+        "Bank Marketing Prediction/DS _project 1-5.png",
+        "Bank Marketing Prediction/DS _project 1-6.png",
+        "Bank Marketing Prediction/DS _project 1-7.png",
+        "Bank Marketing Prediction/DS _project 1-8.png",
+        "Bank Marketing Prediction/DS _project 1-9.png"
       ],
       fullDescription: "A high-performance machine learning classifier designed to predict client subscriptions to long-term deposits for a Portuguese banking institution. The system leverages extensive socio-economic datasets, resolves class imbalance using SMOTE techniques, trains ensemble classifiers (Random Forests, XGBoost, and LightGBM), and delivers actionable campaign insights using SHAP explainability matrices."
     },
     {
       // Index 6 → repositories[6] (currently "Cellphone Price Prediction")
-      image: "DS2-Cellphone.png",
+      image: "CellPhone Price Prediction/DS2-Cellphone.png",
       fit: "cover",
       position: "center",
       impact: "Classifying cellphone price segments dynamically using hardware specifications.",
       tags: ["Python", "Machine Learning", "Scikit-Learn", "Data Analysis"],
       demoUrl: null,
       screenshots: [
-        "DS2-Cellphone.png"
+        "CellPhone Price Prediction/DS2-Cellphone.png"
       ],
       fullDescription: "A comprehensive data science project that evaluates cellphone technical specifications (RAM, internal memory, processor speed, camera quality, battery capacity) to classify devices into accurate price ranges using classification algorithms."
     },
     {
       // Index 7 → repositories[7] (currently "FIFA 20 Football Player Analysis")
-      image: "DS3_project-1.png",
+      image: "FIFA Player Clustering/DS3_project-1.png",
       fit: "cover",
       position: "center",
       impact: "Clustering and analyzing player performances using K-Means and attribute dimensionalities.",
       tags: ["Python", "Machine Learning", "K-Means Clustering", "Data Visualisation", "D3.js / Chart.js"],
       demoUrl: null,
       screenshots: [
-        "DS3_project-1.png",
-        "DS3_project-2.png",
-        "DS3_project-3.png",
-        "DS3_project-4.png",
-        "DS3_project-5.png",
-        "DS3_project-6.png",
-        "DS3_project-7.png"
+        "FIFA Player Clustering/DS3_project-1.png",
+        "FIFA Player Clustering/DS3_project-2.png",
+        "FIFA Player Clustering/DS3_project-3.png",
+        "FIFA Player Clustering/DS3_project-4.png",
+        "FIFA Player Clustering/DS3_project-5.png",
+        "FIFA Player Clustering/DS3_project-6.png",
+        "FIFA Player Clustering/DS3_project-7.png"
       ],
       fullDescription: "An interactive exploratory data analysis and clustering engine built to evaluate player attributes, wage structures, and potential ratings across a database of football players. Features dimensionality reduction and unsupervised clustering visualizers to classify player traits."
     },
     {
       // Index 8 → repositories[8] (currently "Bike Rental Demand Prediction")
-      image: "DS4-Project-1.png",
+      image: "Bike Rental Demand Prediction/DS4-Project-1.png",
       fit: "cover",
       position: "center",
       impact: "Modeling and forecasting daily bike sharing demands dynamically.",
       tags: ["Python", "Machine Learning", "Regression Analysis", "Data Visualisation", "JavaScript"],
       demoUrl: null,
       screenshots: [
-        "DS4-Project-1.png",
-        "DS4-Project-2.png"
+        "Bike Rental Demand Prediction/DS4-Project-1.png",
+        "Bike Rental Demand Prediction/DS4-Project-2.png"
       ],
       fullDescription: "A predictive regression analysis system built to model daily bike rental sharing demands. Leverages historical weather trends, seasonal parameters, and user demographic data to build robust demand forecasting models."
     }
