@@ -3,6 +3,19 @@ const path = require('path');
 const https = require('https');
 
 const DATA_FILE = path.join(__dirname, '..', 'userProfileData.json');
+const verbose = process.argv.includes('--verbose');
+
+function log(...args) {
+  if (verbose) {
+    console.log(...args);
+  }
+}
+
+function warn(...args) {
+  if (verbose) {
+    console.warn(...args);
+  }
+}
 
 function fetchJson(url) {
   return new Promise((resolve, reject) => {
@@ -32,7 +45,7 @@ function fetchJson(url) {
 }
 
 async function run() {
-  console.log('Fetching GitHub repository languages...');
+  log('Fetching GitHub repository languages...');
   if (!fs.existsSync(DATA_FILE)) {
     console.error('Data file not found:', DATA_FILE);
     return;
@@ -54,7 +67,7 @@ async function run() {
     if (!repo.url) continue;
     const match = repo.url.match(/github\.com\/([^\/]+)\/([^\/]+)/);
     if (!match) {
-      console.log(`Skipping non-repository URL: ${repo.url}`);
+      log(`Skipping non-repository URL: ${repo.url}`);
       continue;
     }
 
@@ -63,7 +76,7 @@ async function run() {
     const apiUrl = `https://api.github.com/repos/${owner}/${repoName}/languages`;
 
     try {
-      console.log(`Fetching languages for ${owner}/${repoName}...`);
+      log(`Fetching languages for ${owner}/${repoName}...`);
       const languages = await fetchJson(apiUrl);
       
       // Compute percentages
@@ -75,18 +88,18 @@ async function run() {
         }
         repo.languages = langPercentages;
         updated = true;
-        console.log(`Successfully fetched languages for ${repoName}:`, langPercentages);
+        log(`Successfully fetched languages for ${repoName}:`, langPercentages);
       }
     } catch (err) {
-      console.warn(`Could not fetch languages for ${owner}/${repoName}:`, err.message);
+      warn(`Could not fetch languages for ${owner}/${repoName}:`, err.message);
     }
   }
 
   if (updated) {
     fs.writeFileSync(DATA_FILE, JSON.stringify(data, null, 2), 'utf8');
-    console.log('Successfully updated userProfileData.json with GitHub languages!');
+    log('Successfully updated userProfileData.json with GitHub languages!');
   } else {
-    console.log('No updates written to userProfileData.json.');
+    log('No updates written to userProfileData.json.');
   }
 }
 
