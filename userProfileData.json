@@ -259,6 +259,18 @@
             "Jupyter Notebook": 34.2,
             "CSS": 4.8
           }
+        },
+        {
+          "name": "Forest Cover Prediction",
+          "role": "Creator",
+          "category": "Data Science",
+          "description": "Predictive classification system modeling forest cover types using cartographic variables.",
+          "url": "https://github.com/Hetk8406/Forest-Cover-Prediction--Data-Science-Project-7",
+          "languages": {
+            "Jupyter Notebook": 91.5,
+            "Python": 6.2,
+            "CSS": 2.3
+          }
         }
       ]
     }

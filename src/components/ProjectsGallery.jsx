@@ -191,6 +191,29 @@ const ProjectsGallery = ({ userData, limit }) => {
         "Customer Transaction Prediction/DS6-Project-8.png"
       ],
       fullDescription: "A predictive machine learning classifier designed to identify whether a customer will complete a transaction. Leverages light gradient-boosted machines, random forests, and deep feature exploration pipelines, providing businesses with real-time transactional forecasting and conversion analytics."
+    },
+    {
+      // Index 11 → repositories[11] (currently "Forest Cover Prediction")
+      image: "Forest cover prediction/DS7-Project-1.png",
+      fit: "cover",
+      position: "center",
+      impact: "Diagnostic classification of forest cover types based on cartographic and geological variables.",
+      tags: ["Python", "Machine Learning", "Random Forest", "Data Visualisation", "Jupyter"],
+      demoUrl: null,
+      screenshots: [
+        "Forest cover prediction/DS7-Project-1.png",
+        "Forest cover prediction/DS7-Project-2.png",
+        "Forest cover prediction/DS7-Project-3.png",
+        "Forest cover prediction/DS7-Project-4.png",
+        "Forest cover prediction/DS7-Project-5.png",
+        "Forest cover prediction/DS7-Project-6.png",
+        "Forest cover prediction/DS7-Project-7.png",
+        "Forest cover prediction/DS7-Project-8.png",
+        "Forest cover prediction/DS7-Project-9.png",
+        "Forest cover prediction/DS7-Project-10.png",
+        "Forest cover prediction/DS7-Project-11.png"
+      ],
+      fullDescription: "An exploratory data analysis and predictive modeling pipeline to classify forest cover types using cartographic variables (elevation, aspect, slope, soil type, and distance to hydrology/roads/fire points). Trains Random Forest classifiers, optimizes hyperparameters, and generates detailed visualization maps of forest zones."
     }
   ];
 
@@ -471,6 +494,12 @@ const getProjectCaseStudyDetails = (name) => {
     return {
       problem: "Classifying customer conversion potentials from web-session logs.",
       achievements: ["Maintained ROC-AUC score of 0.91", "Handled imbalanced datasets using SMOTE"]
+    };
+  }
+  if (n.includes("forest") || n.includes("cover")) {
+    return {
+      problem: "Diagnostic classification of forest cover types based on cartographic and geological variables.",
+      achievements: ["Evaluated cover types using Random Forest models", "Engineered elevation and distance ratios"]
     };
   }
   return {
