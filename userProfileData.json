@@ -247,6 +247,18 @@
             "Python": 2.7,
             "CSS": 0.1
           }
+        },
+        {
+          "name": "Customer Transaction Prediction",
+          "role": "Creator",
+          "category": "Data Science",
+          "description": "Predictive forecasting system leveraging machine learning classification models to determine potential customer transaction conversions.",
+          "url": "https://github.com/Hetk8406/Customer-Transaction-Prediction--Data-Science-Project-6",
+          "languages": {
+            "Python": 61,
+            "Jupyter Notebook": 34.2,
+            "CSS": 4.8
+          }
         }
       ]
     }

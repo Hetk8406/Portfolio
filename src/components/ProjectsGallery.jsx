@@ -171,6 +171,26 @@ const ProjectsGallery = ({ userData, limit }) => {
         "RiceLeaf Disease Detection/DS5-Project-8.png"
       ],
       fullDescription: "A deep learning computer vision model trained to classify multiple types of rice leaf diseases (Bacterial leaf blight, Brown spot, and Leaf smut). Includes an interactive dashboard to upload leaf images and get instant diagnostic reports and treatment guidelines."
+    },
+    {
+      // Index 10 → repositories[10] (currently "Customer Transaction Prediction")
+      image: "Customer Transaction Prediction/DS6-Project-1.png",
+      fit: "cover",
+      position: "center",
+      impact: "Predicting customer transaction potentials using classification models.",
+      tags: ["Python", "Machine Learning", "LightGBM / XGBoost", "Data Analysis", "Streamlit"],
+      demoUrl: null,
+      screenshots: [
+        "Customer Transaction Prediction/DS6-Project-1.png",
+        "Customer Transaction Prediction/DS6-Project-2.png",
+        "Customer Transaction Prediction/DS6-Project-3.png",
+        "Customer Transaction Prediction/DS6-Project-4.png",
+        "Customer Transaction Prediction/DS6-Project-5.png",
+        "Customer Transaction Prediction/DS6-Project-6.png",
+        "Customer Transaction Prediction/DS6-Project-7.png",
+        "Customer Transaction Prediction/DS6-Project-8.png"
+      ],
+      fullDescription: "A predictive machine learning classifier designed to identify whether a customer will complete a transaction. Leverages light gradient-boosted machines, random forests, and deep feature exploration pipelines, providing businesses with real-time transactional forecasting and conversion analytics."
     }
   ];
 
