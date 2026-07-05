@@ -245,14 +245,14 @@ const ProjectsGallery = ({ userData, limit }) => {
                 key={cat}
                 onClick={() => setActiveCategory(cat)}
                 style={{
-                  padding: '8px 18px',
-                  borderRadius: '100px',
-                  border: activeCategory === cat ? '1px solid #00f0ff' : '1px solid rgba(255, 255, 255, 0.06)',
-                  background: activeCategory === cat ? 'rgba(0, 240, 255, 0.08)' : 'rgba(255, 255, 255, 0.01)',
-                  color: activeCategory === cat ? '#00f0ff' : 'var(--text-secondary)',
+                  padding: '8px 16px',
+                  borderRadius: '4px',
+                  border: activeCategory === cat ? '1px solid var(--border-strong)' : '1px solid var(--border-subtle)',
+                  background: activeCategory === cat ? 'var(--bg-dark-800)' : 'rgba(255, 255, 255, 0.01)',
+                  color: activeCategory === cat ? 'var(--text-primary)' : 'var(--text-secondary)',
                   fontFamily: 'JetBrains Mono, monospace',
                   fontSize: '11px',
-                  fontWeight: '600',
+                  fontWeight: '500',
                   cursor: 'pointer',
                   transition: 'all 0.3s cubic-bezier(0.16, 1, 0.3, 1)'
                 }}
@@ -263,75 +263,116 @@ const ProjectsGallery = ({ userData, limit }) => {
           </div>
         )}
 
-        {/* Grid List */}
-        <motion.div
-          key={activeCategory}
-          variants={containerVariants}
-          initial="hidden"
-          whileInView="visible"
-          viewport={{ once: true, margin: "-10%" }}
-          style={{
-            display: 'grid',
-            gap: '32px'
-          }}
-          className="projects-grid"
-        >
-          {displayedProjects.map((project) => (
-            <ProjectCard
-              key={project.name}
-              project={project}
-              onClick={() => setActiveProject(project)}
-            />
-          ))}
-        </motion.div>
-
-        {/* Dynamic Empty State for filters */}
-        {displayedProjects.length === 0 && (
-          <div style={{
-            textAlign: 'center',
-            padding: '60px 0',
-            color: 'var(--text-muted)',
-            fontFamily: 'JetBrains Mono, monospace',
-            fontSize: '13px'
+        {/* If homepage (limit is set), wrap grid in the preview fade layout */}
+        {limit ? (
+          <div className="projects-preview-wrapper" style={{
+            position: 'relative',
+            overflow: 'hidden',
+            maxHeight: '620px',
+            width: '100%',
+            paddingBottom: '80px'
           }}>
-            [ NO PROJECTS DEPLOYED IN THIS CATEGORY YET ]
-          </div>
-        )}
-
-        {/* View All Button on Homepage */}
-        {limit && repositories.length > limit && (
-          <div style={{ textAlign: 'center', marginTop: '56px' }}>
-            <Link
-              href="/projects"
+            <motion.div
+              key={activeCategory}
+              variants={containerVariants}
+              initial="hidden"
+              whileInView="visible"
+              viewport={{ once: true, margin: "-10%" }}
               style={{
-                display: 'inline-flex',
-                alignItems: 'center',
-                gap: '8px',
-                padding: '12px 28px',
-                borderRadius: '8px',
-                border: '1px solid rgba(255, 255, 255, 0.08)',
-                background: 'rgba(255, 255, 255, 0.02)',
-                color: 'var(--text-primary)',
-                textDecoration: 'none',
-                fontSize: '13px',
-                fontFamily: 'JetBrains Mono, monospace',
-                textTransform: 'uppercase',
-                letterSpacing: '1px',
-                transition: 'all 0.3s ease',
-                cursor: 'pointer'
+                display: 'grid',
+                gap: '32px'
               }}
-              onMouseEnter={(e) => {
-                e.target.style.background = 'rgba(255,255,255,0.06)';
-                e.target.style.borderColor = 'rgba(255,255,255,0.15)';
-              }}
-              onMouseLeave={(e) => {
-                e.target.style.background = 'rgba(255,255,255,0.02)';
-                e.target.style.borderColor = 'rgba(255,255,255,0.08)';
-              }}
+              className="projects-grid"
             >
-              View All Projects
-            </Link>
+              {displayedProjects.map((project) => (
+                <ProjectCard
+                  key={project.name}
+                  project={project}
+                  onClick={() => setActiveProject(project)}
+                />
+              ))}
+            </motion.div>
+
+            {/* Premium Gradient Overlay with blur */}
+            <div style={{
+              position: 'absolute',
+              bottom: 0,
+              left: 0,
+              width: '100%',
+              height: '240px',
+              background: 'linear-gradient(to bottom, rgba(5, 5, 5, 0) 0%, rgba(5, 5, 5, 0.45) 45%, #050505 100%)',
+              backdropFilter: 'blur(8px)',
+              WebkitBackdropFilter: 'blur(8px)',
+              display: 'flex',
+              alignItems: 'end',
+              justifyContent: 'center',
+              paddingBottom: '30px',
+              zIndex: 10
+            }}>
+              <Link
+                href="/projects"
+                style={{
+                  display: 'inline-flex',
+                  alignItems: 'center',
+                  gap: '8px',
+                  padding: '14px 32px',
+                  borderRadius: '30px',
+                  border: '1px solid var(--border-strong)',
+                  background: '#F4F4F5',
+                  color: '#0A0A0B',
+                  textDecoration: 'none',
+                  fontSize: '12.5px',
+                  fontFamily: 'JetBrains Mono, monospace',
+                  fontWeight: '600',
+                  textTransform: 'uppercase',
+                  letterSpacing: '1px',
+                  boxShadow: '0 8px 30px rgba(0, 0, 0, 0.5)',
+                  transition: 'all 300ms cubic-bezier(0.16, 1, 0.3, 1)',
+                  cursor: 'pointer'
+                }}
+                className="view-all-pill-btn"
+              >
+                <span>View All Projects</span>
+                <span className="arrow-icon" style={{ transition: 'transform 300ms cubic-bezier(0.16, 1, 0.3, 1)' }}>&rarr;</span>
+              </Link>
+            </div>
           </div>
+        ) : (
+          <>
+            <motion.div
+              key={activeCategory}
+              variants={containerVariants}
+              initial="hidden"
+              whileInView="visible"
+              viewport={{ once: true, margin: "-10%" }}
+              style={{
+                display: 'grid',
+                gap: '32px'
+              }}
+              className="projects-grid"
+            >
+              {displayedProjects.map((project) => (
+                <ProjectCard
+                  key={project.name}
+                  project={project}
+                  onClick={() => setActiveProject(project)}
+                />
+              ))}
+            </motion.div>
+            
+            {/* Dynamic Empty State for filters */}
+            {displayedProjects.length === 0 && (
+              <div style={{
+                textAlign: 'center',
+                padding: '60px 0',
+                color: 'var(--text-muted)',
+                fontFamily: 'JetBrains Mono, monospace',
+                fontSize: '13px'
+              }}>
+                [ NO PROJECTS DEPLOYED IN THIS CATEGORY YET ]
+              </div>
+            )}
+          </>
         )}
       </div>
 
@@ -364,11 +405,88 @@ const ProjectsGallery = ({ userData, limit }) => {
   );
 };
 
+const getProjectCaseStudyDetails = (name) => {
+  const n = name.toLowerCase();
+  if (n.includes("stock")) {
+    return {
+      problem: "Forecasting stock price movements from historical market volatility.",
+      achievements: ["Reached 94.2% accuracy using LSTM networks", "Built real-time training sequence chains"]
+    };
+  }
+  if (n.includes("lawyer")) {
+    return {
+      problem: "Extracting legal clauses and identifying risk items in compliance reports.",
+      achievements: ["Reduced document review cycles by 70%", "Built real-time PDF risk highlight system"]
+    };
+  }
+  if (n.includes("foundit")) {
+    return {
+      problem: "Matching lost items to found item reports using location parameters.",
+      achievements: ["Scaled to match multi-neighborhood reports", "Enabled immediate notification logs"]
+    };
+  }
+  if (n.includes("conceptlens")) {
+    return {
+      problem: "Processing telemetry data arrays and rendering responsive analytics charts.",
+      achievements: ["Reduced dashboard render delays by 40%", "Optimized virtualized chart metrics"]
+    };
+  }
+  if (n.includes("finora")) {
+    return {
+      problem: "Organizing distributed statements and computing budgeting recommendations.",
+      achievements: ["Zero-knowledge encryption layer", "Automated transaction categorizations"]
+    };
+  }
+  if (n.includes("tumor")) {
+    return {
+      problem: "Diagnostic classification of Glioma, Meningioma, and Pituitary tumors from MRI.",
+      achievements: ["Achieved 97.4% validation classification score", "Integrated Grad-CAM visual activation maps"]
+    };
+  }
+  if (n.includes("spam")) {
+    return {
+      problem: "Identifying spam transmissions through dense message text payloads.",
+      achievements: ["Processed SMS test sets with 99.1% precision", "Integrated TF-IDF + Naive Bayes"]
+    };
+  }
+  if (n.includes("insurance")) {
+    return {
+      problem: "Estimating medical premium pricing based on age, BMI, and smoking metrics.",
+      achievements: ["Developed highly reliable R² score of 0.89", "Integrated ensemble modeling"]
+    };
+  }
+  if (n.includes("bike")) {
+    return {
+      problem: "Predicting bike-sharing demand curves across changing weather cycles.",
+      achievements: ["Minimized root-mean-squared errors", "Engineered custom temperature features"]
+    };
+  }
+  if (n.includes("rice")) {
+    return {
+      problem: "Classifying crop infections (Bacterial blight, brown spot) from photos.",
+      achievements: ["Reached 96.8% model validation classification score", "Integrated real-time diagnostic reports"]
+    };
+  }
+  if (n.includes("transaction") || n.includes("customer")) {
+    return {
+      problem: "Classifying customer conversion potentials from web-session logs.",
+      achievements: ["Maintained ROC-AUC score of 0.91", "Handled imbalanced datasets using SMOTE"]
+    };
+  }
+  return {
+    problem: "Developing performant backend features and structural modules.",
+    achievements: ["Optimized processing cycle efficiencies", "Integrated clean documentation"]
+  };
+};
+
 // Simplified Project Card
 const ProjectCard = ({ project, onClick }) => {
   const [imgError, setImgError] = useState(false);
+  const [isHovered, setIsHovered] = useState(false);
   const details = project.mock;
   const hasImage = details.image && !imgError;
+
+  const caseStudy = getProjectCaseStudyDetails(project.name);
 
   return (
     <motion.div
@@ -382,6 +500,8 @@ const ProjectCard = ({ project, onClick }) => {
         }
       }}
       onClick={onClick}
+      onMouseEnter={() => setIsHovered(true)}
+      onMouseLeave={() => setIsHovered(false)}
       style={{
         textDecoration: 'none',
         color: 'inherit',
@@ -398,24 +518,26 @@ const ProjectCard = ({ project, onClick }) => {
           height: '100%',
           position: 'relative'
         }}
-        whileHover={{ y: -6, borderColor: 'rgba(0, 240, 255, 0.2)' }}
-        transition={{ duration: 0.3, ease: 'easeOut' }}
+        whileHover={{ y: -4, borderColor: 'var(--border-hover)', backgroundColor: '#131315' }}
+        transition={{ duration: 0.35, ease: [0.16, 1, 0.3, 1] }}
       >
-        {/* Project Image Area */}
+        {/* Project Image Area with Smooth Zoom */}
         <div style={{
-          height: '220px',
-          background: '#080808',
-          borderRadius: '10px',
-          border: '1px solid rgba(255,255,255,0.04)',
+          height: '180px',
+          background: 'var(--bg-dark-950)',
+          borderRadius: '4px',
+          border: '1px solid var(--border-subtle)',
           overflow: 'hidden',
           zIndex: 2,
           position: 'relative'
         }}>
           {hasImage ? (
-            <img
+            <motion.img
               src={`/images/projects/${details.image}`}
               alt={project.name}
               onError={() => setImgError(true)}
+              animate={{ scale: isHovered ? 1.04 : 1 }}
+              transition={{ duration: 0.4, ease: [0.16, 1, 0.3, 1] }}
               style={{
                 width: '100%',
                 height: '100%',
@@ -431,11 +553,11 @@ const ProjectCard = ({ project, onClick }) => {
               display: 'flex',
               alignItems: 'center',
               justifyContent: 'center',
-              background: 'linear-gradient(135deg, #0A0A0D 0%, #0E0E12 100%)',
+              background: 'var(--bg-dark-900)'
             }}>
               <span className="font-mono" style={{
                 fontSize: '11px',
-                color: 'rgba(255,255,255,0.12)',
+                color: 'rgba(255,255,255,0.06)',
                 letterSpacing: '2px',
                 textTransform: 'uppercase'
               }}>
@@ -445,39 +567,79 @@ const ProjectCard = ({ project, onClick }) => {
           )}
         </div>
 
-        {/* Metadata */}
+        {/* Metadata Role & Domain Tags */}
         <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', zIndex: 2 }}>
-          <span className="font-mono" style={{ fontSize: '11px', color: 'var(--text-muted)', textTransform: 'uppercase', letterSpacing: '1px' }}>
-            {project.role}
+          <span className="font-mono" style={{ fontSize: '9.5px', color: 'var(--text-muted)', textTransform: 'uppercase', letterSpacing: '1px' }}>
+            {project.role || "Developer"}
           </span>
-          <span className="font-mono" style={{ fontSize: '10px', color: '#00f0ff', background: 'rgba(0,240,255,0.05)', border: '1px solid rgba(0,240,255,0.1)', borderRadius: '4px', padding: '2px 8px' }}>
+          <span className="font-mono" style={{ fontSize: '9px', color: 'var(--text-secondary)', background: 'rgba(255,255,255,0.01)', border: '1px solid var(--border-strong)', borderRadius: '4px', padding: '2px 8px' }}>
             {project.category}
           </span>
         </div>
 
-        {/* Info */}
-        <div style={{ flex: 1, zIndex: 2 }}>
-          <h3 className="font-heading" style={{ fontSize: '20px', marginBottom: '8px' }}>
-            {project.name}
-          </h3>
-          <p style={{ color: 'var(--text-secondary)', fontSize: '14px', lineHeight: '1.6', marginBottom: '12px' }}>
-            {details.impact}
-          </p>
-          <span className="font-mono" style={{ fontSize: '10px', color: '#00f0ff', opacity: 0.8, letterSpacing: '0.5px', display: 'block' }}>
-            &gt; Click to explore project details
-          </span>
+        {/* Case Study Summary */}
+        <div style={{ flex: 1, zIndex: 2, display: 'flex', flexDirection: 'column', gap: '14px' }}>
+          <div>
+            <h3 className="font-heading" style={{ fontSize: '18px', fontWeight: '400', marginBottom: '8px', color: 'var(--text-primary)' }}>
+              {project.name}
+            </h3>
+            <p style={{ color: 'var(--text-secondary)', fontSize: '13.5px', lineHeight: '1.6', margin: 0, fontWeight: '300' }}>
+              {details.impact}
+            </p>
+          </div>
+
+          {/* Problem Solved Panel */}
+          <div style={{ borderLeft: '1px solid var(--border-strong)', paddingLeft: '12px' }}>
+            <span className="font-mono" style={{ fontSize: '9px', color: 'var(--text-muted)', textTransform: 'uppercase', display: 'block', marginBottom: '3px' }}>
+              Problem Solved
+            </span>
+            <p style={{ fontSize: '12.5px', color: 'var(--text-secondary)', margin: 0, lineHeight: '1.5', fontWeight: '300' }}>
+              {caseStudy.problem}
+            </p>
+          </div>
+
+          {/* Key Achievements List */}
+          <div>
+            <span className="font-mono" style={{ fontSize: '9px', color: 'var(--text-muted)', textTransform: 'uppercase', display: 'block', marginBottom: '6px' }}>
+              Key Achievements
+            </span>
+            <ul style={{ listStyle: 'none', padding: 0, margin: 0, display: 'flex', flexDirection: 'column', gap: '4px' }}>
+              {caseStudy.achievements.map((ach, aIdx) => (
+                <li key={aIdx} style={{ fontSize: '12.5px', color: 'var(--text-primary)', display: 'flex', alignItems: 'center', gap: '6px', fontWeight: '300' }}>
+                  <span style={{ width: '3px', height: '3px', background: 'var(--text-secondary)', borderRadius: '50%' }} />
+                  {ach}
+                </li>
+              ))}
+            </ul>
+          </div>
         </div>
 
-        {/* Tags */}
-        <div style={{ display: 'flex', flexWrap: 'wrap', gap: '8px', marginTop: 'auto', zIndex: 2 }}>
-          {details.tags.map((tag, tIdx) => (
+        {/* Case Study Technologies */}
+        <div style={{ display: 'flex', flexWrap: 'wrap', gap: '6px', zIndex: 2 }}>
+          {project.languages && Object.keys(project.languages).slice(0, 3).map((lang, lIdx) => (
+            <span
+              key={`lang-${lIdx}`}
+              className="font-mono"
+              style={{
+                fontSize: '9px',
+                background: 'rgba(255, 255, 255, 0.01)',
+                border: '1px solid var(--border-strong)',
+                borderRadius: '4px',
+                padding: '2px 8px',
+                color: 'var(--text-secondary)'
+              }}
+            >
+              {lang}
+            </span>
+          ))}
+          {details.tags.slice(0, 2).map((tag, tIdx) => (
             <span
               key={tIdx}
               className="font-mono"
               style={{
-                fontSize: '10px',
-                background: 'rgba(255, 255, 255, 0.03)',
-                border: '1px solid rgba(255, 255, 255, 0.05)',
+                fontSize: '9px',
+                background: 'rgba(255, 255, 255, 0.01)',
+                border: '1px solid var(--border-subtle)',
                 borderRadius: '4px',
                 padding: '2px 8px',
                 color: 'var(--text-muted)'
@@ -486,22 +648,26 @@ const ProjectCard = ({ project, onClick }) => {
               {tag}
             </span>
           ))}
-          {project.languages && Object.keys(project.languages).slice(0, 3).map((lang, lIdx) => (
-            <span
-              key={`lang-${lIdx}`}
-              className="font-mono"
-              style={{
-                fontSize: '10px',
-                background: 'rgba(0, 240, 255, 0.03)',
-                border: '1px solid rgba(0, 240, 255, 0.1)',
-                borderRadius: '4px',
-                padding: '2px 8px',
-                color: '#00f0ff'
-              }}
-            >
-              {lang}
-            </span>
-          ))}
+        </div>
+
+        {/* Case Study Action Button */}
+        <div style={{ marginTop: 'auto', paddingTop: '12px', borderTop: '1px solid var(--border-subtle)', zIndex: 2 }}>
+          <button style={{
+            width: '100%',
+            padding: '10px',
+            borderRadius: '4px',
+            border: '1px solid var(--border-strong)',
+            background: 'transparent',
+            color: 'var(--text-primary)',
+            fontSize: '10.5px',
+            fontFamily: 'JetBrains Mono, monospace',
+            textTransform: 'uppercase',
+            letterSpacing: '1px',
+            cursor: 'pointer',
+            transition: 'all 0.3s cubic-bezier(0.16, 1, 0.3, 1)'
+          }}>
+            Explore Case Study &rarr;
+          </button>
         </div>
       </motion.div>
     </motion.div>
@@ -512,6 +678,7 @@ const ProjectCard = ({ project, onClick }) => {
 const ProjectDetailModal = ({ project, onClose }) => {
   const details = project.mock;
   const hasScreenshots = details.screenshots && details.screenshots.length > 0;
+  const caseStudy = getProjectCaseStudyDetails(project.name);
 
   const [activeImageIndex, setActiveImageIndex] = useState(null);
 
@@ -541,8 +708,8 @@ const ProjectDetailModal = ({ project, onClose }) => {
       style={{
         position: 'fixed',
         inset: 0,
-        background: 'rgba(5, 5, 5, 0.95)',
-        backdropFilter: 'blur(12px)',
+        background: 'rgba(5, 5, 5, 0.96)',
+        backdropFilter: 'blur(8px)',
         zIndex: 1100,
         display: 'flex',
         alignItems: 'center',
@@ -553,18 +720,18 @@ const ProjectDetailModal = ({ project, onClose }) => {
     >
       <motion.div
         data-lenis-prevent
-        initial={{ y: 50, opacity: 0, scale: 0.95 }}
+        initial={{ y: 30, opacity: 0, scale: 0.98 }}
         animate={{ y: 0, opacity: 1, scale: 1 }}
-        exit={{ y: 50, opacity: 0, scale: 0.95 }}
+        exit={{ y: 30, opacity: 0, scale: 0.98 }}
         transition={{ duration: 0.4, ease: [0.16, 1, 0.3, 1] }}
         style={{
           width: '100%',
           maxWidth: '800px',
           maxHeight: '90vh',
-          background: '#0E0E12',
-          border: '1px solid rgba(255,255,255,0.06)',
-          borderRadius: '16px',
-          boxShadow: '0 30px 60px rgba(0,0,0,0.8)',
+          background: 'var(--bg-dark-900)',
+          border: '1px solid var(--border-strong)',
+          borderRadius: '8px',
+          boxShadow: '0 20px 50px rgba(0,0,0,0.7)',
           overflowY: 'auto',
           position: 'relative'
         }}
@@ -577,26 +744,26 @@ const ProjectDetailModal = ({ project, onClose }) => {
             position: 'absolute',
             top: '20px',
             right: '20px',
-            background: 'rgba(255, 255, 255, 0.03)',
-            border: '1px solid rgba(255,255,255,0.08)',
+            background: 'rgba(255, 255, 255, 0.02)',
+            border: '1px solid var(--border-strong)',
             color: 'var(--text-primary)',
             padding: '8px',
-            borderRadius: '50%',
+            borderRadius: '4px',
             cursor: 'pointer',
             zIndex: 10,
             transition: 'background 0.2s'
           }}
           onMouseEnter={(e) => e.target.style.background = 'rgba(255, 255, 255, 0.08)'}
-          onMouseLeave={(e) => e.target.style.background = 'rgba(255, 255, 255, 0.03)'}
+          onMouseLeave={(e) => e.target.style.background = 'rgba(255, 255, 255, 0.02)'}
         >
-          <X size={18} />
+          <X size={16} />
         </button>
 
         {/* Cover Image Block */}
         <div style={{
           height: '300px',
           position: 'relative',
-          background: '#07070a',
+          background: 'var(--bg-dark-950)',
           overflow: 'hidden'
         }}>
           {details.image ? (
@@ -613,7 +780,7 @@ const ProjectDetailModal = ({ project, onClose }) => {
             <div style={{
               width: '100%',
               height: '100%',
-              background: 'linear-gradient(135deg, #0A0A0D 0%, #15151F 100%)'
+              background: 'var(--bg-dark-900)'
             }} />
           )}
 
@@ -621,16 +788,16 @@ const ProjectDetailModal = ({ project, onClose }) => {
           <div style={{
             position: 'absolute',
             inset: 0,
-            background: 'linear-gradient(to bottom, transparent 30%, #0E0E12 100%)',
+            background: 'linear-gradient(to bottom, transparent 30%, var(--bg-dark-900) 100%)',
             display: 'flex',
             flexDirection: 'column',
             justifyContent: 'end',
             padding: '30px'
           }}>
-            <span className="font-mono" style={{ fontSize: '11px', color: '#00f0ff', textTransform: 'uppercase', letterSpacing: '2px', marginBottom: '8px' }}>
+            <span className="font-mono" style={{ fontSize: '10px', color: 'var(--text-secondary)', textTransform: 'uppercase', letterSpacing: '2px', marginBottom: '8px' }}>
               {project.category} / {project.role}
             </span>
-            <h2 className="font-heading" style={{ fontSize: 'clamp(28px, 4vw, 42px)', fontWeight: '800', color: 'var(--text-primary)' }}>
+            <h2 className="font-heading" style={{ fontSize: 'clamp(24px, 4vw, 36px)', fontWeight: '400', color: 'var(--text-primary)' }}>
               {project.name}
             </h2>
           </div>
@@ -646,13 +813,40 @@ const ProjectDetailModal = ({ project, onClose }) => {
           }} className="modal-grid">
 
             {/* Left: Full Narrative */}
-            <div>
-              <h3 className="font-heading" style={{ fontSize: '18px', marginBottom: '12px', color: 'var(--text-primary)' }}>
-                About Project
-              </h3>
-              <p style={{ color: 'var(--text-secondary)', fontSize: '15px', lineHeight: '1.7', margin: 0 }}>
-                {details.fullDescription}
-              </p>
+            <div style={{ display: 'flex', flexDirection: 'column', gap: '28px' }}>
+              <div>
+                <h3 className="font-heading" style={{ fontSize: '16px', fontWeight: '500', marginBottom: '12px', color: 'var(--text-primary)' }}>
+                  About Project
+                </h3>
+                <p style={{ color: 'var(--text-secondary)', fontSize: '14.5px', lineHeight: '1.65', margin: 0, fontWeight: '300' }}>
+                  {details.fullDescription}
+                </p>
+              </div>
+
+              {/* Detailed Problem Solved Block */}
+              <div style={{ borderLeft: '1px solid var(--border-strong)', paddingLeft: '16px' }}>
+                <h4 className="font-mono" style={{ fontSize: '10px', color: 'var(--text-muted)', textTransform: 'uppercase', letterSpacing: '1px', marginBottom: '8px' }}>
+                  Problem Solved
+                </h4>
+                <p style={{ color: 'var(--text-secondary)', fontSize: '14px', lineHeight: '1.6', margin: 0, fontWeight: '300' }}>
+                  {caseStudy.problem}
+                </p>
+              </div>
+
+              {/* Detailed Key Accomplishments */}
+              <div>
+                <h4 className="font-mono" style={{ fontSize: '10px', color: 'var(--text-muted)', textTransform: 'uppercase', letterSpacing: '1px', marginBottom: '12px' }}>
+                  Key accomplishments & milestones
+                </h4>
+                <ul style={{ listStyle: 'none', padding: 0, margin: 0, display: 'flex', flexDirection: 'column', gap: '8px' }}>
+                  {caseStudy.achievements.map((ach, idx) => (
+                    <li key={idx} style={{ fontSize: '14px', color: 'var(--text-primary)', display: 'flex', alignItems: 'start', gap: '10px', fontWeight: '300' }}>
+                      <span style={{ width: '4px', height: '4px', background: 'var(--text-secondary)', borderRadius: '50%', marginTop: '9px', flexShrink: 0 }} />
+                      <span>{ach}</span>
+                    </li>
+                  ))}
+                </ul>
+              </div>
             </div>
 
             {/* Right: Specs & Actions */}
@@ -669,9 +863,9 @@ const ProjectDetailModal = ({ project, onClose }) => {
                       key={tIdx}
                       className="font-mono"
                       style={{
-                        fontSize: '11px',
-                        background: 'rgba(255, 255, 255, 0.04)',
-                        border: '1px solid rgba(255, 255, 255, 0.06)',
+                        fontSize: '10px',
+                        background: 'rgba(255, 255, 255, 0.02)',
+                        border: '1px solid var(--border-subtle)',
                         borderRadius: '4px',
                         padding: '4px 10px',
                         color: 'var(--text-secondary)'
@@ -695,12 +889,12 @@ const ProjectDetailModal = ({ project, onClose }) => {
                         key={lIdx}
                         className="font-mono"
                         style={{
-                          fontSize: '11px',
-                          background: 'rgba(0, 240, 255, 0.03)',
-                          border: '1px solid rgba(0, 240, 255, 0.15)',
+                          fontSize: '10px',
+                          background: 'rgba(255, 255, 255, 0.02)',
+                          border: '1px solid var(--border-strong)',
                           borderRadius: '4px',
                           padding: '4px 10px',
-                          color: '#00f0ff'
+                          color: 'var(--text-secondary)'
                         }}
                       >
                         {lang}: {pct}%
@@ -723,19 +917,20 @@ const ProjectDetailModal = ({ project, onClose }) => {
                       justifyContent: 'center',
                       gap: '8px',
                       padding: '12px',
-                      borderRadius: '8px',
-                      border: '1px solid rgba(255, 255, 255, 0.08)',
-                      background: 'rgba(255, 255, 255, 0.02)',
+                      borderRadius: '4px',
+                      border: '1px solid var(--border-strong)',
+                      background: 'rgba(255, 255, 255, 0.01)',
                       color: 'var(--text-primary)',
                       textDecoration: 'none',
-                      fontSize: '13px',
-                      fontWeight: '600',
-                      transition: 'background 0.2s'
+                      fontSize: '12px',
+                      fontFamily: 'JetBrains Mono, monospace',
+                      fontWeight: '500',
+                      transition: 'all 0.3s cubic-bezier(0.16, 1, 0.3, 1)'
                     }}
-                    onMouseEnter={(e) => e.target.style.background = 'rgba(255, 255, 255, 0.06)'}
-                    onMouseLeave={(e) => e.target.style.background = 'rgba(255, 255, 255, 0.02)'}
+                    onMouseEnter={(e) => e.target.style.background = 'rgba(255, 255, 255, 0.04)'}
+                    onMouseLeave={(e) => e.target.style.background = 'rgba(255, 255, 255, 0.01)'}
                   >
-                    <Github size={15} /> Source Code <ExternalLink size={12} />
+                    <Github size={13} /> Source Code <ExternalLink size={11} />
                   </a>
                 )}
 
@@ -750,18 +945,19 @@ const ProjectDetailModal = ({ project, onClose }) => {
                       justifyContent: 'center',
                       gap: '8px',
                       padding: '12px',
-                      borderRadius: '8px',
-                      background: '#00f0ff',
-                      color: '#050505',
+                      borderRadius: '4px',
+                      background: 'var(--text-primary)',
+                      color: '#0A0A0B',
                       textDecoration: 'none',
-                      fontSize: '13px',
-                      fontWeight: '700',
-                      transition: 'opacity 0.2s'
+                      fontSize: '12px',
+                      fontFamily: 'JetBrains Mono, monospace',
+                      fontWeight: '500',
+                      transition: 'all 0.3s cubic-bezier(0.16, 1, 0.3, 1)'
                     }}
-                    onMouseEnter={(e) => e.target.style.opacity = '0.9'}
-                    onMouseLeave={(e) => e.target.style.opacity = '1'}
+                    onMouseEnter={(e) => e.target.style.background = 'rgba(255,255,255,0.9)'}
+                    onMouseLeave={(e) => e.target.style.background = 'var(--text-primary)'}
                   >
-                    <Globe size={15} /> Live Demo <ExternalLink size={12} />
+                    <Globe size={13} /> Live Demo <ExternalLink size={11} />
                   </a>
                 )}
               </div>
@@ -771,7 +967,7 @@ const ProjectDetailModal = ({ project, onClose }) => {
 
           {/* Screenshots Sub-Gallery */}
           {hasScreenshots && (
-            <div style={{ borderTop: '1px solid rgba(255, 255, 255, 0.05)', paddingTop: '30px' }}>
+            <div style={{ borderTop: '1px solid var(--border-subtle)', paddingTop: '30px' }}>
               <h4 className="font-mono" style={{ fontSize: '11px', color: 'var(--text-muted)', textTransform: 'uppercase', letterSpacing: '1px', marginBottom: '20px', display: 'flex', alignItems: 'center', gap: '6px' }}>
                 <Layers size={12} /> Screenshots & Demos (Click to view full size)
               </h4>
@@ -786,10 +982,10 @@ const ProjectDetailModal = ({ project, onClose }) => {
                     key={sIdx}
                     onClick={() => setActiveImageIndex(sIdx)}
                     style={{
-                      borderRadius: '8px',
-                      border: '1px solid rgba(255,255,255,0.04)',
+                      borderRadius: '4px',
+                      border: '1px solid var(--border-subtle)',
                       overflow: 'hidden',
-                      height: '140px',
+                      height: '140px',      height: '140px',
                       background: '#07070a',
                       cursor: 'zoom-in',
                       transition: 'border-color 0.2s'

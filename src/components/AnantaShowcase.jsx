@@ -102,7 +102,7 @@ const AnantaShowcase = ({ limit }) => {
                 display: 'flex',
                 alignItems: 'center',
                 justifyContent: 'center',
-                borderRadius: '12px',
+                borderRadius: '4px',
                 background: '#050505',
                 border: '1px solid rgba(255,255,255,0.03)',
                 padding: book.coverImage ? '0' : '30px',
@@ -128,7 +128,7 @@ const AnantaShowcase = ({ limit }) => {
                     width: '180px',
                     height: '260px',
                     background: '#0C0C0F',
-                    borderRadius: '8px',
+                    borderRadius: '4px',
                     border: '1px solid rgba(255,255,255,0.06)',
                     display: 'flex',
                     flexDirection: 'column',
@@ -161,8 +161,7 @@ const AnantaShowcase = ({ limit }) => {
                     {book.description}
                   </p>
                 </div>
-
-                {/* Actions */}
+                 {/* Actions */}
                 <div style={{ display: 'flex', gap: '16px', marginTop: 'auto' }}>
                   <button
                     onClick={() => setActiveBook(book)}
@@ -173,19 +172,18 @@ const AnantaShowcase = ({ limit }) => {
                       justifyContent: 'center',
                       gap: '8px',
                       padding: '12px',
-                      borderRadius: '8px',
-                      border: '1px solid rgba(255, 255, 255, 0.08)',
-                      background: 'rgba(255, 255, 255, 0.02)',
+                      borderRadius: '4px',
+                      border: '1px solid var(--border-strong)',
+                      background: 'rgba(255, 255, 255, 0.01)',
                       color: 'var(--text-primary)',
-                      fontSize: '13px',
-                      fontWeight: '600',
+                      fontSize: '12px',
+                      fontFamily: 'JetBrains Mono, monospace',
+                      fontWeight: '500',
                       cursor: 'pointer',
-                      transition: 'all 0.3s ease'
+                      transition: 'all 0.3s cubic-bezier(0.16, 1, 0.3, 1)'
                     }}
-                    onMouseEnter={(e) => e.target.style.background = 'rgba(255,255,255,0.05)'}
-                    onMouseLeave={(e) => e.target.style.background = 'rgba(255,255,255,0.02)'}
                   >
-                    <Eye size={15} /> Read Online
+                    <Eye size={14} /> Read Online
                   </button>
                   <a
                     href={book.pdfUrl}
@@ -197,19 +195,18 @@ const AnantaShowcase = ({ limit }) => {
                       justifyContent: 'center',
                       gap: '8px',
                       padding: '12px',
-                      borderRadius: '8px',
-                      border: '1px solid rgba(255, 255, 255, 0.08)',
-                      background: 'rgba(255, 255, 255, 0.02)',
+                      borderRadius: '4px',
+                      border: '1px solid var(--border-strong)',
+                      background: 'rgba(255, 255, 255, 0.01)',
                       color: 'var(--text-primary)',
                       textDecoration: 'none',
-                      fontSize: '13px',
-                      fontWeight: '600',
-                      transition: 'all 0.3s ease'
+                      fontSize: '12px',
+                      fontFamily: 'JetBrains Mono, monospace',
+                      fontWeight: '500',
+                      transition: 'all 0.3s cubic-bezier(0.16, 1, 0.3, 1)'
                     }}
-                    onMouseEnter={(e) => e.target.style.background = 'rgba(255,255,255,0.05)'}
-                    onMouseLeave={(e) => e.target.style.background = 'rgba(255,255,255,0.02)'}
                   >
-                    <Download size={15} /> Download PDF
+                    <Download size={14} /> Download PDF
                   </a>
                 </div>
               </div>
@@ -225,26 +222,24 @@ const AnantaShowcase = ({ limit }) => {
                 display: 'inline-flex',
                 alignItems: 'center',
                 gap: '8px',
-                padding: '12px 28px',
-                borderRadius: '8px',
-                border: '1px solid rgba(255, 255, 255, 0.08)',
-                background: 'rgba(255, 255, 255, 0.02)',
+                padding: '12px 26px',
+                borderRadius: '4px',
+                border: '1px solid var(--border-strong)',
+                background: 'rgba(255, 255, 255, 0.01)',
                 color: 'var(--text-primary)',
                 textDecoration: 'none',
-                fontSize: '13px',
+                fontSize: '12px',
                 fontFamily: 'JetBrains Mono, monospace',
                 textTransform: 'uppercase',
                 letterSpacing: '1px',
-                transition: 'all 0.3s ease',
+                transition: 'all 0.3s cubic-bezier(0.16, 1, 0.3, 1)',
                 cursor: 'pointer'
               }}
               onMouseEnter={(e) => {
-                e.target.style.background = 'rgba(255,255,255,0.06)';
-                e.target.style.borderColor = 'rgba(255,255,255,0.15)';
+                e.target.style.background = 'rgba(255,255,255,0.04)';
               }}
               onMouseLeave={(e) => {
-                e.target.style.background = 'rgba(255,255,255,0.02)';
-                e.target.style.borderColor = 'rgba(255,255,255,0.08)';
+                e.target.style.background = 'rgba(255,255,255,0.01)';
               }}
             >
               View All Volumes
@@ -265,7 +260,7 @@ const AnantaShowcase = ({ limit }) => {
               position: 'fixed',
               inset: 0,
               zIndex: 1000,
-              background: '#050505',
+              background: 'var(--bg-dark-950)',
               display: 'flex',
               flexDirection: 'column'
             }}
@@ -278,7 +273,7 @@ const AnantaShowcase = ({ limit }) => {
               display: 'flex',
               alignItems: 'center',
               justifyContent: 'space-between',
-              background: '#0E0E11'
+              background: 'var(--bg-dark-900)'
             }}>
               <div>
                 <span className="font-mono" style={{ fontSize: '10px', color: 'var(--text-muted)', textTransform: 'uppercase', letterSpacing: '1px', display: 'block' }}>

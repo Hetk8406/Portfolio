@@ -50,7 +50,7 @@ export default function Home() {
       
       <DualIdentity />
       
-      <ProjectsGallery userData={profileData} limit={3} />
+      <ProjectsGallery userData={profileData} limit={6} />
       
       <AnantaShowcase />
       

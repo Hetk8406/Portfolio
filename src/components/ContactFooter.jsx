@@ -53,15 +53,15 @@ const ContactFooter = ({ userData }) => {
   };
 
   return (
-    <section id="contact" style={{ padding: '120px 0 60px', background: '#050505' }}>
+    <section id="contact" style={{ padding: '140px 0 60px', background: 'var(--bg-dark-950)' }}>
       <div className="container">
         <div style={{ textAlign: 'center', marginBottom: '80px' }}>
-          <span className="section-tag">Transmission</span>
-          <h2 className="font-heading" style={{ fontSize: 'clamp(32px, 5vw, 54px)', lineHeight: '1.1', marginBottom: '16px' }}>
-            <WordReveal text="Get in Touch" />
+          <span className="section-tag">Connection</span>
+          <h2 className="font-heading" style={{ fontSize: 'clamp(32px, 5vw, 48px)', lineHeight: '1.1', marginBottom: '16px' }}>
+            <WordReveal text="Let's Build Something Memorable" />
           </h2>
-          <p style={{ color: 'var(--text-secondary)', fontSize: '15px', maxWidth: '500px', margin: '0 auto' }}>
-            Initiate a connection or discuss engineering collaborations.
+          <p style={{ color: 'var(--text-secondary)', fontSize: '15px', maxWidth: '550px', margin: '0 auto', fontWeight: '300' }}>
+            Initiate a collaboration, discuss machine learning systems, or talk about philosophical loops.
           </p>
         </div>
 
@@ -70,7 +70,7 @@ const ContactFooter = ({ userData }) => {
           gridTemplateColumns: 'repeat(auto-fit, minmax(320px, 1fr))',
           gap: '64px',
           alignItems: 'start',
-          maxWidth: '1000px',
+          maxWidth: '1040px',
           margin: '0 auto 80px'
         }}>
           {/* Details Column */}
@@ -83,20 +83,20 @@ const ContactFooter = ({ userData }) => {
           >
             <div className="surface-card" style={{ display: 'flex', flexDirection: 'column', gap: '24px' }}>
               <div style={{ display: 'flex', gap: '16px', alignItems: 'center', zIndex: 2 }}>
-                <Mail size={18} color="var(--text-secondary)" />
+                <Mail size={16} color="var(--text-secondary)" />
                 <div>
-                  <div className="font-mono" style={{ fontSize: '10px', color: 'var(--text-muted)', textTransform: 'uppercase' }}>EMAIL</div>
-                  <a href={`mailto:${userData?.personalInfo?.email || "hetkikani880@gmail.com"}`} style={{ fontSize: '14px', color: 'var(--text-primary)', textDecoration: 'none', fontWeight: '500' }}>
+                  <div className="font-mono" style={{ fontSize: '9px', color: 'var(--text-muted)', textTransform: 'uppercase', letterSpacing: '1px' }}>EMAIL</div>
+                  <a href={`mailto:${userData?.personalInfo?.email || "hetkikani880@gmail.com"}`} style={{ fontSize: '14px', color: 'var(--text-primary)', textDecoration: 'none', fontWeight: '400' }}>
                     {userData?.personalInfo?.email || "hetkikani880@gmail.com"}
                   </a>
                 </div>
               </div>
 
               <div style={{ display: 'flex', gap: '16px', alignItems: 'center', zIndex: 2 }}>
-                <MapPin size={18} color="var(--text-secondary)" />
+                <MapPin size={16} color="var(--text-secondary)" />
                 <div>
-                  <div className="font-mono" style={{ fontSize: '10px', color: 'var(--text-muted)', textTransform: 'uppercase' }}>LOCATION</div>
-                  <div style={{ fontSize: '14px', color: 'var(--text-primary)', fontWeight: '500' }}>
+                  <div className="font-mono" style={{ fontSize: '9px', color: 'var(--text-muted)', textTransform: 'uppercase', letterSpacing: '1px' }}>LOCATION</div>
+                  <div style={{ fontSize: '14px', color: 'var(--text-primary)', fontWeight: '400' }}>
                     {userData?.personalInfo?.location || "Ahmedabad, Gujarat, India"}
                   </div>
                 </div>
@@ -104,10 +104,10 @@ const ContactFooter = ({ userData }) => {
             </div>
 
             <div>
-              <h4 className="font-mono" style={{ fontSize: '11px', color: 'var(--text-muted)', textTransform: 'uppercase', letterSpacing: '1px', marginBottom: '16px' }}>
+              <h4 className="font-mono" style={{ fontSize: '10px', color: 'var(--text-muted)', textTransform: 'uppercase', letterSpacing: '1.5px', marginBottom: '16px' }}>
                 DIGITAL FOOTPRINT
               </h4>
-              <div style={{ display: 'flex', gap: '12px' }}>
+              <div style={{ display: 'flex', flexWrap: 'wrap', gap: '10px' }}>
                 {Object.entries(socialLinks).map(([platform, url]) => (
                   <SocialIcon key={platform} platform={platform} url={url} />
                 ))}
@@ -125,7 +125,7 @@ const ContactFooter = ({ userData }) => {
           >
             <form onSubmit={handleSubmit} style={{ display: 'flex', flexDirection: 'column', gap: '20px', zIndex: 2, position: 'relative' }}>
               <div style={{ display: 'flex', flexDirection: 'column', gap: '8px' }}>
-                <label className="font-mono" style={{ fontSize: '11px', color: 'var(--text-muted)', textTransform: 'uppercase' }}>Full Name</label>
+                <label className="font-mono" style={{ fontSize: '10px', color: 'var(--text-muted)', textTransform: 'uppercase' }}>Full Name</label>
                 <input
                   type="text"
                   name="name"
@@ -138,7 +138,7 @@ const ContactFooter = ({ userData }) => {
               </div>
 
               <div style={{ display: 'flex', flexDirection: 'column', gap: '8px' }}>
-                <label className="font-mono" style={{ fontSize: '11px', color: 'var(--text-muted)', textTransform: 'uppercase' }}>Email Address</label>
+                <label className="font-mono" style={{ fontSize: '10px', color: 'var(--text-muted)', textTransform: 'uppercase' }}>Email Address</label>
                 <input
                   type="email"
                   name="email"
@@ -151,14 +151,14 @@ const ContactFooter = ({ userData }) => {
               </div>
 
               <div style={{ display: 'flex', flexDirection: 'column', gap: '8px' }}>
-                <label className="font-mono" style={{ fontSize: '11px', color: 'var(--text-muted)', textTransform: 'uppercase' }}>Message</label>
+                <label className="font-mono" style={{ fontSize: '10px', color: 'var(--text-muted)', textTransform: 'uppercase' }}>Message</label>
                 <textarea
                   name="message"
                   rows="4"
                   value={formData.message}
                   onChange={handleChange}
                   required
-                  placeholder="Inquiry or message details..."
+                  placeholder="Inquiry or project details..."
                   className="minimal-input"
                   style={{ resize: 'none' }}
                 />
@@ -170,30 +170,30 @@ const ContactFooter = ({ userData }) => {
                   type="submit"
                   disabled={isSubmitting}
                   whileHover={{
-                    scale: 1.015,
-                    boxShadow: "0 0 15px rgba(255, 255, 255, 0.12)",
-                    backgroundColor: "transparent",
-                    color: "var(--text-primary)",
-                    borderColor: "var(--text-primary)"
+                    scale: 1.01,
+                    backgroundColor: "rgba(255,255,255,0.9)",
+                    y: -1
                   }}
                   transition={{ type: "spring", stiffness: 400, damping: 25 }}
                   style={{
                     flex: 1,
                     display: 'inline-block',
                     padding: '14px',
-                    borderRadius: '8px',
+                    borderRadius: '4px',
                     border: '1px solid var(--text-primary)',
                     background: 'var(--text-primary)',
-                    color: '#020202',
-                    fontWeight: '600',
-                    fontSize: '13px',
+                    color: '#0A0A0B',
+                    fontWeight: '500',
+                    fontSize: '12px',
+                    fontFamily: 'JetBrains Mono, monospace',
                     textTransform: 'uppercase',
                     letterSpacing: '1px',
-                    cursor: 'pointer'
+                    cursor: 'pointer',
+                    transition: 'all 0.3s cubic-bezier(0.16, 1, 0.3, 1)'
                   }}
                 >
                   <span style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '8px' }}>
-                    {isSubmitting ? "Transmitting..." : "Send Transmission"} <Send size={14} />
+                    {isSubmitting ? "Transmitting..." : "Initiate Collaboration"} <Send size={12} />
                   </span>
                 </motion.button>
               </div>
@@ -207,7 +207,7 @@ const ContactFooter = ({ userData }) => {
           borderTop: '1px solid var(--border-subtle)',
           textAlign: 'center'
         }}>
-          <p className="font-mono" style={{ fontSize: '11px', color: 'var(--text-muted)' }}>
+          <p className="font-mono" style={{ fontSize: '10px', color: 'var(--text-muted)' }}>
             &copy; {new Date().getFullYear()} {userData?.personalInfo?.name || "Het Kikani"}. All loops closed.
           </p>
         </div>
@@ -218,10 +218,10 @@ const ContactFooter = ({ userData }) => {
 
 const SocialIcon = ({ platform, url }) => {
   const icons = {
-    github: <Github size={16} />,
-    linkedin: <Linkedin size={16} />,
-    instagram: <Instagram size={16} />,
-    twitter: <Twitter size={16} />
+    github: <Github size={14} />,
+    linkedin: <Linkedin size={14} />,
+    instagram: <Instagram size={14} />,
+    twitter: <Twitter size={14} />
   };
 
   return (
@@ -230,28 +230,33 @@ const SocialIcon = ({ platform, url }) => {
       target="_blank"
       rel="noreferrer"
       style={{
-        width: '40px',
-        height: '40px',
-        display: 'flex',
+        display: 'inline-flex',
         alignItems: 'center',
-        justifyContent: 'center',
-        borderRadius: '8px',
-        border: '1px solid var(--border-subtle)',
-        background: 'rgba(255, 255, 255, 0.02)',
+        gap: '8px',
+        padding: '8px 16px',
+        borderRadius: '4px',
+        border: '1px solid var(--border-strong)',
+        background: 'rgba(255, 255, 255, 0.01)',
         color: 'var(--text-secondary)',
-        transition: 'all 0.2s ease',
+        fontSize: '11px',
+        fontFamily: 'JetBrains Mono, monospace',
+        textDecoration: 'none',
+        transition: 'all 0.3s cubic-bezier(0.16, 1, 0.3, 1)',
         zIndex: 2
       }}
       onMouseEnter={(e) => {
         e.currentTarget.style.borderColor = 'var(--text-primary)';
         e.currentTarget.style.color = 'var(--text-primary)';
+        e.currentTarget.style.background = 'rgba(255, 255, 255, 0.02)';
       }}
       onMouseLeave={(e) => {
-        e.currentTarget.style.borderColor = 'var(--border-subtle)';
+        e.currentTarget.style.borderColor = 'var(--border-strong)';
         e.currentTarget.style.color = 'var(--text-secondary)';
+        e.currentTarget.style.background = 'rgba(255, 255, 255, 0.01)';
       }}
     >
-      {icons[platform.toLowerCase()] || <Mail size={16} />}
+      {icons[platform.toLowerCase()] || <Mail size={14} />}
+      <span>{platform.toUpperCase()}</span>
     </a>
   );
 };

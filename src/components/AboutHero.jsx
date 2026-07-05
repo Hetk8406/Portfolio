@@ -97,55 +97,47 @@ const AboutHero = ({ userData, isSummary }) => {
             style={{ display: 'flex', flexDirection: 'column', gap: '32px' }}
           >
             {/* Title & Name */}
-            <div>
-              <h1 className="font-heading" style={{
-                fontSize: 'clamp(40px, 6vw, 68px)',
-                lineHeight: '1.05',
+              <span className="section-tag" style={{ marginBottom: '16px' }}>Philosophy & Profile</span>
+              <h2 className="font-heading" style={{
+                fontSize: 'clamp(32px, 5vw, 42px)',
+                lineHeight: '1.1',
                 fontWeight: '800',
-                letterSpacing: '-0.03em',
+                letterSpacing: '-0.02em',
                 marginBottom: '20px',
                 color: 'var(--text-primary)'
               }}>
-                Hi, I&apos;m <br />
-                <span style={{
-                  background: 'linear-gradient(135deg, #00f0ff 0%, #6366f1 100%)',
-                  WebkitBackgroundClip: 'text',
-                  WebkitTextFillColor: 'transparent'
-                }}>
-                  {personalInfo.name || "Het Kikani"}
-                </span>
-              </h1>
+                Behind the Code
+              </h2>
 
               {/* Subtitle Terminal Pill */}
               <div style={{
                 display: 'inline-flex',
                 alignItems: 'center',
                 gap: '8px',
-                padding: '6px 16px',
-                background: 'rgba(99,102,241,0.05)',
-                border: '1px solid rgba(99,102,241,0.15)',
-                borderRadius: '100px',
-                color: '#818cf8',
+                padding: '6px 14px',
+                background: 'rgba(255, 255, 255, 0.02)',
+                border: '1px solid var(--border-strong)',
+                borderRadius: '4px',
+                color: 'var(--text-secondary)',
                 fontFamily: 'JetBrains Mono, monospace',
-                fontSize: '13px',
-                fontWeight: '500',
+                fontSize: '10.5px',
+                fontWeight: '400',
                 marginBottom: '24px'
               }}>
-                <Terminal size={14} />
-                <span>&gt;_ Full-Stack Web Developer & Data Science Student</span>
+                <Terminal size={12} />
+                <span>HET KIKANI // CORE SYSTEMS ARCHITECTURE</span>
               </div>
 
               {/* Main Bio Paragraph */}
               <p style={{
-                fontSize: '16px',
-                lineHeight: '1.7',
+                fontSize: '15px',
+                lineHeight: '1.65',
                 color: 'var(--text-secondary)',
                 maxWidth: '620px',
-                fontWeight: '400'
+                fontWeight: '300'
               }}>
                 I specialize in building scalable web applications and exploring predictive systems through Machine Learning & Data Science. I focus on creating high-performance codebases, elegant user experiences, and training regression models for complex analytics.
               </p>
-            </div>
 
             {/* Action Call-to-Actions */}
             <div style={{ display: 'flex', flexWrap: 'wrap', gap: '16px' }}>
@@ -153,82 +145,84 @@ const AboutHero = ({ userData, isSummary }) => {
                 display: 'inline-flex',
                 alignItems: 'center',
                 gap: '8px',
-                background: '#00f0ff',
-                color: '#050505',
-                padding: '14px 28px',
-                borderRadius: '8px',
-                fontWeight: '700',
-                fontSize: '14px',
+                background: 'var(--text-primary)',
+                color: '#0A0A0B',
+                padding: '13px 26px',
+                borderRadius: '4px',
+                fontWeight: '500',
+                fontSize: '13px',
+                fontFamily: 'JetBrains Mono, monospace',
                 textDecoration: 'none',
-                boxShadow: '0 4px 20px rgba(0, 240, 255, 0.25)',
-                transition: 'all 0.3s ease'
+                transition: 'all 0.3s cubic-bezier(0.16, 1, 0.3, 1)'
               }}
               onMouseEnter={(e) => {
-                e.target.style.transform = 'translateY(-2px)';
-                e.target.style.boxShadow = '0 6px 24px rgba(0, 240, 255, 0.4)';
+                e.target.style.transform = 'translateY(-1px)';
+                e.target.style.background = 'rgba(255,255,255,0.9)';
               }}
               onMouseLeave={(e) => {
                 e.target.style.transform = 'translateY(0)';
-                e.target.style.boxShadow = '0 4px 20px rgba(0, 240, 255, 0.25)';
+                e.target.style.background = 'var(--text-primary)';
               }}
               >
-                Explore Projects <ArrowRight size={16} />
+                Explore Projects <ArrowRight size={14} />
               </Link>
 
               <Link href="/#contact" style={{
                 display: 'inline-flex',
                 alignItems: 'center',
                 gap: '8px',
-                background: 'rgba(255,255,255,0.02)',
+                background: 'rgba(255,255,255,0.01)',
                 color: 'var(--text-primary)',
-                padding: '14px 28px',
-                borderRadius: '8px',
-                border: '1px solid rgba(255,255,255,0.08)',
-                fontWeight: '600',
-                fontSize: '14px',
+                padding: '13px 26px',
+                borderRadius: '4px',
+                border: '1px solid var(--border-strong)',
+                fontWeight: '500',
+                fontSize: '13px',
+                fontFamily: 'JetBrains Mono, monospace',
                 textDecoration: 'none',
-                transition: 'all 0.3s ease'
+                transition: 'all 0.3s cubic-bezier(0.16, 1, 0.3, 1)'
               }}
-              onMouseEnter={(e) => e.target.style.background = 'rgba(255,255,255,0.06)'}
-              onMouseLeave={(e) => e.target.style.background = 'rgba(255,255,255,0.02)'}
+              onMouseEnter={(e) => e.target.style.background = 'rgba(255,255,255,0.04)'}
+              onMouseLeave={(e) => e.target.style.background = 'rgba(255,255,255,0.01)'}
               >
-                Get in Touch <Send size={15} />
+                Get in Touch <Send size={13} />
               </Link>
 
               <a href="/Het_Kikani_Resume.pdf" download style={{
                 display: 'inline-flex',
                 alignItems: 'center',
                 gap: '8px',
-                background: 'rgba(255,255,255,0.02)',
+                background: 'rgba(255,255,255,0.01)',
                 color: 'var(--text-primary)',
-                padding: '14px 28px',
-                borderRadius: '8px',
-                border: '1px solid rgba(255,255,255,0.08)',
-                fontWeight: '600',
-                fontSize: '14px',
+                padding: '13px 26px',
+                borderRadius: '4px',
+                border: '1px solid var(--border-strong)',
+                fontWeight: '500',
+                fontSize: '13px',
+                fontFamily: 'JetBrains Mono, monospace',
                 textDecoration: 'none',
-                transition: 'all 0.3s ease'
+                transition: 'all 0.3s cubic-bezier(0.16, 1, 0.3, 1)'
               }}
-              onMouseEnter={(e) => e.target.style.background = 'rgba(255,255,255,0.06)'}
-              onMouseLeave={(e) => e.target.style.background = 'rgba(255,255,255,0.02)'}
+              onMouseEnter={(e) => e.target.style.background = 'rgba(255,255,255,0.04)'}
+              onMouseLeave={(e) => e.target.style.background = 'rgba(255,255,255,0.01)'}
               >
-                Resume <Download size={15} />
+                Resume <Download size={13} />
               </a>
             </div>
 
             {/* Social Connection Row */}
             <div style={{ display: 'flex', gap: '16px', alignItems: 'center' }}>
               <a href={socialLinks.github} target="_blank" rel="noreferrer" style={socialIconStyle}>
-                <Github size={20} />
+                <Github size={18} />
               </a>
               <a href={socialLinks.linkedin} target="_blank" rel="noreferrer" style={socialIconStyle}>
-                <Linkedin size={20} />
+                <Linkedin size={18} />
               </a>
               <a href={socialLinks.twitter} target="_blank" rel="noreferrer" style={socialIconStyle}>
-                <Twitter size={20} />
+                <Twitter size={18} />
               </a>
               <a href="mailto:hetkikani804@gmail.com" style={socialIconStyle}>
-                <Mail size={20} />
+                <Mail size={18} />
               </a>
             </div>
 
@@ -243,15 +237,15 @@ const AboutHero = ({ userData, isSummary }) => {
               }}
             >
               <div style={statBoxStyle}>
-                <span className="font-heading" style={{ fontSize: '24px', fontWeight: '800', color: 'var(--text-primary)' }}>3+ yrs</span>
+                <span className="font-heading" style={{ fontSize: '20px', fontWeight: '400', color: 'var(--text-primary)' }}>3+ yrs</span>
                 <span className="font-mono" style={{ fontSize: '9px', color: 'var(--text-muted)', textTransform: 'uppercase', letterSpacing: '1px' }}>Technical Training</span>
               </div>
               <div style={statBoxStyle}>
-                <span className="font-heading" style={{ fontSize: '24px', fontWeight: '800', color: 'var(--text-primary)' }}>10+</span>
+                <span className="font-heading" style={{ fontSize: '20px', fontWeight: '400', color: 'var(--text-primary)' }}>10+</span>
                 <span className="font-mono" style={{ fontSize: '9px', color: 'var(--text-muted)', textTransform: 'uppercase', letterSpacing: '1px' }}>Repos & Projects</span>
               </div>
               <div style={statBoxStyle}>
-                <span className="font-heading" style={{ fontSize: '24px', fontWeight: '800', color: 'var(--text-primary)' }}>Remote</span>
+                <span className="font-heading" style={{ fontSize: '20px', fontWeight: '400', color: 'var(--text-primary)' }}>Remote</span>
                 <span className="font-mono" style={{ fontSize: '9px', color: 'var(--text-muted)', textTransform: 'uppercase', letterSpacing: '1px' }}>Global Collab</span>
               </div>
             </div>
@@ -260,79 +254,19 @@ const AboutHero = ({ userData, isSummary }) => {
 
           {/* Right Column: User profile frame & console log */}
           <motion.div
-            initial={{ opacity: 0, scale: 0.95 }}
+            initial={{ opacity: 0, scale: 0.98 }}
             animate={{ opacity: 1, scale: 1 }}
             transition={{ duration: 0.8, delay: 0.2, ease: [0.16, 1, 0.3, 1] }}
             style={{ display: 'flex', flexDirection: 'column', gap: '32px', alignItems: 'center' }}
           >
             
-            {/* Profile Frame with Gradient Shadow */}
-            <div style={{ position: 'relative', width: '280px', height: '280px' }}>
-              <div style={{
-                position: 'absolute',
-                inset: '-8px',
-                borderRadius: '24px',
-                background: 'linear-gradient(135deg, #00f0ff 0%, #6366f1 100%)',
-                opacity: 0.25,
-                filter: 'blur(16px)',
-                zIndex: 1
-              }} />
-              
-              <div style={{
-                width: '100%',
-                height: '100%',
-                borderRadius: '24px',
-                padding: '6px',
-                background: 'linear-gradient(135deg, rgba(0,240,255,0.4) 0%, rgba(99,102,241,0.4) 100%)',
-                position: 'relative',
-                zIndex: 2,
-                boxShadow: '0 20px 40px rgba(0,0,0,0.6)'
-              }}>
-                <div style={{
-                  width: '100%',
-                  height: '100%',
-                  borderRadius: '18px',
-                  background: '#0a0a0f',
-                  overflow: 'hidden',
-                  position: 'relative'
-                }}>
-                  <img
-                    src={personalInfo.profilePicture || "https://ui-avatars.com/api/?name=Het+Kikani&background=020205&color=00f0ff&size=256"}
-                    alt={personalInfo.name || "Het Kikani"}
-                    style={{
-                      width: '100%',
-                      height: '100%',
-                      objectFit: 'cover'
-                    }}
-                  />
-                </div>
-              </div>
-            </div>
-
-            {/* Available badge */}
-            <div style={{
-              padding: '6px 18px',
-              borderRadius: '100px',
-              border: '1px solid rgba(0, 240, 255, 0.15)',
-              background: 'rgba(0, 240, 255, 0.03)',
-              color: '#00f0ff',
-              fontSize: '11px',
-              fontWeight: '600',
-              textTransform: 'uppercase',
-              letterSpacing: '1.5px',
-              fontFamily: 'JetBrains Mono, monospace',
-              boxShadow: '0 0 15px rgba(0, 240, 255, 0.05)'
-            }}>
-              Available for builds
-            </div>
-
             {/* Terminal Console Widget */}
             <div style={{
               width: '100%',
-              maxWidth: '380px',
+              maxWidth: '460px',
               background: '#0E0E12',
               border: '1px solid rgba(255,255,255,0.06)',
-              borderRadius: '12px',
+              borderRadius: '4px',
               boxShadow: '0 20px 40px rgba(0,0,0,0.8)',
               overflow: 'hidden'
             }}>
@@ -406,26 +340,24 @@ const AboutHero = ({ userData, isSummary }) => {
                 display: 'inline-flex',
                 alignItems: 'center',
                 gap: '8px',
-                padding: '12px 28px',
-                borderRadius: '8px',
-                border: '1px solid rgba(255, 255, 255, 0.08)',
-                background: 'rgba(255, 255, 255, 0.02)',
+                padding: '12px 26px',
+                borderRadius: '4px',
+                border: '1px solid var(--border-strong)',
+                background: 'rgba(255, 255, 255, 0.01)',
                 color: 'var(--text-primary)',
                 textDecoration: 'none',
-                fontSize: '13px',
+                fontSize: '12px',
                 fontFamily: 'JetBrains Mono, monospace',
                 textTransform: 'uppercase',
                 letterSpacing: '1px',
-                transition: 'all 0.3s ease',
+                transition: 'all 0.3s cubic-bezier(0.16, 1, 0.3, 1)',
                 cursor: 'pointer'
               }}
               onMouseEnter={(e) => {
-                e.target.style.background = 'rgba(255,255,255,0.06)';
-                e.target.style.borderColor = 'rgba(255,255,255,0.15)';
+                e.target.style.background = 'rgba(255,255,255,0.04)';
               }}
               onMouseLeave={(e) => {
-                e.target.style.background = 'rgba(255,255,255,0.02)';
-                e.target.style.borderColor = 'rgba(255,255,255,0.08)';
+                e.target.style.background = 'rgba(255,255,255,0.01)';
               }}
             >
               View More About Me <ArrowRight size={14} />
@@ -455,16 +387,16 @@ const AboutHero = ({ userData, isSummary }) => {
 
 // Social icon button styles
 const socialIconStyle = {
-  width: '40px',
-  height: '40px',
-  borderRadius: '50%',
-  border: '1px solid rgba(255,255,255,0.06)',
-  background: 'rgba(255,255,255,0.02)',
+  width: '38px',
+  height: '38px',
+  borderRadius: '4px',
+  border: '1px solid var(--border-strong)',
+  background: 'rgba(255,255,255,0.01)',
   color: 'var(--text-secondary)',
   display: 'flex',
   alignItems: 'center',
   justifyContent: 'center',
-  transition: 'all 0.3s ease',
+  transition: 'all 0.3s cubic-bezier(0.16, 1, 0.3, 1)',
   cursor: 'pointer',
   textDecoration: 'none'
 };
@@ -474,9 +406,9 @@ const statBoxStyle = {
   display: 'flex',
   flexDirection: 'column',
   padding: '16px',
-  borderRadius: '8px',
-  border: '1px solid rgba(255,255,255,0.04)',
-  background: 'rgba(255,255,255,0.01)',
+  borderRadius: '4px',
+  border: '1px solid var(--border-subtle)',
+  background: 'var(--bg-dark-900)',
   alignItems: 'center',
   textAlign: 'center'
 };

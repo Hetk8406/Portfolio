@@ -1,20 +1,19 @@
 import React from 'react';
 import { motion, useScroll, useTransform, useMotionValue } from 'framer-motion';
-import { ArrowDown } from 'lucide-react';
+import { ArrowDown, ArrowUpRight } from 'lucide-react';
 import WordReveal from './WordReveal';
 import { useMagnetic } from '../hooks/useMagnetic';
 
 const HeroSection = () => {
-  const workBtnRef = useMagnetic(0.15);
-  const bookBtnRef = useMagnetic(0.15);
+  const workBtnRef = useMagnetic(0.12);
+  const bookBtnRef = useMagnetic(0.12);
 
   // Parallax Scroll values
   const { scrollY } = useScroll();
-  const yText = useTransform(scrollY, [0, 600], [0, -35]);
-  const yBg = useTransform(scrollY, [0, 600], [0, 45]);
-  const opacityLines = useTransform(scrollY, [0, 600], [1, 0.3]);
+  const yText = useTransform(scrollY, [0, 600], [0, -30]);
+  const yImage = useTransform(scrollY, [0, 600], [0, 30]);
 
-  // Mouse Parallax values
+  // Mouse Parallax values (very subtle)
   const mouseX = useMotionValue(0);
   const mouseY = useMotionValue(0);
 
@@ -26,207 +25,276 @@ const HeroSection = () => {
     mouseY.set(yPct);
   };
 
-  const textParallaxX = useTransform(mouseX, [-0.5, 0.5], [-8, 8]);
-  const textParallaxY = useTransform(mouseY, [-0.5, 0.5], [-8, 8]);
-  const bgParallaxX = useTransform(mouseX, [-0.5, 0.5], [10, -10]);
-  const bgParallaxY = useTransform(mouseY, [-0.5, 0.5], [10, -10]);
+  const textParallaxX = useTransform(mouseX, [-0.5, 0.5], [-6, 6]);
+  const textParallaxY = useTransform(mouseY, [-0.5, 0.5], [-6, 6]);
+  const imageParallaxX = useTransform(mouseX, [-0.5, 0.5], [8, -8]);
+  const imageParallaxY = useTransform(mouseY, [-0.5, 0.5], [8, -8]);
 
-  // Combine Scroll and Mouse Parallax offsets into single motion values
-  const combinedYBg = useTransform([yBg, bgParallaxY], ([latestYBg, latestBgParallaxY]) => latestYBg + latestBgParallaxY);
-  const combinedYText = useTransform([yText, textParallaxY], ([latestYText, latestTextParallaxY]) => latestYText + latestTextParallaxY);
+  const roles = ["AI Engineer", "Full Stack Developer", "Machine Learning Developer", "Product Builder"];
 
   return (
-    <div
+    <section
       onMouseMove={handleMouseMove}
       style={{
         position: 'relative',
         width: '100%',
-        height: '100vh',
+        minHeight: '100vh',
         display: 'flex',
-        flexDirection: 'column',
         alignItems: 'center',
-        justifyContent: 'center',
-        textAlign: 'center',
-        padding: '20px',
-        background: '#050505',
-        overflow: 'hidden'
+        background: 'transparent',
+        overflow: 'hidden',
+        padding: '120px 0 80px'
       }}
     >
-      {/* Subtle Background Elements with Parallax (Scroll + Mouse) */}
-      <motion.div
-        style={{
-          position: 'absolute',
-          inset: 0,
-          x: bgParallaxX,
-          y: combinedYBg,
-          opacity: opacityLines,
-          pointerEvents: 'none'
-        }}
-      >
-        <div className="subtle-line-hero" />
-        <div className="subtle-line-hero-right" />
-      </motion.div>
-      
-      {/* Very soft center radial glow */}
-      <div style={{
-        position: 'absolute',
-        top: '50%',
-        left: '50%',
-        transform: 'translate(-50%, -50%)',
-        width: '600px',
-        height: '600px',
-        background: 'radial-gradient(circle, rgba(255,255,255,0.015) 0%, transparent 70%)',
-        pointerEvents: 'none',
-        zIndex: 0
-      }} />
-
-      {/* Layered Text Content */}
-      <motion.div
-        style={{
-          position: 'relative',
-          zIndex: 1,
-          x: textParallaxX,
-          y: combinedYText
-        }}
-      >
-        <motion.span
-          initial={{ opacity: 0, y: 10 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, delay: 0.1 }}
-          className="font-mono"
-          style={{
-            color: 'var(--text-muted)',
-            letterSpacing: '0.3em',
-            fontSize: '11px',
-            textTransform: 'uppercase',
-            fontWeight: '500',
-            marginBottom: '24px',
-            display: 'block'
-          }}
-        >
-          Het Kikani
-        </motion.span>
-
-        <h1 className="font-heading" style={{
-          fontSize: 'clamp(44px, 8vw, 92px)',
-          fontWeight: '800',
-          lineHeight: '1.05',
-          letterSpacing: '-0.03em',
-          margin: '0 0 16px 0',
-          color: 'var(--text-primary)',
-          maxWidth: '900px'
+      <div className="container" style={{ width: '100%', position: 'relative', zIndex: 2 }}>
+        <div style={{
+          display: 'grid',
+          gridTemplateColumns: 'repeat(auto-fit, minmax(320px, 1fr))',
+          gap: '64px',
+          alignItems: 'center'
         }}>
-          <WordReveal text="I build systems. I explore ideas." />
-        </h1>
-
-        <motion.p
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ duration: 0.8, delay: 0.5 }}
-          style={{
-            fontSize: 'clamp(16px, 1.8vw, 20px)',
-            color: 'var(--text-secondary)',
-            maxWidth: '500px',
-            margin: '0 auto 40px',
-            fontWeight: '400',
-            lineHeight: '1.6'
-          }}
-        >
-          Developer & Author
-        </motion.p>
-
-        {/* Dual Magnetic CTAs */}
-        <motion.div
-          initial={{ opacity: 0, y: 15 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, delay: 0.6 }}
-          style={{
-            display: 'flex',
-            gap: '16px',
-            justifyContent: 'center',
-            alignItems: 'center',
-            flexWrap: 'wrap'
-          }}
-        >
-          <motion.a
-            ref={workBtnRef}
-            href="#work"
-            whileHover={{
-              scale: 1.02,
-              boxShadow: "0 0 15px rgba(255, 255, 255, 0.12)",
-              backgroundColor: "transparent",
-              color: "var(--text-primary)",
-              borderColor: "var(--text-primary)"
-            }}
-            transition={{ type: "spring", stiffness: 400, damping: 25 }}
+          {/* Left Column: Headline & Metadata */}
+          <motion.div
             style={{
-              display: 'inline-block',
-              padding: '14px 28px',
-              borderRadius: '8px',
-              background: 'var(--text-primary)',
-              color: '#020202',
-              textDecoration: 'none',
-              fontSize: '13px',
-              fontWeight: '600',
-              textTransform: 'uppercase',
-              letterSpacing: '1px',
-              border: '1px solid var(--text-primary)',
-              cursor: 'pointer'
+              x: textParallaxX,
+              y: yText,
+              display: 'flex',
+              flexDirection: 'column',
+              alignItems: 'flex-start'
             }}
           >
-            Explore Work
-          </motion.a>
-          <motion.a
-            ref={bookBtnRef}
-            href="#books"
-            whileHover={{
-              scale: 1.02,
-              borderColor: "var(--text-primary)",
-              backgroundColor: "rgba(255,255,255,0.02)",
-              boxShadow: "0 0 15px rgba(255, 255, 255, 0.03)"
-            }}
-            transition={{ type: "spring", stiffness: 400, damping: 25 }}
-            style={{
-              display: 'inline-block',
-              padding: '14px 28px',
-              borderRadius: '8px',
-              background: 'transparent',
+            {/* Minimal Tag Deck */}
+            <div style={{ display: 'flex', flexWrap: 'wrap', gap: '8px 16px', marginBottom: '24px' }}>
+              {roles.map((role, idx) => (
+                <motion.div
+                  key={idx}
+                  initial={{ opacity: 0, x: -8 }}
+                  animate={{ opacity: 1, x: 0 }}
+                  transition={{ duration: 0.6, delay: 0.1 * idx }}
+                  style={{ display: 'flex', alignItems: 'center', gap: '8px' }}
+                >
+                  <span style={{ width: '3px', height: '3px', borderRadius: '50%', background: 'var(--text-muted)' }} />
+                  <span className="font-mono" style={{ fontSize: '10.5px', color: 'var(--text-muted)', textTransform: 'uppercase', letterSpacing: '1px' }}>
+                    {role}
+                  </span>
+                </motion.div>
+              ))}
+            </div>
+
+            {/* Title / Headline */}
+            <h1 className="font-heading" style={{
+              fontSize: 'clamp(36px, 5vw, 56px)',
+              fontWeight: '300',
+              lineHeight: '1.1',
+              letterSpacing: '-0.03em',
+              marginBottom: '20px',
               color: 'var(--text-primary)',
-              textDecoration: 'none',
-              fontSize: '13px',
-              fontWeight: '600',
-              textTransform: 'uppercase',
-              letterSpacing: '1px',
-              border: '1px solid var(--border-subtle)',
-              cursor: 'pointer'
+              textAlign: 'left'
+            }}>
+              <WordReveal text="Engineering systems that learn. Building products that feel alive." />
+            </h1>
+
+            {/* Subtitle Description */}
+            <motion.p
+              initial={{ opacity: 0, y: 12 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.8, delay: 0.4 }}
+              style={{
+                fontSize: '15px',
+                color: 'var(--text-secondary)',
+                lineHeight: '1.65',
+                marginBottom: '36px',
+                maxWidth: '520px',
+                textAlign: 'left',
+                fontWeight: '300'
+              }}
+            >
+              Hi, I'm Het Kikani. I craft high-performance full-stack architectures, integrate machine learning pipelines, and author sci-fi stories exploring loops and entropy.
+            </motion.p>
+
+            {/* Call to Actions */}
+            <motion.div
+              initial={{ opacity: 0, y: 12 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.8, delay: 0.5 }}
+              style={{
+                display: 'flex',
+                gap: '16px',
+                flexWrap: 'wrap'
+              }}
+            >
+              <motion.a
+                ref={workBtnRef}
+                href="#work"
+                whileHover={{
+                  scale: 1.01,
+                  backgroundColor: "rgba(255,255,255,0.9)",
+                  y: -1
+                }}
+                transition={{ type: "spring", stiffness: 400, damping: 25 }}
+                style={{
+                  display: 'inline-flex',
+                  alignItems: 'center',
+                  gap: '6px',
+                  padding: '13px 24px',
+                  borderRadius: '4px',
+                  background: 'var(--text-primary)',
+                  color: '#0A0A0B',
+                  textDecoration: 'none',
+                  fontSize: '11px',
+                  fontFamily: 'JetBrains Mono, monospace',
+                  fontWeight: '500',
+                  textTransform: 'uppercase',
+                  letterSpacing: '1px',
+                  border: '1px solid var(--text-primary)',
+                  cursor: 'pointer',
+                  transition: 'all 0.3s cubic-bezier(0.16, 1, 0.3, 1)'
+                }}
+              >
+                Explore Work <ArrowUpRight size={13} />
+              </motion.a>
+              <motion.a
+                ref={bookBtnRef}
+                href="#books"
+                whileHover={{
+                  scale: 1.01,
+                  borderColor: "var(--text-primary)",
+                  backgroundColor: "rgba(255,255,255,0.02)",
+                  y: -1
+                }}
+                transition={{ type: "spring", stiffness: 400, damping: 25 }}
+                style={{
+                  display: 'inline-flex',
+                  alignItems: 'center',
+                  gap: '6px',
+                  padding: '13px 24px',
+                  borderRadius: '4px',
+                  background: 'transparent',
+                  color: 'var(--text-primary)',
+                  textDecoration: 'none',
+                  fontSize: '11px',
+                  fontFamily: 'JetBrains Mono, monospace',
+                  fontWeight: '500',
+                  textTransform: 'uppercase',
+                  letterSpacing: '1px',
+                  border: '1px solid var(--border-strong)',
+                  cursor: 'pointer',
+                  transition: 'all 0.3s cubic-bezier(0.16, 1, 0.3, 1)'
+                }}
+              >
+                Read Books
+              </motion.a>
+            </motion.div>
+          </motion.div>
+
+          {/* Right Column: Premium Frame Profile Image */}
+          <motion.div
+            style={{
+              x: imageParallaxX,
+              y: yImage,
+              display: 'flex',
+              justifyContent: 'center',
+              alignItems: 'center',
+              position: 'relative'
             }}
           >
-            Explore Books
-          </motion.a>
-        </motion.div>
-      </motion.div>
+            {/* Subtle floating radial ambient highlight behind the frame */}
+            <div style={{
+              position: 'absolute',
+              width: '320px',
+              height: '320px',
+              background: 'radial-gradient(circle, rgba(255, 255, 255, 0.02) 0%, transparent 70%)',
+              zIndex: 0,
+              pointerEvents: 'none'
+            }} />
 
-      {/* Scroll Down Indicator */}
+            {/* Framed Image Container */}
+            <motion.div
+              initial={{ opacity: 0, scale: 0.98 }}
+              animate={{ opacity: 1, scale: 1 }}
+              transition={{ duration: 0.8, delay: 0.3, ease: [0.16, 1, 0.3, 1] }}
+              style={{
+                position: 'relative',
+                width: '100%',
+                maxWidth: '340px',
+                aspectRatio: '0.85',
+                background: 'var(--bg-dark-900)',
+                border: '1px solid var(--border-subtle)',
+                padding: '12px',
+                borderRadius: '8px',
+                zIndex: 1,
+                boxShadow: '0 20px 40px rgba(0,0,0,0.4)'
+              }}
+            >
+              <div style={{
+                position: 'relative',
+                width: '100%',
+                height: '100%',
+                borderRadius: '4px',
+                overflow: 'hidden'
+              }}>
+                <img
+                  src="/images/profile.jpg"
+                  alt="Het Kikani"
+                  style={{
+                    width: '100%',
+                    height: '100%',
+                    objectFit: 'cover',
+                    filter: 'grayscale(0.95) contrast(1.05) brightness(0.9)',
+                    transition: 'all 0.6s cubic-bezier(0.16, 1, 0.3, 1)'
+                  }}
+                  onMouseEnter={(e) => {
+                    e.currentTarget.style.filter = 'grayscale(0) contrast(1.02) brightness(0.95)';
+                  }}
+                  onMouseLeave={(e) => {
+                    e.currentTarget.style.filter = 'grayscale(0.95) contrast(1.05) brightness(0.9)';
+                  }}
+                />
+              </div>
+
+              {/* Technical floating annotation label */}
+              <div
+                className="font-mono"
+                style={{
+                  position: 'absolute',
+                  bottom: '-20px',
+                  right: '12px',
+                  fontSize: '9px',
+                  color: 'var(--text-muted)',
+                  letterSpacing: '1px'
+                }}
+              >
+                [ SYS.INIT // Ahmedabad, IN ]
+              </div>
+            </motion.div>
+          </motion.div>
+        </div>
+      </div>
+
+      {/* Floating indicators at bottom */}
       <motion.div
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
-        transition={{ delay: 1.1, duration: 1 }}
+        transition={{ delay: 1, duration: 1 }}
         style={{
           position: 'absolute',
-          bottom: '40px',
+          bottom: '32px',
+          left: '50%',
+          transform: 'translateX(-50%)',
           display: 'flex',
           flexDirection: 'column',
           alignItems: 'center',
-          gap: '8px',
-          color: 'var(--text-muted)'
+          gap: '6px',
+          color: 'var(--text-muted)',
+          zIndex: 3
         }}
       >
-        <span className="font-mono" style={{ fontSize: '9px', textTransform: 'uppercase', letterSpacing: '2px' }}>
-          Scroll
+        <span className="font-mono" style={{ fontSize: '8.5px', textTransform: 'uppercase', letterSpacing: '1.5px' }}>
+          Scroll down
         </span>
-        <ArrowDown size={14} />
+        <ArrowDown size={12} style={{ animation: 'bounce 2s infinite' }} />
       </motion.div>
-    </div>
+    </section>
   );
 };
 

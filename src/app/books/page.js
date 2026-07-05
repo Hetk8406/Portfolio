@@ -36,7 +36,7 @@ export default function BooksPage() {
   }, []);
 
   return (
-    <div style={{ background: '#050505', minHeight: '100vh', position: 'relative' }}>
+    <div style={{ background: 'var(--bg-dark-950)', minHeight: '100vh', position: 'relative' }}>
       <Navigation />
 
       {/* Spacer to push content below fixed navigation */}

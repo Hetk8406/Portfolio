@@ -55,23 +55,23 @@ const DualIdentity = () => {
               display: 'flex',
               flexDirection: 'column',
               justifyContent: 'space-between',
-              padding: '40px',
-              borderRadius: '20px',
-              background: 'rgba(255, 255, 255, 0.01)',
+              padding: '36px',
+              borderRadius: '8px',
+              background: 'var(--bg-dark-900)',
               border: '1px solid var(--border-subtle)'
             }}
           >
             <div>
               <div style={{ display: 'flex', alignItems: 'center', gap: '12px', marginBottom: '24px' }}>
-                <Terminal size={20} color="var(--text-secondary)" />
-                <span className="font-mono" style={{ fontSize: '12px', color: 'var(--text-secondary)', textTransform: 'uppercase', letterSpacing: '2px' }}>
+                <Terminal size={18} color="var(--text-secondary)" />
+                <span className="font-mono" style={{ fontSize: '11px', color: 'var(--text-secondary)', textTransform: 'uppercase', letterSpacing: '2px' }}>
                   Engineering Persona
                 </span>
               </div>
-              <h2 className="font-heading" style={{ fontSize: 'clamp(28px, 4vw, 44px)', lineHeight: '1.1', marginBottom: '16px' }}>
+              <h2 className="font-heading" style={{ fontSize: 'clamp(28px, 4vw, 36px)', fontWeight: '300', lineHeight: '1.1', marginBottom: '16px' }}>
                 <WordReveal text="The Developer" />
               </h2>
-              <p style={{ color: 'var(--text-secondary)', fontSize: '15px', lineHeight: '1.6', marginBottom: '32px' }}>
+              <p style={{ color: 'var(--text-secondary)', fontSize: '14.5px', lineHeight: '1.65', marginBottom: '32px' }}>
                 Architecting algorithms and data-driven systems. Translating structural logic into performant web infrastructures and machine learning models.
               </p>
             </div>
@@ -80,34 +80,34 @@ const DualIdentity = () => {
             <div style={{ display: 'flex', flexDirection: 'column', gap: '16px', marginBottom: '32px' }}>
               <div style={{
                 padding: '16px',
-                borderRadius: '8px',
-                border: '1px solid rgba(255, 255, 255, 0.04)',
-                background: 'rgba(0,0,0,0.2)',
+                borderRadius: '4px',
+                border: '1px solid var(--border-subtle)',
+                background: 'var(--bg-dark-950)',
                 display: 'flex',
                 alignItems: 'center',
                 justifyContent: 'space-between'
               }}>
                 <div>
-                  <div className="font-mono" style={{ fontSize: '11px', color: 'var(--text-muted)' }}>PROJECT.01</div>
-                  <div style={{ fontSize: '14px', fontWeight: '600' }}>LAWYER.AI</div>
+                  <div className="font-mono" style={{ fontSize: '10px', color: 'var(--text-muted)' }}>PROJECT.01</div>
+                  <div style={{ fontSize: '13.5px', fontWeight: '500' }}>LAWYER.AI</div>
                 </div>
-                <span style={{ fontSize: '11px', color: 'var(--text-muted)', border: '1px solid rgba(255,255,255,0.06)', borderRadius: '4px', padding: '2px 6px' }}>AI Legal Infra</span>
+                <span style={{ fontSize: '10px', color: 'var(--text-secondary)', border: '1px solid var(--border-strong)', borderRadius: '4px', padding: '2px 6px', fontFamily: 'JetBrains Mono, monospace' }}>AI Legal Infra</span>
               </div>
 
               <div style={{
                 padding: '16px',
-                borderRadius: '8px',
-                border: '1px solid rgba(255, 255, 255, 0.04)',
-                background: 'rgba(0,0,0,0.2)',
+                borderRadius: '4px',
+                border: '1px solid var(--border-subtle)',
+                background: 'var(--bg-dark-950)',
                 display: 'flex',
                 alignItems: 'center',
                 justifyContent: 'space-between'
               }}>
                 <div>
-                  <div className="font-mono" style={{ fontSize: '11px', color: 'var(--text-muted)' }}>PROJECT.02</div>
-                  <div style={{ fontSize: '14px', fontWeight: '600' }}>ConceptLens</div>
+                  <div className="font-mono" style={{ fontSize: '10px', color: 'var(--text-muted)' }}>PROJECT.02</div>
+                  <div style={{ fontSize: '13.5px', fontWeight: '500' }}>ConceptLens</div>
                 </div>
-                <span style={{ fontSize: '11px', color: 'var(--text-muted)', border: '1px solid rgba(255,255,255,0.06)', borderRadius: '4px', padding: '2px 6px' }}>SaaS Exploration</span>
+                <span style={{ fontSize: '10px', color: 'var(--text-secondary)', border: '1px solid var(--border-strong)', borderRadius: '4px', padding: '2px 6px', fontFamily: 'JetBrains Mono, monospace' }}>SaaS Exploration</span>
               </div>
             </div>
 
@@ -119,13 +119,14 @@ const DualIdentity = () => {
                 gap: '8px',
                 color: 'var(--text-primary)',
                 textDecoration: 'none',
-                fontSize: '13px',
-                fontWeight: '600',
+                fontSize: '12px',
+                fontWeight: '500',
+                fontFamily: 'JetBrains Mono, monospace',
                 letterSpacing: '1px',
                 textTransform: 'uppercase'
               }}
             >
-              Explore Systems <ArrowRight size={16} />
+              Explore Systems <ArrowRight size={14} />
             </a>
           </motion.div>
 
@@ -136,23 +137,23 @@ const DualIdentity = () => {
               display: 'flex',
               flexDirection: 'column',
               justifyContent: 'space-between',
-              padding: '40px',
-              borderRadius: '20px',
-              background: 'rgba(255, 255, 255, 0.01)',
+              padding: '36px',
+              borderRadius: '8px',
+              background: 'var(--bg-dark-900)',
               border: '1px solid var(--border-subtle)'
             }}
           >
             <div>
               <div style={{ display: 'flex', alignItems: 'center', gap: '12px', marginBottom: '24px' }}>
-                <BookOpen size={20} color="var(--text-secondary)" />
-                <span className="font-mono" style={{ fontSize: '12px', color: 'var(--text-secondary)', textTransform: 'uppercase', letterSpacing: '2px' }}>
+                <BookOpen size={18} color="var(--text-secondary)" />
+                <span className="font-mono" style={{ fontSize: '11px', color: 'var(--text-secondary)', textTransform: 'uppercase', letterSpacing: '2px' }}>
                   Narrative Persona
                 </span>
               </div>
-              <h2 className="font-heading" style={{ fontSize: 'clamp(28px, 4vw, 44px)', lineHeight: '1.1', marginBottom: '16px' }}>
+              <h2 className="font-heading" style={{ fontSize: 'clamp(28px, 4vw, 36px)', fontWeight: '300', lineHeight: '1.1', marginBottom: '16px' }}>
                 <WordReveal text="The Author" />
               </h2>
-              <p style={{ color: 'var(--text-secondary)', fontSize: '15px', lineHeight: '1.6', marginBottom: '32px' }}>
+              <p style={{ color: 'var(--text-secondary)', fontSize: '14.5px', lineHeight: '1.65', marginBottom: '32px' }}>
                 Exploring philosophical concepts, recursive memory, and loops through the sci-fi novel duology **Ananta**. Mapping complex ideas onto narrative architectures.
               </p>
             </div>
@@ -164,9 +165,9 @@ const DualIdentity = () => {
               justifyContent: 'center',
               gap: '24px',
               padding: '24px',
-              borderRadius: '8px',
-              border: '1px solid rgba(255, 255, 255, 0.04)',
-              background: 'rgba(0,0,0,0.2)',
+              borderRadius: '4px',
+              border: '1px solid var(--border-subtle)',
+              background: 'var(--bg-dark-950)',
               marginBottom: '32px',
               minHeight: '120px',
               position: 'relative',
@@ -179,7 +180,7 @@ const DualIdentity = () => {
                 <circle cx="35" cy="22" r="3" fill="rgba(255,255,255,0.3)" />
                 <circle cx="145" cy="48" r="3" fill="rgba(255,255,255,0.3)" />
               </svg>
-              <div style={{ position: 'absolute', bottom: '12px', right: '12px', fontSize: '11px', color: 'var(--text-muted)', fontFamily: 'monospace' }}>
+              <div style={{ position: 'absolute', bottom: '12px', right: '12px', fontSize: '10px', color: 'var(--text-muted)', fontFamily: 'monospace' }}>
                 ANANTA.SYS
               </div>
             </div>
@@ -192,13 +193,14 @@ const DualIdentity = () => {
                 gap: '8px',
                 color: 'var(--text-primary)',
                 textDecoration: 'none',
-                fontSize: '13px',
-                fontWeight: '600',
+                fontSize: '12px',
+                fontWeight: '500',
+                fontFamily: 'JetBrains Mono, monospace',
                 letterSpacing: '1px',
                 textTransform: 'uppercase'
               }}
             >
-              Explore Narrative <ArrowRight size={16} />
+              Explore Narrative <ArrowRight size={14} />
             </a>
           </motion.div>
         </motion.div>

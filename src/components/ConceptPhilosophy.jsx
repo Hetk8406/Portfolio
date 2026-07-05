@@ -44,7 +44,7 @@ const ConceptPhilosophy = () => {
   };
 
   return (
-    <section id="concept" style={{ padding: '140px 0', borderBottom: '1px solid var(--border-subtle)', background: '#050505' }}>
+    <section id="concept" style={{ padding: '140px 0', borderBottom: '1px solid var(--border-subtle)', background: 'var(--bg-dark-950)' }}>
       <div className="container" style={{ maxWidth: '800px' }}>
         <div style={{ textAlign: 'center', marginBottom: '80px' }}>
           <span className="section-tag">Philosophical Fragments</span>
@@ -68,7 +68,7 @@ const ConceptPhilosophy = () => {
                 display: 'flex',
                 flexDirection: 'column',
                 gap: '16px',
-                borderLeft: '1px solid rgba(255, 255, 255, 0.08)',
+                borderLeft: '1px solid var(--border-strong)',
                 paddingLeft: '32px',
                 position: 'relative'
               }}
@@ -78,7 +78,7 @@ const ConceptPhilosophy = () => {
                 position: 'absolute',
                 left: '-16px',
                 top: '0',
-                background: '#050505',
+                background: 'var(--bg-dark-950)',
                 padding: '4px 8px',
                 fontSize: '11px',
                 color: 'var(--text-muted)',
@@ -89,9 +89,9 @@ const ConceptPhilosophy = () => {
 
               {/* Fragment Thought */}
               <h3 className="font-heading" style={{
-                fontSize: 'clamp(24px, 3.5vw, 36px)',
+                fontSize: 'clamp(22px, 3.5vw, 30px)',
                 lineHeight: '1.2',
-                fontWeight: '700',
+                fontWeight: '300',
                 letterSpacing: '-0.02em',
                 color: 'var(--text-primary)'
               }}>
@@ -101,8 +101,8 @@ const ConceptPhilosophy = () => {
               {/* Context Explanation */}
               <p style={{
                 color: 'var(--text-secondary)',
-                fontSize: '15px',
-                lineHeight: '1.7',
+                fontSize: '14.5px',
+                lineHeight: '1.65',
                 maxWidth: '600px'
               }}>
                 {frag.context}

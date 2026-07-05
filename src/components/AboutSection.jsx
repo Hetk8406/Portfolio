@@ -375,203 +375,380 @@ const AboutSection = ({ userData, limit }) => {
   // If in summary mode (like on homepage), AboutMe isn't shown because AboutHero handles it.
   if (limit) return null;
 
+  const learningJourney = [
+    {
+      period: "2023 - PRESENT",
+      title: "Data Science Specialization",
+      institution: "Gujarat Technological University",
+      description: "Building mathematical foundations in statistical modeling, algorithms, and predictive systems. Specializing in bridging academic data architectures with practical production systems."
+    },
+    {
+      period: "2024",
+      title: "Neural Networks & Deep Learning",
+      institution: "Autodidact & Specializations",
+      description: "Diving into regression analysis, deep classifiers, LightGBM, and computer vision models. Mastering PyTorch and TensorFlow pipelines to build robust machine learning pipelines."
+    },
+    {
+      period: "2024 - 2025",
+      title: "Full-Stack Product Engineering",
+      institution: "SaaS & AI Infrastructure",
+      description: "Engineering secure databases, responsive frontend layers, and microservices. Linking machine learning endpoints with consumer interfaces like Lawyer.AI and CONCEPTLENS."
+    }
+  ];
+
   return (
-    <section id="about" style={{ padding: '100px 0', borderBottom: '1px solid var(--border-subtle)', background: '#050505' }}>
+    <section id="about" style={{ padding: '120px 0', borderBottom: '1px solid var(--border-subtle)', background: 'var(--bg-dark-950)' }}>
       <div className="container">
         
-        {/* Core Timeline Grid */}
+        {/* Storytelling Trajectory Layout */}
         <div style={{
           display: 'grid',
           gridTemplateColumns: 'repeat(auto-fit, minmax(320px, 1fr))',
           gap: '64px',
           alignItems: 'start',
-          marginBottom: '100px'
+          marginBottom: '80px'
         }}>
-          {/* Left Column: Biography & Background */}
+          {/* Left Column: Biography & Visual Journey */}
           <motion.div
             variants={columnVariantsLeft}
             initial="hidden"
             whileInView="visible"
             viewport={{ once: true, margin: "-10%" }}
-            style={{ display: 'flex', flexDirection: 'column', gap: '32px' }}
+            style={{ display: 'flex', flexDirection: 'column', gap: '40px' }}
           >
             <div>
               <span className="section-tag">Biography</span>
-              <h2 className="font-heading" style={{ fontSize: 'clamp(28px, 4vw, 42px)', lineHeight: '1.1', marginBottom: '20px' }}>
+              <h2 className="font-heading" style={{ fontSize: 'clamp(28px, 4vw, 38px)', lineHeight: '1.1', marginBottom: '20px' }}>
                 The Trajectory
               </h2>
-              <p style={{ color: 'var(--text-secondary)', fontSize: '15px', lineHeight: '1.7', marginBottom: '16px' }}>
-                Currently pursuing a Bachelor of Engineering in Computer Science and Engineering, specializing in Data Science at Gujarat Technological University (GTU). 
+              <p style={{ color: 'var(--text-secondary)', fontSize: '14.5px', lineHeight: '1.65', marginBottom: '16px', fontWeight: '300' }}>
+                Currently pursuing a Bachelor of Engineering in Computer Science and Engineering, specializing in Data Science at GTU.
               </p>
-              <p style={{ color: 'var(--text-secondary)', fontSize: '15px', lineHeight: '1.7' }}>
+              <p style={{ color: 'var(--text-secondary)', fontSize: '14.5px', lineHeight: '1.65', fontWeight: '300' }}>
                 My work exists at the intersection of engineering systems and statistical learning, with a secondary channel dedicated to philosophical sci-fi writing.
               </p>
             </div>
 
-            {/* Education Timeline */}
+            {/* Visual Learning Journey Timeline */}
             <div>
-              <h4 className="font-mono" style={{ fontSize: '12px', color: 'var(--text-muted)', textTransform: 'uppercase', letterSpacing: '1.5px', marginBottom: '24px' }}>
-                Education
+              <h4 className="font-mono" style={{ fontSize: '11px', color: 'var(--text-muted)', textTransform: 'uppercase', letterSpacing: '1.5px', marginBottom: '32px' }}>
+                Learning Path & Milestones
               </h4>
-              <div style={{ display: 'flex', flexDirection: 'column', gap: '20px' }}>
-                {education.map((edu, idx) => (
-                  <div key={idx} style={{ paddingBottom: '16px', borderBottom: '1px solid rgba(255,255,255,0.04)' }}>
-                    <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'baseline', marginBottom: '4px' }}>
-                      <span style={{ fontSize: '15px', fontWeight: '700', color: 'var(--text-primary)' }}>{edu.degree}</span>
-                      <span className="font-mono" style={{ fontSize: '11px', color: 'var(--text-muted)' }}>{edu.period}</span>
+              <div style={{ display: 'flex', flexDirection: 'column', gap: '0px', position: 'relative' }}>
+                {/* Vertical continuous timeline bar */}
+                <div style={{
+                  position: 'absolute',
+                  left: '6px',
+                  top: '12px',
+                  bottom: '12px',
+                  width: '1px',
+                  background: 'var(--border-strong)'
+                }} />
+
+                {learningJourney.map((item, idx) => (
+                  <motion.div
+                    key={idx}
+                    initial={{ opacity: 0, x: -10 }}
+                    whileInView={{ opacity: 1, x: 0 }}
+                    viewport={{ once: true }}
+                    transition={{ duration: 0.5, delay: idx * 0.15 }}
+                    style={{
+                      display: 'flex',
+                      gap: '24px',
+                      paddingBottom: idx === learningJourney.length - 1 ? '0' : '36px',
+                      position: 'relative'
+                    }}
+                  >
+                    {/* Timeline dot */}
+                    <div style={{
+                      width: '13px',
+                      height: '13px',
+                      borderRadius: '50%',
+                      background: 'var(--bg-dark-950)',
+                      border: '2px solid var(--text-muted)',
+                      zIndex: 2,
+                      marginTop: '4px',
+                      flexShrink: 0
+                    }}
+                    className="timeline-node"
+                    />
+
+                    {/* Timeline content */}
+                    <div>
+                      <span className="font-mono" style={{ fontSize: '10px', color: 'var(--text-muted)', display: 'block', marginBottom: '4px' }}>
+                        {item.period}
+                      </span>
+                      <h4 style={{ fontSize: '14.5px', fontWeight: '500', color: 'var(--text-primary)', marginBottom: '2px' }}>
+                        {item.title}
+                      </h4>
+                      <span style={{ fontSize: '12px', color: 'var(--text-muted)', display: 'block', marginBottom: '8px', fontFamily: 'JetBrains Mono, monospace' }}>
+                        {item.institution}
+                      </span>
+                      <p style={{ fontSize: '13.5px', color: 'var(--text-secondary)', lineHeight: '1.6', fontWeight: '300' }}>
+                        {item.description}
+                      </p>
                     </div>
-                    <div style={{ fontSize: '13px', color: 'var(--text-secondary)' }}>{edu.institution}</div>
-                    {edu.grade && <div className="font-mono" style={{ fontSize: '11px', color: '#00f0ff', marginTop: '4px' }}>{edu.grade}</div>}
-                  </div>
+                  </motion.div>
                 ))}
               </div>
             </div>
           </motion.div>
 
-          {/* Right Column: Experience Sheet */}
+          {/* Right Column: Experience & Credentials */}
           <motion.div
             variants={columnVariantsRight}
             initial="hidden"
             whileInView="visible"
             viewport={{ once: true, margin: "-10%" }}
+            style={{ display: 'flex', flexDirection: 'column', gap: '40px' }}
           >
-            <span className="section-tag">Professional Timeline</span>
-            <h2 className="font-heading" style={{ fontSize: 'clamp(28px, 4vw, 42px)', lineHeight: '1.1', marginBottom: '20px' }}>
-              Experience
-            </h2>
-            <div style={{ display: 'flex', flexDirection: 'column', gap: '24px' }}>
-              {experiences.map((exp, idx) => (
-                <div key={idx} style={{ paddingBottom: '20px', borderBottom: '1px solid rgba(255,255,255,0.04)' }}>
-                  <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'baseline', marginBottom: '6px' }}>
-                    <span style={{ fontSize: '16px', fontWeight: '700', color: 'var(--text-primary)' }}>{exp.role}</span>
-                    <span className="font-mono" style={{ fontSize: '11px', color: 'var(--text-muted)' }}>{exp.period}</span>
+            <div>
+              <span className="section-tag">Professional Journey</span>
+              <h2 className="font-heading" style={{ fontSize: 'clamp(28px, 4vw, 38px)', lineHeight: '1.1', marginBottom: '20px' }}>
+                Growth & Milestones
+              </h2>
+              <p style={{ color: 'var(--text-secondary)', fontSize: '14.5px', lineHeight: '1.65', marginBottom: '32px', fontWeight: '300' }}>
+                A timeline of formal systems training and industry internship positions.
+              </p>
+
+              {/* Unified Experience & Education Timeline */}
+              <div style={{ display: 'flex', flexDirection: 'column', gap: '0px', position: 'relative' }}>
+                {/* Vertical continuous timeline bar */}
+                <div style={{
+                  position: 'absolute',
+                  left: '6px',
+                  top: '12px',
+                  bottom: '12px',
+                  width: '1px',
+                  background: 'var(--border-strong)'
+                }} />
+
+                {/* Growth Milestone 1: GTU */}
+                <motion.div
+                  initial={{ opacity: 0, x: 10 }}
+                  whileInView={{ opacity: 1, x: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ duration: 0.5, delay: 0.1 }}
+                  style={{ display: 'flex', gap: '24px', paddingBottom: '36px', position: 'relative' }}
+                >
+                  <div style={{
+                    width: '13px',
+                    height: '13px',
+                    borderRadius: '50%',
+                    background: 'var(--bg-dark-950)',
+                    border: '2px solid var(--text-primary)',
+                    zIndex: 2,
+                    marginTop: '4px',
+                    flexShrink: 0
+                  }} />
+                  <div>
+                    <span className="font-mono" style={{ fontSize: '10px', color: 'var(--text-muted)', display: 'block', marginBottom: '4px' }}>
+                      JUL 2025 - PRESENT
+                    </span>
+                    <h4 style={{ fontSize: '14.5px', fontWeight: '500', color: 'var(--text-primary)', marginBottom: '2px' }}>
+                      B.E. in Computer Science & Engineering (Data Science)
+                    </h4>
+                    <span style={{ fontSize: '12px', color: 'var(--text-muted)', display: 'block', marginBottom: '8px', fontFamily: 'JetBrains Mono, monospace' }}>
+                      Gujarat Technological University (GTU)
+                    </span>
+                    <p style={{ fontSize: '13.5px', color: 'var(--text-secondary)', lineHeight: '1.6', fontWeight: '300' }}>
+                      Pursuing specialization in predictive analytics, large-scale computational systems, and data structures.
+                    </p>
                   </div>
-                  <div style={{ fontSize: '13px', color: '#00f0ff', marginBottom: '10px' }}>{exp.company}</div>
-                  <p style={{ fontSize: '14px', color: 'var(--text-secondary)', lineHeight: '1.6' }}>{exp.description}</p>
-                </div>
-              ))}
+                </motion.div>
+
+                {/* Growth Milestone 2: Aarogix */}
+                <motion.div
+                  initial={{ opacity: 0, x: 10 }}
+                  whileInView={{ opacity: 1, x: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ duration: 0.5, delay: 0.2 }}
+                  style={{ display: 'flex', gap: '24px', paddingBottom: '36px', position: 'relative' }}
+                >
+                  <div style={{
+                    width: '13px',
+                    height: '13px',
+                    borderRadius: '50%',
+                    background: 'var(--bg-dark-950)',
+                    border: '2px solid var(--text-muted)',
+                    zIndex: 2,
+                    marginTop: '4px',
+                    flexShrink: 0
+                  }}
+                  className="timeline-node"
+                  />
+                  <div>
+                    <span className="font-mono" style={{ fontSize: '10px', color: 'var(--text-muted)', display: 'block', marginBottom: '4px' }}>
+                      MAY 2025 - JUN 2025
+                    </span>
+                    <h4 style={{ fontSize: '14.5px', fontWeight: '500', color: 'var(--text-primary)', marginBottom: '2px' }}>
+                      Summer Intern
+                    </h4>
+                    <span style={{ fontSize: '12px', color: 'var(--text-muted)', display: 'block', marginBottom: '8px', fontFamily: 'JetBrains Mono, monospace' }}>
+                      Aarogix
+                    </span>
+                    <p style={{ fontSize: '13.5px', color: 'var(--text-secondary)', lineHeight: '1.6', fontWeight: '300' }}>
+                      Conducted quantitative data analysis and structured data validation logs, improving formatting and data entry accuracy rates.
+                    </p>
+                  </div>
+                </motion.div>
+
+                {/* Growth Milestone 3: LJ University */}
+                <motion.div
+                  initial={{ opacity: 0, x: 10 }}
+                  whileInView={{ opacity: 1, x: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ duration: 0.5, delay: 0.3 }}
+                  style={{ display: 'flex', gap: '24px', position: 'relative' }}
+                >
+                  <div style={{
+                    width: '13px',
+                    height: '13px',
+                    borderRadius: '50%',
+                    background: 'var(--bg-dark-950)',
+                    border: '2px solid var(--text-muted)',
+                    zIndex: 2,
+                    marginTop: '4px',
+                    flexShrink: 0
+                  }}
+                  className="timeline-node"
+                  />
+                  <div>
+                    <span className="font-mono" style={{ fontSize: '10px', color: 'var(--text-muted)', display: 'block', marginBottom: '4px' }}>
+                      AUG 2022 - MAY 2025
+                    </span>
+                    <h4 style={{ fontSize: '14.5px', fontWeight: '500', color: 'var(--text-primary)', marginBottom: '2px' }}>
+                      Diploma in Computer Engineering
+                    </h4>
+                    <span style={{ fontSize: '12px', color: 'var(--text-muted)', display: 'block', marginBottom: '8px', fontFamily: 'JetBrains Mono, monospace' }}>
+                      LJ University
+                    </span>
+                    <p style={{ fontSize: '13.5px', color: 'var(--text-secondary)', lineHeight: '1.6', fontWeight: '300' }}>
+                      Graduated with First Class with Distinction. Focused on systems programming, databases, web technologies, and software development lifecycles.
+                    </p>
+                  </div>
+                </motion.div>
+              </div>
             </div>
           </motion.div>
         </div>
 
         {/* Separator Subtle Line */}
-        <div style={{ height: '1px', background: 'var(--border-subtle)', margin: '80px 0' }} />
+        <div style={{ height: '1px', background: 'var(--border-subtle)', margin: '60px 0' }} />
 
         {/* Technologies Grid Section */}
         <div>
-          <div style={{ textAlign: 'center', marginBottom: '48px' }}>
+          <div style={{ textAlign: 'center', marginBottom: '60px' }}>
             <span className="section-tag">Technology Stack</span>
-            <h2 className="font-heading" style={{ fontSize: 'clamp(32px, 5vw, 48px)', lineHeight: '1.1', marginBottom: '12px' }}>
-              Technologies I Use
+            <h2 className="font-heading" style={{ fontSize: 'clamp(32px, 5vw, 42px)', lineHeight: '1.1', marginBottom: '12px' }}>
+              Technologies & Languages
             </h2>
-            <p style={{ color: 'var(--text-secondary)', fontSize: '15px', maxWidth: '500px', margin: '0 auto' }}>
-              Core tools and packages utilized for development, analytics, and software pipelines.
+            <p style={{ color: 'var(--text-secondary)', fontSize: '14.5px', maxWidth: '500px', margin: '0 auto', fontWeight: '300' }}>
+              Core languages, libraries, and frameworks utilized across systems and pipelines.
             </p>
           </div>
 
-          {/* Technology Filters */}
+          {/* Interactive Categories Split Dashboard */}
           <div style={{
-            display: 'flex',
-            flexWrap: 'wrap',
-            justifyContent: 'center',
-            gap: '12px',
-            marginBottom: '48px'
+            display: 'grid',
+            gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))',
+            gap: '48px',
+            alignItems: 'start'
           }}>
-            {categories.map((cat) => (
-              <button
-                key={cat}
-                onClick={() => setActiveCategory(cat)}
-                style={{
-                  padding: '10px 20px',
-                  borderRadius: '100px',
-                  border: activeCategory === cat ? '1px solid #00f0ff' : '1px solid rgba(255, 255, 255, 0.06)',
-                  background: activeCategory === cat ? 'rgba(0, 240, 255, 0.08)' : 'rgba(255, 255, 255, 0.01)',
-                  color: activeCategory === cat ? '#00f0ff' : 'var(--text-secondary)',
-                  fontFamily: 'JetBrains Mono, monospace',
-                  fontSize: '12px',
-                  fontWeight: '600',
-                  cursor: 'pointer',
-                  transition: 'all 0.3s cubic-bezier(0.16, 1, 0.3, 1)'
-                }}
-                onMouseEnter={(e) => {
-                  if (activeCategory !== cat) {
-                    e.target.style.borderColor = 'rgba(255,255,255,0.15)';
-                    e.target.style.color = 'var(--text-primary)';
-                  }
-                }}
-                onMouseLeave={(e) => {
-                  if (activeCategory !== cat) {
-                    e.target.style.borderColor = 'rgba(255,255,255,0.06)';
-                    e.target.style.color = 'var(--text-secondary)';
-                  }
-                }}
-              >
-                {cat}
-              </button>
-            ))}
-          </div>
+            {/* Category Selectors Sidebar */}
+            <div style={{ display: 'flex', flexDirection: 'column', gap: '8px' }}>
+              <span className="font-mono" style={{ fontSize: '10px', color: 'var(--text-muted)', textTransform: 'uppercase', letterSpacing: '1.5px', marginBottom: '12px', display: 'block' }}>
+                Filter by Domain
+              </span>
+              {categories.map((cat) => {
+                const count = cat === "All" 
+                  ? fullTechStack.length 
+                  : fullTechStack.filter(item => item.category === cat).length;
+                const isActive = activeCategory === cat;
+                return (
+                  <button
+                    key={cat}
+                    onClick={() => setActiveCategory(cat)}
+                    className={`domain-filter-btn ${isActive ? 'active' : ''}`}
+                    style={{
+                      display: 'flex',
+                      alignItems: 'center',
+                      justifyContent: 'space-between',
+                      padding: '14px 20px',
+                      borderRadius: '4px',
+                      fontFamily: 'JetBrains Mono, monospace',
+                      fontSize: '11px',
+                      fontWeight: '500',
+                      cursor: 'pointer',
+                      textAlign: 'left'
+                    }}
+                  >
+                    <span>{cat.toUpperCase()}</span>
+                    <span style={{ fontSize: '9px', opacity: 0.6 }}>[{count}]</span>
+                  </button>
+                );
+              })}
+            </div>
 
-          {/* Cards Grid */}
-          <motion.div
-            layout
-            className="tech-stack-grid"
-            style={{
-              display: 'grid',
-              gridTemplateColumns: 'repeat(auto-fill, minmax(180px, 1fr))',
-              gap: '24px'
-            }}
-          >
-            <AnimatePresence mode="popLayout">
-              {filteredTech.map((tech) => (
-                <motion.div
-                  layout
-                  initial={{ opacity: 0, scale: 0.9 }}
-                  animate={{ opacity: 1, scale: 1 }}
-                  exit={{ opacity: 0, scale: 0.9 }}
-                  transition={{ duration: 0.3 }}
-                  key={tech.name}
-                  className="surface-card"
-                  style={{
-                    display: 'flex',
-                    flexDirection: 'column',
-                    alignItems: 'center',
-                    justifyContent: 'center',
-                    padding: '30px 20px',
-                    textAlign: 'center',
-                    gap: '16px',
-                    minHeight: '180px'
-                  }}
-                  whileHover={{ y: -6, borderColor: 'rgba(0, 240, 255, 0.25)' }}
-                >
-                  {/* Icon Circle Frame */}
-                  <div style={{
-                    width: '64px',
-                    height: '64px',
-                    borderRadius: '16px',
-                    background: '#07070a',
-                    border: '1px solid rgba(255, 255, 255, 0.04)',
-                    display: 'flex',
-                    alignItems: 'center',
-                    justifyContent: 'center',
-                    boxShadow: 'inset 0 4px 12px rgba(0,0,0,0.5)'
-                  }}>
-                    {tech.icon}
-                  </div>
-
-                  {/* Title & Info */}
-                  <div>
-                    <h4 className="font-heading" style={{ fontSize: '15px', fontWeight: '700', margin: '0 0 4px 0', color: 'var(--text-primary)' }}>
-                      {tech.name}
-                    </h4>
+            {/* Dotted Connections Skill list */}
+            <motion.div
+              layout
+              style={{
+                display: 'flex',
+                flexDirection: 'column',
+                gap: '4px',
+                padding: '24px',
+                borderRadius: '8px',
+                background: 'var(--bg-dark-900)',
+                border: '1px solid var(--border-subtle)',
+                minHeight: '340px'
+              }}
+            >
+              <span className="font-mono" style={{ fontSize: '10px', color: 'var(--text-muted)', textTransform: 'uppercase', letterSpacing: '1.5px', marginBottom: '16px', display: 'block' }}>
+                {activeCategory.toUpperCase()} SKILLS
+              </span>
+              
+              <AnimatePresence mode="popLayout">
+                {filteredTech.map((tech) => (
+                  <motion.div
+                    layout
+                    initial={{ opacity: 0, y: 4 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    exit={{ opacity: 0, y: -4 }}
+                    transition={{ duration: 0.25 }}
+                    key={tech.name}
+                    style={{
+                      display: 'flex',
+                      alignItems: 'center',
+                      justifyContent: 'space-between',
+                      padding: '10px 0',
+                      borderBottom: '1px solid rgba(255,255,255,0.02)'
+                    }}
+                  >
+                    <div style={{ display: 'flex', alignItems: 'center', gap: '12px' }}>
+                      <div style={{
+                        width: '24px',
+                        height: '24px',
+                        display: 'flex',
+                        alignItems: 'center',
+                        justifyContent: 'center',
+                        opacity: 0.8
+                      }}>
+                        {React.cloneElement(tech.icon, { width: 15, height: 15 })}
+                      </div>
+                      <span style={{ fontSize: '13.5px', color: 'var(--text-primary)', fontWeight: '400' }}>
+                        {tech.name}
+                      </span>
+                    </div>
+                    <div style={{ flex: 1, borderBottom: '1px dotted var(--border-strong)', margin: '0 16px', height: '10px', opacity: 0.5 }} />
                     <span className="font-mono" style={{ fontSize: '9px', color: 'var(--text-muted)', textTransform: 'uppercase', letterSpacing: '1px' }}>
                       {tech.category}
                     </span>
-                  </div>
-                </motion.div>
-              ))}
-            </AnimatePresence>
-          </motion.div>
-
+                  </motion.div>
+                ))}
+              </AnimatePresence>
+            </motion.div>
+          </div>
         </div>
 
         {/* Certifications Section */}
