@@ -514,7 +514,8 @@ const ProjectCard = ({ project, onClick }) => {
         style={{
           display: 'flex',
           flexDirection: 'column',
-          gap: '20px',
+          gap: '16px',
+          padding: '24px',
           height: '100%',
           position: 'relative'
         }}
@@ -523,7 +524,7 @@ const ProjectCard = ({ project, onClick }) => {
       >
         {/* Project Image Area with Smooth Zoom */}
         <div style={{
-          height: '180px',
+          height: '160px',
           background: 'var(--bg-dark-950)',
           borderRadius: '4px',
           border: '1px solid var(--border-subtle)',
@@ -583,34 +584,20 @@ const ProjectCard = ({ project, onClick }) => {
             <h3 className="font-heading" style={{ fontSize: '18px', fontWeight: '400', marginBottom: '8px', color: 'var(--text-primary)' }}>
               {project.name}
             </h3>
-            <p style={{ color: 'var(--text-secondary)', fontSize: '13.5px', lineHeight: '1.6', margin: 0, fontWeight: '300' }}>
+            <p style={{
+              color: 'var(--text-secondary)',
+              fontSize: '13px',
+              lineHeight: '1.6',
+              margin: 0,
+              fontWeight: '300',
+              display: '-webkit-box',
+              WebkitLineClamp: 2,
+              WebkitBoxOrient: 'vertical',
+              overflow: 'hidden',
+              textOverflow: 'ellipsis'
+            }}>
               {details.impact}
             </p>
-          </div>
-
-          {/* Problem Solved Panel */}
-          <div style={{ borderLeft: '1px solid var(--border-strong)', paddingLeft: '12px' }}>
-            <span className="font-mono" style={{ fontSize: '9px', color: 'var(--text-muted)', textTransform: 'uppercase', display: 'block', marginBottom: '3px' }}>
-              Problem Solved
-            </span>
-            <p style={{ fontSize: '12.5px', color: 'var(--text-secondary)', margin: 0, lineHeight: '1.5', fontWeight: '300' }}>
-              {caseStudy.problem}
-            </p>
-          </div>
-
-          {/* Key Achievements List */}
-          <div>
-            <span className="font-mono" style={{ fontSize: '9px', color: 'var(--text-muted)', textTransform: 'uppercase', display: 'block', marginBottom: '6px' }}>
-              Key Achievements
-            </span>
-            <ul style={{ listStyle: 'none', padding: 0, margin: 0, display: 'flex', flexDirection: 'column', gap: '4px' }}>
-              {caseStudy.achievements.map((ach, aIdx) => (
-                <li key={aIdx} style={{ fontSize: '12.5px', color: 'var(--text-primary)', display: 'flex', alignItems: 'center', gap: '6px', fontWeight: '300' }}>
-                  <span style={{ width: '3px', height: '3px', background: 'var(--text-secondary)', borderRadius: '50%' }} />
-                  {ach}
-                </li>
-              ))}
-            </ul>
           </div>
         </div>
 
@@ -726,7 +713,7 @@ const ProjectDetailModal = ({ project, onClose }) => {
         transition={{ duration: 0.4, ease: [0.16, 1, 0.3, 1] }}
         style={{
           width: '100%',
-          maxWidth: '800px',
+          maxWidth: '1100px',
           maxHeight: '90vh',
           background: 'var(--bg-dark-900)',
           border: '1px solid var(--border-strong)',
@@ -773,7 +760,8 @@ const ProjectDetailModal = ({ project, onClose }) => {
               style={{
                 width: '100%',
                 height: '100%',
-                objectFit: 'cover'
+                objectFit: details.fit || 'cover',
+                objectPosition: details.position || 'center'
               }}
             />
           ) : (
