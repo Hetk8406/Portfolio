@@ -760,17 +760,23 @@ const ProjectDetailModal = ({ project, onClose }) => {
             position: 'absolute',
             top: '20px',
             right: '20px',
-            background: 'rgba(255, 255, 255, 0.02)',
-            border: '1px solid var(--border-strong)',
-            color: 'var(--text-primary)',
+            background: 'rgba(239, 68, 68, 0.1)',
+            border: '1px solid rgba(239, 68, 68, 0.3)',
+            color: '#ef4444',
             padding: '8px',
             borderRadius: '4px',
             cursor: 'pointer',
             zIndex: 10,
-            transition: 'background 0.2s'
+            transition: 'all 0.2s ease-in-out'
           }}
-          onMouseEnter={(e) => e.target.style.background = 'rgba(255, 255, 255, 0.08)'}
-          onMouseLeave={(e) => e.target.style.background = 'rgba(255, 255, 255, 0.02)'}
+          onMouseEnter={(e) => {
+            e.currentTarget.style.background = '#ef4444';
+            e.currentTarget.style.color = '#ffffff';
+          }}
+          onMouseLeave={(e) => {
+            e.currentTarget.style.background = 'rgba(239, 68, 68, 0.1)';
+            e.currentTarget.style.color = '#ef4444';
+          }}
         >
           <X size={16} />
         </button>
