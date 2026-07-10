@@ -214,6 +214,28 @@ const ProjectsGallery = ({ userData, limit }) => {
         "Forest cover prediction/DS7-Project-11.png"
       ],
       fullDescription: "An exploratory data analysis and predictive modeling pipeline to classify forest cover types using cartographic variables (elevation, aspect, slope, soil type, and distance to hydrology/roads/fire points). Trains Random Forest classifiers, optimizes hyperparameters, and generates detailed visualization maps of forest zones."
+    },
+    {
+      // Index 12 → repositories[12] (currently "Home Loan Default")
+      image: "Home Loan Default/DS8-Project-1.png",
+      fit: "cover",
+      position: "center",
+      impact: "Predictive classification modeling home loan default risks using financial and demographic indicators.",
+      tags: ["Python", "Machine Learning", "Logistic Regression", "EDA", "XGBoost"],
+      demoUrl: null,
+      screenshots: [
+        "Home Loan Default/DS8-Project-1.png",
+        "Home Loan Default/DS8-Project-2.png",
+        "Home Loan Default/DS8-Project-3.png",
+        "Home Loan Default/DS8-Project-4.png",
+        "Home Loan Default/DS8-Project-5.png",
+        "Home Loan Default/DS8-Project-6.png",
+        "Home Loan Default/DS8-Project-7.png",
+        "Home Loan Default/DS8-Project-8.png",
+        "Home Loan Default/DS8-Project-9.png",
+        "Home Loan Default/DS8-Project-10.png"
+      ],
+      fullDescription: "An end-to-end data science classification project designed to identify high-risk home loan applicants and predict default probabilities. Processes historical demographic, credit history, and loan request metrics, implements feature scaling and class balance methods, trains classification pipelines, and generates analytical risk dashboards."
     }
   ];
 
@@ -500,6 +522,12 @@ const getProjectCaseStudyDetails = (name) => {
     return {
       problem: "Diagnostic classification of forest cover types based on cartographic and geological variables.",
       achievements: ["Evaluated cover types using Random Forest models", "Engineered elevation and distance ratios"]
+    };
+  }
+  if (n.includes("loan") || n.includes("default")) {
+    return {
+      problem: "Predictive classification of home loan default risks to identify high-risk applicants.",
+      achievements: ["Handled class imbalances and scaled numeric parameters", "Trained XGBoost and Logistic Regression pipelines"]
     };
   }
   return {
