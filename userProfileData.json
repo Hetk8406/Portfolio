@@ -139,6 +139,21 @@
           }
         },
         {
+          "name": "Finora",
+          "role": "Creator",
+          "category": "Mobile Apps",
+          "description": "Personal finance management and tracking application designed for mobile devices.",
+          "url": "https://github.com/Hetk8406/Finora",
+          "languages": {
+            "Dart": 58.3,
+            "C++": 20.1,
+            "CMake": 15.5,
+            "HTML": 2.6,
+            "Swift": 2.2,
+            "C": 1.2
+          }
+        },
+        {
           "name": "FoundIt!",
           "role": "Core Contributor",
           "category": "Web Apps",
@@ -166,21 +181,7 @@
             "Dockerfile": 0
           }
         },
-        {
-          "name": "Finora",
-          "role": "Creator",
-          "category": "Mobile Apps",
-          "description": "Personal finance management and tracking application designed for mobile devices.",
-          "url": "https://github.com/Hetk8406/Finora",
-          "languages": {
-            "Dart": 58.3,
-            "C++": 20.1,
-            "CMake": 15.5,
-            "HTML": 2.6,
-            "Swift": 2.2,
-            "C": 1.2
-          }
-        },
+        
         {
           "name": "Bank Marketing Predictor",
           "role": "Creator",

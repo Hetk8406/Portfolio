@@ -49,29 +49,7 @@ const ProjectsGallery = ({ userData, limit }) => {
       fullDescription: "A complete full-stack infrastructure for the LegalPal legal assistance assistant. Integrates high-throughput inference nodes with customized legal context indexing, allowing lawyers and clients to draft contracts, analyze statutes, and query regulations with high precision."
     },
     {
-      // Index 2 → repositories[2] (currently "FoundIt!")
-      image: null,
-      fit: "cover",
-      position: "center",
-      impact: "Distributed architecture for categorizing and mapping lost assets.",
-      tags: ["JavaScript", "HTML", "Node.js", "Express"],
-      demoUrl: null,
-      screenshots: [],
-      fullDescription: "A distributed lost-and-found system designed for large campuses. Employs categorizing networks and real-time mapping databases to report, index, match, and return lost assets securely and efficiently."
-    },
-    {
-      // Index 3 → repositories[3] (currently "ConceptLens")
-      image: null,
-      fit: "cover",
-      position: "center",
-      impact: "Visual exploration node framework to map concept relationships.",
-      tags: ["React", "D3.js", "GraphDB", "TailwindCSS"],
-      demoUrl: null,
-      screenshots: [],
-      fullDescription: "An interactive, visual concept-mapping node network. Allows researchers to input text datasets and automatically generate node-relationship schemas using Graph databases and dynamic D3.js physics renders."
-    },
-    {
-      // Index 4 → repositories[4] (currently "Finora")
+      // Index 2 → repositories[4] (currently "Finora")
       image: "Finora/finora-logo.png",
       fit: "contain",
       position: "center",
@@ -84,6 +62,28 @@ const ProjectsGallery = ({ userData, limit }) => {
         "Finora/finora-page2.png"
       ],
       fullDescription: "A modern personal finance and expense tracking mobile application designed to help users structure budgets, track expenses, and visualize financial habits in real-time. Employs secure local storage capabilities, custom categorization, budget capping alert thresholds, and interactive graphical analytics outputs."
+    },
+    {
+      // Index 3 → repositories[2] (currently "FoundIt!")
+      image: null,
+      fit: "cover",
+      position: "center",
+      impact: "Distributed architecture for categorizing and mapping lost assets.",
+      tags: ["JavaScript", "HTML", "Node.js", "Express"],
+      demoUrl: null,
+      screenshots: [],
+      fullDescription: "A distributed lost-and-found system designed for large campuses. Employs categorizing networks and real-time mapping databases to report, index, match, and return lost assets securely and efficiently."
+    },
+    {
+      // Index 4 → repositories[3] (currently "ConceptLens")
+      image: null,
+      fit: "cover",
+      position: "center",
+      impact: "Visual exploration node framework to map concept relationships.",
+      tags: ["React", "D3.js", "GraphDB", "TailwindCSS"],
+      demoUrl: null,
+      screenshots: [],
+      fullDescription: "An interactive, visual concept-mapping node network. Allows researchers to input text datasets and automatically generate node-relationship schemas using Graph databases and dynamic D3.js physics renders."
     },
     {
       // Index 5 → repositories[5] (currently "Bank Marketing Predictor")
@@ -232,8 +232,7 @@ const ProjectsGallery = ({ userData, limit }) => {
         "Home Loan Default/DS8-Project-6.png",
         "Home Loan Default/DS8-Project-7.png",
         "Home Loan Default/DS8-Project-8.png",
-        "Home Loan Default/DS8-Project-9.png",
-        "Home Loan Default/DS8-Project-10.png"
+        "Home Loan Default/DS8-Project-9.png"
       ],
       fullDescription: "An end-to-end data science classification project designed to identify high-risk home loan applicants and predict default probabilities. Processes historical demographic, credit history, and loan request metrics, implements feature scaling and class balance methods, trains classification pipelines, and generates analytical risk dashboards."
     }
