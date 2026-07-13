@@ -181,7 +181,6 @@
             "Dockerfile": 0
           }
         },
-        
         {
           "name": "Bank Marketing Predictor",
           "role": "Creator",
@@ -283,6 +282,17 @@
             "Jupyter Notebook": 92.8,
             "Python": 5.6,
             "CSS": 1.6
+          }
+        },
+        {
+          "name": "Flipkart Project Classifier",
+          "role": "Creator",
+          "category": "Data Science",
+          "description": "Deep Learning image classification system built to categorize product categories from Flipkart catalog queries.",
+          "url": "https://github.com/Hetk8406/Flipkart-Project-Classifier",
+          "languages": {
+            "Jupyter Notebook": 98.6,
+            "Python": 1.4
           }
         }
       ]

@@ -235,6 +235,31 @@ const ProjectsGallery = ({ userData, limit }) => {
         "Home Loan Default/DS8-Project-9.png"
       ],
       fullDescription: "An end-to-end data science classification project designed to identify high-risk home loan applicants and predict default probabilities. Processes historical demographic, credit history, and loan request metrics, implements feature scaling and class balance methods, trains classification pipelines, and generates analytical risk dashboards."
+    },
+    {
+      // Index 13 → repositories[13] (currently "Flipkart Project Classifier")
+      image: "Flipkart/Flipkart-1.png",
+      fit: "cover",
+      position: "center",
+      impact: "Deep Learning image classification system built to categorize product categories from Flipkart catalog queries.",
+      tags: ["Python", "Deep Learning", "CNN", "Keras", "Image Classification"],
+      demoUrl: null,
+      screenshots: [
+        "Flipkart/Flipkart-1.png",
+        "Flipkart/Flipkart-2.png",
+        "Flipkart/Flipkart-3.png",
+        "Flipkart/Flipkart-4.png",
+        "Flipkart/Flipkart-5.png",
+        "Flipkart/Flipkart-6.png",
+        "Flipkart/Flipkart-7.png",
+        "Flipkart/Flipkart-8.png",
+        "Flipkart/Flipkart-9.png",
+        "Flipkart/Flipkart-10.png",
+        "Flipkart/Flipkart-11.png",
+        "Flipkart/Flipkart-12.png",
+        "Flipkart/Flipkart-13.png"
+      ],
+      fullDescription: "An end-to-end Computer Vision capstone project built to classify products from the Flipkart catalog. Integrates deep Convolutional Neural Networks (CNNs) using TensorFlow/Keras to analyze product images and accurately predict target categories, streamlining e-commerce queries."
     }
   ];
 
@@ -527,6 +552,12 @@ const getProjectCaseStudyDetails = (name) => {
     return {
       problem: "Predictive classification of home loan default risks to identify high-risk applicants.",
       achievements: ["Handled class imbalances and scaled numeric parameters", "Trained XGBoost and Logistic Regression pipelines"]
+    };
+  }
+  if (n.includes("flipkart")) {
+    return {
+      problem: "Deep Learning product classification categorizing catalog query categories from images.",
+      achievements: ["Developed highly responsive CNN models using Keras", "Implemented high-throughput model evaluation runs"]
     };
   }
   return {
