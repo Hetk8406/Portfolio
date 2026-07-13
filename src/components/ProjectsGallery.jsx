@@ -12,7 +12,7 @@ const ProjectsGallery = ({ userData, limit }) => {
 
   // Categories Filtering
   const [activeCategory, setActiveCategory] = useState("All");
-  const categories = ["All", "Web Apps", "Mobile Apps", "Data Science"];
+  const categories = ["All", "Web Apps", "Mobile Apps", "Data Science", "Artificial Intelligence (AI)"];
 
   // Index-based mock details with screenshot lists
   const projectMocks = [
