@@ -116,7 +116,7 @@
         {
           "name": "QuantCore",
           "role": "Creator",
-          "category": "Data Science",
+          "category": "Machine Learning Engineering",
           "description": "Predicting Indian stock market prices using machine learning algortihms.",
           "url": "https://github.com/Hetk8406/Indian-Stock-Predictor",
           "languages": {
