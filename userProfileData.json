@@ -7,7 +7,7 @@
       "profilePicture": "/images/profile2.png",
       "socialLinks": {
         "instagram": "https://www.instagram.com/hetkikani_804",
-        "twitter": "https://x.com/KikaniHet",
+        "twitter": "https://x.com/HetKikani_804",
         "linkedin": "https://www.linkedin.com/in/het-kikani-67817236b/",
         "github": "https://github.com/Hetk8406"
       }
@@ -293,6 +293,17 @@
           "languages": {
             "Jupyter Notebook": 98.6,
             "Python": 1.4
+          }
+        },
+        {
+          "name": "Customer Churn Predictor REST API",
+          "role": "Creator",
+          "category": "Machine Learning Engineering",
+          "description": "End-to-end machine learning pipeline predicting customer churn with containerized REST API deployments.",
+          "url": "https://github.com/Hetk8406/Customer-Churn-Predictor-REST-API",
+          "languages": {
+            "Jupyter Notebook": 98.7,
+            "Python": 1.3
           }
         }
       ]

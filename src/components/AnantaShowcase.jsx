@@ -72,11 +72,11 @@ const AnantaShowcase = ({ limit }) => {
       <div className="container">
         <div style={{ textAlign: 'center', marginBottom: '80px' }}>
           <span className="section-tag">Sci-Fi Duology</span>
-          <h2 className="font-heading" style={{ fontSize: 'clamp(32px, 5vw, 54px)', lineHeight: '1.1', marginBottom: '20px' }}>
-            <WordReveal text="The Ananta Duology" />
+          <h2 className="font-heading" style={{ fontSize: 'clamp(32px, 5vw, 54px)', lineHeight: '1.1', marginBottom: '16px' }}>
+            <WordReveal text="Books" />
           </h2>
-          <p style={{ color: 'var(--text-secondary)', fontSize: '16px', maxWidth: '640px', margin: '0 auto', lineHeight: '1.6', fontWeight: '300' }}>
-            Two connected novels exploring memory, identity, language, and the nature of reality. Begin with <span style={{ color: 'var(--text-primary)', fontWeight: '400' }}>The Infinite Cycle</span> and conclude with <span style={{ color: 'var(--text-primary)', fontWeight: '400' }}>The Unwritten Dark</span>.
+          <p style={{ color: 'var(--text-secondary)', fontSize: '16px', maxWidth: '600px', margin: '0 auto', fontWeight: '400' }}>
+            A story about loops, memory, and reality. Mapping existential queries onto technological allegories.
           </p>
         </div>
 

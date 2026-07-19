@@ -12,7 +12,7 @@ const ProjectsGallery = ({ userData, limit }) => {
 
   // Categories Filtering
   const [activeCategory, setActiveCategory] = useState("All");
-  const categories = ["All", "Web Apps", "Mobile Apps", "Data Science", "Artificial Intelligence (AI)"];
+  const categories = ["All", "Web Apps", "Mobile Apps", "Data Science", "Artificial Intelligence (AI)", "Machine Learning Engineering"];
 
   // Index-based mock details with screenshot lists
   const projectMocks = [
@@ -260,6 +260,27 @@ const ProjectsGallery = ({ userData, limit }) => {
         "Flipkart/Flipkart-13.png"
       ],
       fullDescription: "An end-to-end Computer Vision capstone project built to classify products from the Flipkart catalog. Integrates deep Convolutional Neural Networks (CNNs) using TensorFlow/Keras to analyze product images and accurately predict target categories, streamlining e-commerce queries."
+    },
+    {
+      // Index 14 → repositories[14] (currently "Customer Churn Predictor REST API")
+      image: "Customer Churn Analytics/CCA-1.png",
+      fit: "cover",
+      position: "center",
+      impact: "End-to-end machine learning pipeline predicting customer churn with containerized REST API deployments.",
+      tags: ["Python", "Machine Learning", "FastAPI", "Docker", "XGBoost"],
+      demoUrl: null,
+      screenshots: [
+        "Customer Churn Analytics/CCA-1.png",
+        "Customer Churn Analytics/CCA-2.png",
+        "Customer Churn Analytics/CCA-3.png",
+        "Customer Churn Analytics/CCA-4.png",
+        "Customer Churn Analytics/CCA-5.png",
+        "Customer Churn Analytics/CCA-6.png",
+        "Customer Churn Analytics/CCA-7.png",
+        "Customer Churn Analytics/CCA-8.png",
+        "Customer Churn Analytics/CCA-9.png"
+      ],
+      fullDescription: "An end-to-end Machine Learning capstone project designed to predict customer churn. Integrates advanced exploratory data analysis with hyperparameter-optimized classification models (XGBoost/RandomForest) to identify target churn risks, packaged and deployed via containerized FastAPI REST endpoints."
     }
   ];
 
@@ -536,7 +557,7 @@ const getProjectCaseStudyDetails = (name) => {
       achievements: ["Reached 96.8% model validation classification score", "Integrated real-time diagnostic reports"]
     };
   }
-  if (n.includes("transaction") || n.includes("customer")) {
+  if (n.includes("transaction") || (n.includes("customer") && !n.includes("churn"))) {
     return {
       problem: "Classifying customer conversion potentials from web-session logs.",
       achievements: ["Maintained ROC-AUC score of 0.91", "Handled imbalanced datasets using SMOTE"]
@@ -558,6 +579,12 @@ const getProjectCaseStudyDetails = (name) => {
     return {
       problem: "Deep Learning product classification categorizing catalog query categories from images.",
       achievements: ["Developed highly responsive CNN models using Keras", "Implemented high-throughput model evaluation runs"]
+    };
+  }
+  if (n.includes("churn")) {
+    return {
+      problem: "Identifying high-probability customer churn groups using behavioral analytics and session trends.",
+      achievements: ["Configured containerized deployments using Docker and FastAPI", "Trained hyperparameter-optimized classification pipelines"]
     };
   }
   return {
