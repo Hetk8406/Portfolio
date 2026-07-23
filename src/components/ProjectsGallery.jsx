@@ -281,6 +281,25 @@ const ProjectsGallery = ({ userData, limit }) => {
         "Customer Churn Analytics/CCA-9.png"
       ],
       fullDescription: "An end-to-end Machine Learning capstone project designed to predict customer churn. Integrates advanced exploratory data analysis with hyperparameter-optimized classification models (XGBoost/RandomForest) to identify target churn risks, packaged and deployed via containerized FastAPI REST endpoints."
+    },
+    {
+      // Index 15 → repositories[15] (currently "Liver Patient Prediction")
+      image: "Liver Patient Prediction/DS9-1.png",
+      fit: "cover",
+      position: "center",
+      impact: "Predictive healthcare analytics classification system predicting liver disease risks using patient clinical biomarkers.",
+      tags: ["Python", "Machine Learning", "Scikit-Learn", "Healthcare Analytics", "Classification"],
+      demoUrl: null,
+      screenshots: [
+        "Liver Patient Prediction/DS9-1.png",
+        "Liver Patient Prediction/DS9-2.png",
+        "Liver Patient Prediction/DS9-3.png",
+        "Liver Patient Prediction/DS9-4.png",
+        "Liver Patient Prediction/DS9-5.png",
+        "Liver Patient Prediction/DS9-6.png",
+        "Liver Patient Prediction/DS9-7.png"
+      ],
+      fullDescription: "A clinical data science classification project focused on early liver disease diagnosis. Evaluates patient blood biomarkers (bilirubin, albumin, proteins, enzymes) and demographic features using supervised classification pipelines (Random Forests, Support Vector Classifiers), enabling predictive diagnostic decision support."
     }
   ];
 
@@ -585,6 +604,12 @@ const getProjectCaseStudyDetails = (name) => {
     return {
       problem: "Identifying high-probability customer churn groups using behavioral analytics and session trends.",
       achievements: ["Configured containerized deployments using Docker and FastAPI", "Trained hyperparameter-optimized classification pipelines"]
+    };
+  }
+  if (n.includes("liver")) {
+    return {
+      problem: "Predictive clinical classification of patient liver disease risks using blood biomarkers.",
+      achievements: ["Evaluated clinical features with Random Forests & SVCs", "Optimized diagnostic sensitivity and recall metrics"]
     };
   }
   return {
