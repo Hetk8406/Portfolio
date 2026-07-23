@@ -6,7 +6,8 @@ import WordReveal from './WordReveal';
 const AboutSection = ({ userData, limit }) => {
   const experiences = userData?.linkedin?.experience || [];
   const education = userData?.linkedin?.education || [];
-  const certifications = userData?.linkedin?.certifications || [];
+  const rawCertifications = userData?.linkedin?.certifications || [];
+  const certifications = [...rawCertifications].sort((a, b) => (parseInt(b.date) || 0) - (parseInt(a.date) || 0));
   
   const [activeCert, setActiveCert] = useState(null);
   

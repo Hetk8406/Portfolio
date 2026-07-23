@@ -37,28 +37,28 @@
       ],
       "certifications": [
         {
-          "name": "Developing Interpersonal Skills",
+          "name": "Version Control",
           "issuer": "Coursera",
-          "date": "2024",
-          "link": "/images/certificates/Coursera -Developing Interpersonal Skills.jpg",
-          "image": "Coursera -Developing Interpersonal Skills.jpg",
-          "description": "Training focused on effective communication, active listening, conflict resolution, and collaborative team dynamics."
+          "date": "2025",
+          "link": "/images/certificates/Coursera Version Control.jpg",
+          "image": "Coursera Version Control.jpg",
+          "description": "Mastery of Git, branching methodologies, repository workflows, and collaborative codebase version management."
         },
         {
-          "name": "Introduction to Python",
-          "issuer": "Coursera",
-          "date": "2024",
-          "link": "/images/certificates/Coursera -Intoduction to Python.jpg",
-          "image": "Coursera -Intoduction to Python.jpg",
-          "description": "Core concepts of Python programming including variables, loops, control structures, and basic data structures."
+          "name": "Google Certificate",
+          "issuer": "Google",
+          "date": "2025",
+          "link": "/images/certificates/Google Certificate.jpg",
+          "image": "Google Certificate.jpg",
+          "description": "Foundational professional skills certified by Google covering core computing concepts and modern digital productivity."
         },
         {
-          "name": "Programming with Scratch",
-          "issuer": "Coursera",
-          "date": "2024",
-          "link": "/images/certificates/Coursera -Programming with Scratch.jpg",
-          "image": "Coursera -Programming with Scratch.jpg",
-          "description": "Foundational programming logic, computational thinking, and block-based visual application development."
+          "name": "Generative AI",
+          "issuer": "Simplilearn",
+          "date": "2025",
+          "link": "/images/certificates/Simplilearn -GenAI.jpg",
+          "image": "Simplilearn -GenAI.jpg",
+          "description": "In-depth studies in neural networks, GANs, transformer models, and deployment of generative systems in cloud platforms."
         },
         {
           "name": "Python for Everyone",
@@ -69,14 +69,6 @@
           "description": "Comprehensive studies in python covering data access, network programming, databases, and structured data structures."
         },
         {
-          "name": "Version Control",
-          "issuer": "Coursera",
-          "date": "2024",
-          "link": "/images/certificates/Coursera Version Control.jpg",
-          "image": "Coursera Version Control.jpg",
-          "description": "Mastery of Git, branching methodologies, repository workflows, and collaborative codebase version management."
-        },
-        {
           "name": "Generative AI",
           "issuer": "Coursera",
           "date": "2024",
@@ -85,28 +77,36 @@
           "description": "Exploration of generative model architectures, prompt engineering, LLMs, and ethical implementation of AI technologies."
         },
         {
-          "name": "Google Certificate",
-          "issuer": "Google",
-          "date": "2024",
-          "link": "/images/certificates/Google Certificate.jpg",
-          "image": "Google Certificate.jpg",
-          "description": "Foundational professional skills certified by Google covering core computing concepts and modern digital productivity."
+          "name": "Developing Interpersonal Skills",
+          "issuer": "Coursera",
+          "date": "2023",
+          "link": "/images/certificates/Coursera -Developing Interpersonal Skills.jpg",
+          "image": "Coursera -Developing Interpersonal Skills.jpg",
+          "description": "Training focused on effective communication, active listening, conflict resolution, and collaborative team dynamics."
+        },
+        {
+          "name": "Introduction to Python",
+          "issuer": "Coursera",
+          "date": "2023",
+          "link": "/images/certificates/Coursera -Intoduction to Python.jpg",
+          "image": "Coursera -Intoduction to Python.jpg",
+          "description": "Core concepts of Python programming including variables, loops, control structures, and basic data structures."
+        },
+        {
+          "name": "Programming with Scratch",
+          "issuer": "Coursera",
+          "date": "2023",
+          "link": "/images/certificates/Coursera -Programming with Scratch.jpg",
+          "image": "Coursera -Programming with Scratch.jpg",
+          "description": "Foundational programming logic, computational thinking, and block-based visual application development."
         },
         {
           "name": "Python Fundamentals for Beginners",
           "issuer": "Great Learning",
-          "date": "2024",
+          "date": "2023",
           "link": "/images/certificates/Python fundamentals for beginner -Great learning.jpg",
           "image": "Python fundamentals for beginner -Great learning.jpg",
           "description": "Acquisition of basic programming logic, object-oriented concepts, and algorithmic thinking utilizing Python."
-        },
-        {
-          "name": "Generative AI",
-          "issuer": "Simplilearn",
-          "date": "2024",
-          "link": "/images/certificates/Simplilearn -GenAI.jpg",
-          "image": "Simplilearn -GenAI.jpg",
-          "description": "In-depth studies in neural networks, GANs, transformer models, and deployment of generative systems in cloud platforms."
         }
       ]
     },
