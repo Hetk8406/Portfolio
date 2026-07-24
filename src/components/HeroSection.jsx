@@ -3,8 +3,10 @@ import { motion, useScroll, useTransform, useMotionValue } from 'framer-motion';
 import { ArrowDown, ArrowUpRight } from 'lucide-react';
 import WordReveal from './WordReveal';
 import { useMagnetic } from '../hooks/useMagnetic';
+import userData from '../../userProfileData.json';
 
 const HeroSection = () => {
+  const profilePicture = userData?.userProfileData?.personalInfo?.profilePicture || "/images/profile.jpg";
   const workBtnRef = useMagnetic(0.12);
   const bookBtnRef = useMagnetic(0.12);
 
@@ -234,7 +236,7 @@ const HeroSection = () => {
                 overflow: 'hidden'
               }}>
                 <img
-                  src="/images/profile.jpg"
+                  src={profilePicture}
                   alt="Het Kikani"
                   style={{
                     width: '100%',
