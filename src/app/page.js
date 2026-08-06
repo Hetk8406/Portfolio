@@ -4,11 +4,8 @@ import React, { useEffect } from 'react';
 import Lenis from 'lenis';
 import Navigation from '../components/Navigation';
 import HeroSection from '../components/HeroSection';
-import DualIdentity from '../components/DualIdentity';
 import ProjectsGallery from '../components/ProjectsGallery';
 import AnantaShowcase from '../components/AnantaShowcase';
-import ConceptPhilosophy from '../components/ConceptPhilosophy';
-import AboutHero from '../components/AboutHero';
 import ContactFooter from '../components/ContactFooter';
 import userData from '../../userProfileData.json';
 
@@ -46,15 +43,9 @@ export default function Home() {
       
       <HeroSection />
       
-      <AboutHero userData={profileData} isSummary={true} />
-      
-      <DualIdentity />
-      
       <ProjectsGallery userData={profileData} limit={6} />
       
       <AnantaShowcase />
-      
-      <ConceptPhilosophy />
       
       <KeepInteractionWarm />
       

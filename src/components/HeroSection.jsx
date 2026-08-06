@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { motion, useScroll, useTransform, useMotionValue } from 'framer-motion';
 import { ArrowDown, ArrowUpRight } from 'lucide-react';
 import WordReveal from './WordReveal';
@@ -9,6 +9,42 @@ const HeroSection = () => {
   const profilePicture = userData?.userProfileData?.personalInfo?.profilePicture || "/images/profile.jpg";
   const workBtnRef = useMagnetic(0.12);
   const bookBtnRef = useMagnetic(0.12);
+
+  // Interactive Terminal Typing Simulation
+  const [terminalLine1, setTerminalLine1] = useState('');
+  const [terminalLine2, setTerminalLine2] = useState('');
+  const [terminalLine3, setTerminalLine3] = useState('');
+  const [terminalLine4, setTerminalLine4] = useState('');
+  const [terminalLine5, setTerminalLine5] = useState('');
+
+  useEffect(() => {
+    const sequence = async () => {
+      // Line 1: git checkout
+      const line1 = 'git checkout -b cse-data-science';
+      for (let i = 0; i <= line1.length; i++) {
+        setTerminalLine1('$' + ' ' + line1.slice(0, i));
+        await new Promise((r) => setTimeout(r, 45));
+      }
+      await new Promise((r) => setTimeout(r, 300));
+      setTerminalLine2('Switched to branch "cse-data-science"');
+      await new Promise((r) => setTimeout(r, 400));
+
+      // Line 3: npm run build
+      const line3 = 'npm run build';
+      for (let i = 0; i <= line3.length; i++) {
+        setTerminalLine3('$' + ' ' + line3.slice(0, i));
+        await new Promise((r) => setTimeout(r, 45));
+      }
+      await new Promise((r) => setTimeout(r, 300));
+      setTerminalLine4('✓ Compiled successfully in 1.4s\n✓ Static pages (7/7) generated');
+      await new Promise((r) => setTimeout(r, 500));
+
+      // Line 5: deployment url
+      setTerminalLine5('⚡ Production deployment: https://hetkikani.vercel.app');
+    };
+
+    sequence();
+  }, []);
 
   // Parallax Scroll values
   const { scrollY } = useScroll();
@@ -83,35 +119,35 @@ const HeroSection = () => {
               ))}
             </div>
 
-            {/* Title / Headline */}
+            {/* Title / Headline: Swapped to display intro text */}
             <h1 className="font-heading" style={{
-              fontSize: 'clamp(36px, 5vw, 56px)',
+              fontSize: 'clamp(24px, 3.8vw, 36px)',
               fontWeight: '300',
-              lineHeight: '1.1',
-              letterSpacing: '-0.03em',
+              lineHeight: '1.25',
+              letterSpacing: '-0.02em',
               marginBottom: '20px',
               color: 'var(--text-primary)',
               textAlign: 'left'
             }}>
-              <WordReveal text="Engineering systems that learn. Building products that feel alive." />
+              <WordReveal text="Hi, I'm Het Kikani. I craft high-performance full-stack architectures, integrate machine learning pipelines, and author sci-fi stories exploring loops and entropy." />
             </h1>
 
-            {/* Subtitle Description */}
+            {/* Subtitle Description: Swapped to display slogans */}
             <motion.p
               initial={{ opacity: 0, y: 12 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8, delay: 0.4 }}
               style={{
-                fontSize: '15px',
+                fontSize: 'clamp(15px, 1.8vw, 18px)',
                 color: 'var(--text-secondary)',
-                lineHeight: '1.65',
+                lineHeight: '1.5',
                 marginBottom: '36px',
                 maxWidth: '520px',
                 textAlign: 'left',
                 fontWeight: '300'
               }}
             >
-              Hi, I'm Het Kikani. I craft high-performance full-stack architectures, integrate machine learning pipelines, and author sci-fi stories exploring loops and entropy.
+              Engineering systems that learn. Building products that feel alive.
             </motion.p>
 
             {/* Call to Actions */}
@@ -122,7 +158,8 @@ const HeroSection = () => {
               style={{
                 display: 'flex',
                 gap: '16px',
-                flexWrap: 'wrap'
+                flexWrap: 'wrap',
+                marginBottom: '40px'
               }}
             >
               <motion.a
@@ -187,17 +224,94 @@ const HeroSection = () => {
                 Read Books
               </motion.a>
             </motion.div>
+
+            {/* Terminal Console Widget merged directly inside Hero section */}
+            <motion.div
+              initial={{ opacity: 0, y: 15 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.8, delay: 0.6 }}
+              style={{
+                width: '100%',
+                maxWidth: '520px',
+                background: '#0E0E12',
+                border: '1px solid rgba(255,255,255,0.06)',
+                borderRadius: '4px',
+                boxShadow: '0 20px 40px rgba(0,0,0,0.8)',
+                overflow: 'hidden'
+              }}
+            >
+              {/* Terminal Title Bar */}
+              <div style={{
+                padding: '12px 16px',
+                background: '#08080b',
+                borderBottom: '1px solid rgba(255,255,255,0.04)',
+                display: 'flex',
+                alignItems: 'center',
+                justifyContent: 'space-between'
+              }}>
+                <div style={{ display: 'flex', gap: '6px' }}>
+                  <span style={{ width: '8px', height: '8px', borderRadius: '50%', background: '#EF4444' }}></span>
+                  <span style={{ width: '8px', height: '8px', borderRadius: '50%', background: '#F59E0B' }}></span>
+                  <span style={{ width: '8px', height: '8px', borderRadius: '50%', background: '#10B981' }}></span>
+                </div>
+                <span className="font-mono" style={{ fontSize: '10px', color: 'var(--text-muted)' }}>
+                  workspace://delivery-log
+                </span>
+                <span style={{ width: '20px' }}></span>
+              </div>
+
+              {/* Terminal Text Body */}
+              <div className="font-mono" style={{
+                padding: '18px',
+                minHeight: '160px',
+                fontSize: '11px',
+                lineHeight: '1.6',
+                display: 'flex',
+                flexDirection: 'column',
+                gap: '8px',
+                textAlign: 'left'
+              }}>
+                {terminalLine1 && (
+                  <div style={{ color: '#E5E7EB' }}>{terminalLine1}</div>
+                )}
+                {terminalLine2 && (
+                  <div style={{ color: 'rgba(255,255,255,0.4)', paddingLeft: '8px' }}>{terminalLine2}</div>
+                )}
+                {terminalLine3 && (
+                  <div style={{ color: '#E5E7EB' }}>{terminalLine3}</div>
+                )}
+                {terminalLine4 && (
+                  <pre style={{
+                    margin: 0,
+                    color: '#34D399',
+                    fontFamily: 'inherit',
+                    paddingLeft: '8px',
+                    whiteSpace: 'pre-wrap'
+                  }}>
+                    {terminalLine4}
+                  </pre>
+                )}
+                {terminalLine5 && (
+                  <div style={{ color: '#818CF8', paddingLeft: '8px', borderTop: '1px dashed rgba(255,255,255,0.05)', paddingTop: '6px', marginTop: '4px' }}>
+                    {terminalLine5}
+                  </div>
+                )}
+              </div>
+            </motion.div>
+
           </motion.div>
 
-          {/* Right Column: Premium Frame Profile Image */}
+          {/* Right Column: Premium Frame Profile Image & Counter Metrics */}
           <motion.div
             style={{
               x: imageParallaxX,
               y: yImage,
               display: 'flex',
+              flexDirection: 'column',
               justifyContent: 'center',
               alignItems: 'center',
-              position: 'relative'
+              position: 'relative',
+              gap: '24px'
             }}
           >
             {/* Subtle floating radial ambient highlight behind the frame */}
@@ -269,6 +383,51 @@ const HeroSection = () => {
                 [ SYS.INIT // Ahmedabad, IN ]
               </div>
             </motion.div>
+
+            {/* Impact Metrics Section */}
+            <motion.div
+              initial={{ opacity: 0, y: 12 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.8, delay: 0.5 }}
+              style={{
+                display: 'grid',
+                gridTemplateColumns: '1fr 1fr',
+                gap: '16px',
+                width: '100%',
+                maxWidth: '340px',
+                zIndex: 1
+              }}
+            >
+              <div style={{
+                background: 'rgba(255,255,255,0.01)',
+                border: '1px solid rgba(255,255,255,0.03)',
+                padding: '16px 12px',
+                borderRadius: '4px',
+                textAlign: 'center'
+              }}>
+                <div className="font-mono" style={{ fontSize: '20px', fontWeight: 'bold', color: 'var(--text-primary)', marginBottom: '4px' }}>
+                  [ 03+ ]
+                </div>
+                <div className="font-mono" style={{ fontSize: '8.5px', color: 'var(--text-muted)', textTransform: 'uppercase', letterSpacing: '0.5px' }}>
+                  ML Projects
+                </div>
+              </div>
+              <div style={{
+                background: 'rgba(255,255,255,0.01)',
+                border: '1px solid rgba(255,255,255,0.03)',
+                padding: '16px 12px',
+                borderRadius: '4px',
+                textAlign: 'center'
+              }}>
+                <div className="font-mono" style={{ fontSize: '20px', fontWeight: 'bold', color: 'var(--text-primary)', marginBottom: '4px' }}>
+                  [ 03+ ]
+                </div>
+                <div className="font-mono" style={{ fontSize: '8.5px', color: 'var(--text-muted)', textTransform: 'uppercase', letterSpacing: '0.5px' }}>
+                  Full-Stack Projects Built
+                </div>
+              </div>
+            </motion.div>
+
           </motion.div>
         </div>
       </div>
