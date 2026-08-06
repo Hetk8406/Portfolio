@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { motion, useScroll, useTransform, useMotionValue } from 'framer-motion';
-import { ArrowDown, ArrowUpRight } from 'lucide-react';
+import { ArrowDown, ArrowUpRight, Send, Download, Github, Linkedin, Twitter, Instagram } from 'lucide-react';
 import WordReveal from './WordReveal';
 import { useMagnetic } from '../hooks/useMagnetic';
 import userData from '../../userProfileData.json';
@@ -129,7 +129,7 @@ const HeroSection = () => {
               color: 'var(--text-primary)',
               textAlign: 'left'
             }}>
-              <WordReveal text="Hi, I'm Het Kikani. I craft high-performance full-stack architectures, integrate machine learning pipelines, and author sci-fi stories exploring loops and entropy." />
+              <WordReveal text="Hi, I'm Het Kikani." />
             </h1>
 
             {/* Subtitle Description: Swapped to display slogans */}
@@ -147,6 +147,7 @@ const HeroSection = () => {
                 fontWeight: '300'
               }}
             >
+              I craft high-performance full-stack architectures, integrate machine learning pipelines, and author sci-fi stories exploring loops and entropy.
               Engineering systems that learn. Building products that feel alive.
             </motion.p>
 
@@ -301,7 +302,7 @@ const HeroSection = () => {
 
           </motion.div>
 
-          {/* Right Column: Premium Frame Profile Image & Counter Metrics */}
+          {/* Right Column: Premium Frame Profile Image, Actions, Socials, & Counter Metrics */}
           <motion.div
             style={{
               x: imageParallaxX,
@@ -311,7 +312,8 @@ const HeroSection = () => {
               justifyContent: 'center',
               alignItems: 'center',
               position: 'relative',
-              gap: '24px'
+              gap: '20px',
+              marginTop: '-50px' // Moves the entire right column layout upwards
             }}
           >
             {/* Subtle floating radial ambient highlight behind the frame */}
@@ -383,6 +385,115 @@ const HeroSection = () => {
                 [ SYS.INIT // Ahmedabad, IN ]
               </div>
             </motion.div>
+
+            {/* Quick Actions directly below image */}
+            <div style={{
+              display: 'flex',
+              gap: '12px',
+              width: '100%',
+              maxWidth: '340px',
+              zIndex: 1,
+              justifyContent: 'center'
+            }}>
+              <a href="#contact" style={{
+                display: 'inline-flex',
+                alignItems: 'center',
+                gap: '6px',
+                background: 'rgba(255,255,255,0.02)',
+                color: 'var(--text-primary)',
+                padding: '10px 18px',
+                borderRadius: '4px',
+                border: '1px solid var(--border-strong)',
+                fontWeight: '500',
+                fontSize: '11px',
+                fontFamily: 'JetBrains Mono, monospace',
+                textTransform: 'uppercase',
+                letterSpacing: '0.5px',
+                textDecoration: 'none',
+                transition: 'all 0.3s ease',
+                cursor: 'pointer'
+              }}
+              onMouseEnter={(e) => e.target.style.background = 'rgba(255,255,255,0.06)'}
+              onMouseLeave={(e) => e.target.style.background = 'rgba(255,255,255,0.02)'}
+              >
+                Get in Touch <Send size={11} />
+              </a>
+
+              <a href="/Het_Kikani_Resume.pdf" download style={{
+                display: 'inline-flex',
+                alignItems: 'center',
+                gap: '6px',
+                background: 'rgba(255,255,255,0.02)',
+                color: 'var(--text-primary)',
+                padding: '10px 18px',
+                borderRadius: '4px',
+                border: '1px solid var(--border-strong)',
+                fontWeight: '500',
+                fontSize: '11px',
+                fontFamily: 'JetBrains Mono, monospace',
+                textTransform: 'uppercase',
+                letterSpacing: '0.5px',
+                textDecoration: 'none',
+                transition: 'all 0.3s ease',
+                cursor: 'pointer'
+              }}
+              onMouseEnter={(e) => e.target.style.background = 'rgba(255,255,255,0.06)'}
+              onMouseLeave={(e) => e.target.style.background = 'rgba(255,255,255,0.02)'}
+              >
+                Resume <Download size={11} />
+              </a>
+            </div>
+
+            {/* Social Connection Row */}
+            <div style={{
+              display: 'flex',
+              gap: '12px',
+              alignItems: 'center',
+              justifyContent: 'center',
+              width: '100%',
+              maxWidth: '340px',
+              zIndex: 1
+            }}>
+              {[
+                { icon: <Github size={15} />, url: userData?.userProfileData?.personalInfo?.socialLinks?.github },
+                { icon: <Linkedin size={15} />, url: userData?.userProfileData?.personalInfo?.socialLinks?.linkedin },
+                { icon: <Twitter size={15} />, url: userData?.userProfileData?.personalInfo?.socialLinks?.twitter },
+                { icon: <Instagram size={15} />, url: userData?.userProfileData?.personalInfo?.socialLinks?.instagram }
+              ].map((item, idx) => (
+                <a
+                  key={idx}
+                  href={item.url}
+                  target="_blank"
+                  rel="noreferrer"
+                  style={{
+                    display: 'inline-flex',
+                    alignItems: 'center',
+                    justifyContent: 'center',
+                    width: '32px',
+                    height: '32px',
+                    borderRadius: '50%',
+                    border: '1px solid rgba(255, 255, 255, 0.05)',
+                    background: 'rgba(255, 255, 255, 0.01)',
+                    color: 'var(--text-secondary)',
+                    textDecoration: 'none',
+                    transition: 'all 0.3s ease',
+                    cursor: 'pointer'
+                  }}
+                  onMouseEnter={(e) => {
+                    e.currentTarget.style.color = 'var(--text-primary)';
+                    e.currentTarget.style.borderColor = 'var(--border-strong)';
+                    e.currentTarget.style.background = 'rgba(255,255,255,0.03)';
+                  }}
+                  onMouseLeave={(e) => {
+                    e.currentTarget.style.color = 'var(--text-secondary)';
+                    e.currentTarget.style.borderColor = 'rgba(255, 255, 255, 0.05)';
+                    e.currentTarget.style.background = 'rgba(255,255,255,0.01)';
+                  }}
+                >
+                  {item.icon}
+                </a>
+              ))}
+            </div>
 
             {/* Impact Metrics Section */}
             <motion.div
