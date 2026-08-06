@@ -520,7 +520,7 @@ const HeroSection = () => {
                   [ 03+ ]
                 </div>
                 <div className="font-mono" style={{ fontSize: '8.5px', color: 'var(--text-muted)', textTransform: 'uppercase', letterSpacing: '0.5px' }}>
-                  ML Projects
+                  Years of training
                 </div>
               </div>
               <div style={{
@@ -531,10 +531,10 @@ const HeroSection = () => {
                 textAlign: 'center'
               }}>
                 <div className="font-mono" style={{ fontSize: '20px', fontWeight: 'bold', color: 'var(--text-primary)', marginBottom: '4px' }}>
-                  [ 03+ ]
+                  [ 13+ ]
                 </div>
                 <div className="font-mono" style={{ fontSize: '8.5px', color: 'var(--text-muted)', textTransform: 'uppercase', letterSpacing: '0.5px' }}>
-                  Full-Stack Projects Built
+                  Projects Built
                 </div>
               </div>
             </motion.div>
