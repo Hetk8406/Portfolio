@@ -300,6 +300,24 @@ const ProjectsGallery = ({ userData, limit }) => {
         "Liver Patient Prediction/DS9-7.png"
       ],
       fullDescription: "A clinical data science classification project focused on early liver disease diagnosis. Evaluates patient blood biomarkers (bilirubin, albumin, proteins, enzymes) and demographic features using supervised classification pipelines (Random Forests, Support Vector Classifiers), enabling predictive diagnostic decision support."
+    },
+    {
+      // Index 16 → repositories[16] (currently "House Price Prediction")
+      image: "House Price Pridiction -Ames/HPP-1.png",
+      fit: "cover",
+      position: "center",
+      impact: "Advanced regression modeling pipeline predicting residential home sale prices using Ames housing features.",
+      tags: ["Python", "Machine Learning", "Scikit-Learn", "Regression", "Feature Engineering"],
+      demoUrl: null,
+      screenshots: [
+        "House Price Pridiction -Ames/HPP-1.png",
+        "House Price Pridiction -Ames/HPP-2.png",
+        "House Price Pridiction -Ames/HPP-3.png",
+        "House Price Pridiction -Ames/HPP-4.png",
+        "House Price Pridiction -Ames/HPP-5.png",
+        "House Price Pridiction -Ames/HPP-6.png"
+      ],
+      fullDescription: "An advanced Machine Learning regression project implementing high-dimensional feature engineering and regularized regression pipelines (Ridge, Lasso, ElasticNet) alongside gradient boosting estimators to predict residential sale prices from the Ames Housing Dataset."
     }
   ];
 
@@ -610,6 +628,12 @@ const getProjectCaseStudyDetails = (name) => {
     return {
       problem: "Predictive clinical classification of patient liver disease risks using blood biomarkers.",
       achievements: ["Evaluated clinical features with Random Forests & SVCs", "Optimized diagnostic sensitivity and recall metrics"]
+    };
+  }
+  if (n.includes("house")) {
+    return {
+      problem: "Regression prediction of residential property sale prices using Ames housing features.",
+      achievements: ["Engineered regularized regression pipelines (Ridge/Lasso/ElasticNet)", "Implemented advanced feature preprocessing and imputation"]
     };
   }
   return {

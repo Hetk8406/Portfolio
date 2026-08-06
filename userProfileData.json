@@ -317,6 +317,18 @@
             "Python": 3.2,
             "CSS": 1.4
           }
+        },
+        {
+          "name": "House Price Prediction",
+          "role": "Creator",
+          "category": "Machine Learning Engineering",
+          "description": "Advanced regression modeling pipeline predicting residential home sale prices using Ames housing features.",
+          "url": "https://github.com/Hetk8406/House-Price-Prediction",
+          "languages": {
+            "Jupyter Notebook": 96.9,
+            "Python": 1.7,
+            "HTML": 1.5
+          }
         }
       ]
     }
