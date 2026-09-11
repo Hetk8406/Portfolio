@@ -25,23 +25,24 @@ const Navigation = () => {
     <motion.nav
       initial={{ y: -10, opacity: 0 }}
       animate={{ y: 0, opacity: 1 }}
-      transition={{ duration: 0.6 }}
+      transition={{ duration: 0.5, ease: [0.16, 1, 0.3, 1] }}
       style={{
         position: 'fixed',
         top: 0,
         left: 0,
         right: 0,
         zIndex: 100,
-        padding: scrolled ? '12px 40px' : '20px 40px',
+        padding: scrolled ? '14px 40px' : '22px 40px',
         transition: 'all 0.4s cubic-bezier(0.16, 1, 0.3, 1)',
-        background: scrolled ? 'rgba(10, 10, 11, 0.75)' : 'transparent',
+        background: scrolled ? 'rgba(19, 21, 28, 0.85)' : 'transparent',
         backdropFilter: scrolled ? 'blur(16px)' : 'none',
+        WebkitBackdropFilter: scrolled ? 'blur(16px)' : 'none',
         borderBottom: scrolled ? '1px solid var(--border-subtle)' : '1px solid transparent'
       }}
     >
       <div style={{ maxWidth: '1040px', margin: '0 auto', display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
-        <Link href="/#home" style={{ textDecoration: 'none', color: 'var(--text-primary)', fontSize: '15px', fontWeight: '500', letterSpacing: '0.05em', fontFamily: 'JetBrains Mono, monospace' }}>
-          HET<span style={{ color: 'var(--text-secondary)', opacity: 0.4 }}>.</span>K
+        <Link href="/#home" className="font-serif" style={{ textDecoration: 'none', color: 'var(--color-text, #EDEAE0)', fontSize: '17px', fontWeight: '400', letterSpacing: '-0.01em' }}>
+          Het Kikani
         </Link>
 
         {/* Desktop Links */}
@@ -50,16 +51,17 @@ const Navigation = () => {
             <Link
               key={link.name}
               href={link.href}
-              className="nav-link"
+              className="nav-link font-sans"
               style={{
-                color: 'var(--text-secondary)',
+                color: 'rgba(237, 234, 224, 0.75)',
                 textDecoration: 'none',
-                fontSize: '11px',
-                fontFamily: 'JetBrains Mono, monospace',
+                fontSize: '13px',
                 fontWeight: '500',
-                textTransform: 'uppercase',
-                letterSpacing: '1.2px'
+                letterSpacing: '0.02em',
+                transition: 'color 0.2s ease'
               }}
+              onMouseEnter={(e) => (e.currentTarget.style.color = 'var(--color-text, #EDEAE0)')}
+              onMouseLeave={(e) => (e.currentTarget.style.color = 'rgba(237, 234, 224, 0.75)')}
             >
               {link.name}
             </Link>

@@ -1,8 +1,14 @@
-import React, { useState, useEffect } from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
+import React, { useState, useEffect, useRef } from 'react';
+import { motion, AnimatePresence, useMotionValue, useSpring, useTransform } from 'framer-motion';
 import { Github, Globe, X, ExternalLink, Cpu, Layers } from 'lucide-react';
 import Link from 'next/link';
 import WordReveal from './WordReveal';
+import gsap from 'gsap';
+import { ScrollTrigger } from 'gsap/ScrollTrigger';
+
+if (typeof window !== 'undefined') {
+  gsap.registerPlugin(ScrollTrigger);
+}
 
 const ProjectsGallery = ({ userData, limit }) => {
   const repositories = userData?.github?.repositories || [];
@@ -343,18 +349,52 @@ const ProjectsGallery = ({ userData, limit }) => {
     }
   };
 
+  const projectsGridRef = useRef(null);
+
+  useEffect(() => {
+    const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    if (prefersReducedMotion || !projectsGridRef.current) return;
+
+    const cards = projectsGridRef.current.querySelectorAll('.project-entry-card');
+    if (!cards.length) return;
+
+    const ctx = gsap.context(() => {
+      gsap.fromTo(
+        cards,
+        { opacity: 0, y: 20 },
+        {
+          opacity: 1,
+          y: 0,
+          duration: 0.65,
+          stagger: 0.08,
+          ease: 'power2.out',
+          scrollTrigger: {
+            trigger: projectsGridRef.current,
+            start: 'top 85%',
+            toggleActions: 'play none none none',
+            once: true
+          }
+        }
+      );
+    }, projectsGridRef);
+
+    return () => ctx.revert();
+  }, [activeCategory, limit]);
+
   return (
-    <section id="work" style={{ padding: '120px 0', borderBottom: '1px solid var(--border-subtle)', background: '#050505' }}>
+    <section id="work" style={{ padding: '120px 0', borderBottom: '1px solid var(--border-subtle)', background: 'var(--color-base, #13151C)' }}>
       <div className="container">
 
         {/* Header Title */}
         <div style={{ textAlign: 'center', marginBottom: limit ? '60px' : '40px' }}>
-          <span className="section-tag">Engineering Showcase</span>
-          <h2 className="font-heading" style={{ fontSize: 'clamp(32px, 5vw, 54px)', lineHeight: '1.1', marginBottom: '16px' }}>
-            <WordReveal text="Projects" />
+          <span className="font-sans" style={{ fontSize: '12px', fontWeight: '500', color: 'var(--color-secondary, #5B7B9A)', letterSpacing: '0.04em', textTransform: 'uppercase', marginBottom: '12px', display: 'block' }}>
+            Delivery Log — Technical Systems
+          </span>
+          <h2 className="font-serif" style={{ fontSize: 'clamp(32px, 5vw, 54px)', fontWeight: '300', lineHeight: '1.1', marginBottom: '16px', color: 'var(--color-text, #EDEAE0)' }}>
+            Projects
           </h2>
-          <p style={{ color: 'var(--text-secondary)', fontSize: '16px', maxWidth: '500px', margin: '0 auto' }}>
-            Curated systems, libraries, and experimental architectures.
+          <p className="font-sans" style={{ color: 'rgba(237, 234, 224, 0.72)', fontSize: '15px', maxWidth: '520px', margin: '0 auto', fontWeight: '400', lineHeight: '1.6' }}>
+            Curated machine learning models, full-stack tools, and experimental software systems.
           </p>
         </div>
 
@@ -399,12 +439,9 @@ const ProjectsGallery = ({ userData, limit }) => {
             width: '100%',
             paddingBottom: '80px'
           }}>
-            <motion.div
+            <div
+              ref={projectsGridRef}
               key={activeCategory}
-              variants={containerVariants}
-              initial="hidden"
-              whileInView="visible"
-              viewport={{ once: true, margin: "-10%" }}
               style={{
                 display: 'grid',
                 gap: '32px'
@@ -412,13 +449,14 @@ const ProjectsGallery = ({ userData, limit }) => {
               className="projects-grid"
             >
               {displayedProjects.map((project) => (
-                <ProjectCard
-                  key={project.name}
-                  project={project}
-                  onClick={() => setActiveProject(project)}
-                />
+                <div key={project.name} className="project-entry-card" style={{ opacity: 0 }}>
+                  <ProjectCard
+                    project={project}
+                    onClick={() => setActiveProject(project)}
+                  />
+                </div>
               ))}
-            </motion.div>
+            </div>
 
             {/* Premium Gradient Overlay with blur */}
             <div style={{
@@ -427,7 +465,7 @@ const ProjectsGallery = ({ userData, limit }) => {
               left: 0,
               width: '100%',
               height: '240px',
-              background: 'linear-gradient(to bottom, rgba(5, 5, 5, 0) 0%, rgba(5, 5, 5, 0.45) 45%, #050505 100%)',
+              background: 'linear-gradient(to bottom, rgba(19, 21, 28, 0) 0%, rgba(19, 21, 28, 0.65) 45%, #13151C 100%)',
               backdropFilter: 'blur(8px)',
               WebkitBackdropFilter: 'blur(8px)',
               display: 'flex',
@@ -441,37 +479,31 @@ const ProjectsGallery = ({ userData, limit }) => {
                 style={{
                   display: 'inline-flex',
                   alignItems: 'center',
-                  gap: '8px',
-                  padding: '14px 32px',
-                  borderRadius: '30px',
+                  padding: '12px 28px',
+                  borderRadius: '4px',
                   border: '1px solid var(--border-strong)',
-                  background: '#F4F4F5',
-                  color: '#0A0A0B',
+                  background: 'var(--color-text, #EDEAE0)',
+                  color: 'var(--color-base, #13151C)',
                   textDecoration: 'none',
-                  fontSize: '12.5px',
-                  fontFamily: 'JetBrains Mono, monospace',
-                  fontWeight: '600',
-                  textTransform: 'uppercase',
-                  letterSpacing: '1px',
+                  fontSize: '13px',
+                  fontFamily: 'Instrument Sans, sans-serif',
+                  fontWeight: '500',
+                  letterSpacing: '0.02em',
                   boxShadow: '0 8px 30px rgba(0, 0, 0, 0.5)',
-                  transition: 'all 300ms cubic-bezier(0.16, 1, 0.3, 1)',
+                  transition: 'all 250ms ease',
                   cursor: 'pointer'
                 }}
                 className="view-all-pill-btn"
               >
                 <span>View All Projects</span>
-                <span className="arrow-icon" style={{ transition: 'transform 300ms cubic-bezier(0.16, 1, 0.3, 1)' }}>&rarr;</span>
               </Link>
             </div>
           </div>
         ) : (
           <>
-            <motion.div
+            <div
+              ref={projectsGridRef}
               key={activeCategory}
-              variants={containerVariants}
-              initial="hidden"
-              whileInView="visible"
-              viewport={{ once: true, margin: "-10%" }}
               style={{
                 display: 'grid',
                 gap: '32px'
@@ -479,13 +511,14 @@ const ProjectsGallery = ({ userData, limit }) => {
               className="projects-grid"
             >
               {displayedProjects.map((project) => (
-                <ProjectCard
-                  key={project.name}
-                  project={project}
-                  onClick={() => setActiveProject(project)}
-                />
+                <div key={project.name} className="project-entry-card" style={{ opacity: 0 }}>
+                  <ProjectCard
+                    project={project}
+                    onClick={() => setActiveProject(project)}
+                  />
+                </div>
               ))}
-            </motion.div>
+            </div>
             
             {/* Dynamic Empty State for filters */}
             {displayedProjects.length === 0 && (
@@ -642,17 +675,44 @@ const getProjectCaseStudyDetails = (name) => {
   };
 };
 
-// Simplified Project Card
+// Project Card with Vengeance UI Cursor Proximity Motion
 const ProjectCard = ({ project, onClick }) => {
   const [imgError, setImgError] = useState(false);
   const [isHovered, setIsHovered] = useState(false);
+  const cardRef = useRef(null);
+
   const details = project.mock;
   const hasImage = details.image && !imgError;
 
-  const caseStudy = getProjectCaseStudyDetails(project.name);
+  // Cursor proximity spring motion values (subtle 3D tilt & magnetic pull)
+  const mouseX = useMotionValue(0);
+  const mouseY = useMotionValue(0);
+
+  const springConfig = { stiffness: 240, damping: 22 };
+  const rotateX = useSpring(useTransform(mouseY, [-0.5, 0.5], [3.5, -3.5]), springConfig);
+  const rotateY = useSpring(useTransform(mouseX, [-0.5, 0.5], [-3.5, 3.5]), springConfig);
+  const moveX = useSpring(useTransform(mouseX, [-0.5, 0.5], [-4, 4]), springConfig);
+  const moveY = useSpring(useTransform(mouseY, [-0.5, 0.5], [-4, 4]), springConfig);
+
+  const handleMouseMove = (e) => {
+    if (typeof window !== 'undefined' && window.matchMedia('(pointer: coarse)').matches) return;
+    if (!cardRef.current) return;
+    const rect = cardRef.current.getBoundingClientRect();
+    const xPct = (e.clientX - rect.left) / rect.width - 0.5;
+    const yPct = (e.clientY - rect.top) / rect.height - 0.5;
+    mouseX.set(xPct);
+    mouseY.set(yPct);
+  };
+
+  const handleMouseLeave = () => {
+    setIsHovered(false);
+    mouseX.set(0);
+    mouseY.set(0);
+  };
 
   return (
     <motion.div
+      ref={cardRef}
       variants={{
         hidden: { opacity: 0, y: 30, scale: 0.98 },
         visible: {
@@ -664,12 +724,14 @@ const ProjectCard = ({ project, onClick }) => {
       }}
       onClick={onClick}
       onMouseEnter={() => setIsHovered(true)}
-      onMouseLeave={() => setIsHovered(false)}
+      onMouseMove={handleMouseMove}
+      onMouseLeave={handleMouseLeave}
       style={{
         textDecoration: 'none',
         color: 'inherit',
         display: 'block',
-        cursor: 'pointer'
+        cursor: 'pointer',
+        perspective: 1000
       }}
     >
       <motion.div
@@ -680,10 +742,18 @@ const ProjectCard = ({ project, onClick }) => {
           gap: '16px',
           padding: '24px',
           height: '100%',
-          position: 'relative'
+          position: 'relative',
+          background: 'var(--color-panel, #1C1F2B)',
+          border: '1px solid var(--border-subtle)',
+          borderRadius: '6px',
+          rotateX,
+          rotateY,
+          x: moveX,
+          y: moveY,
+          transformStyle: 'preserve-3d'
         }}
-        whileHover={{ y: -4, borderColor: 'var(--border-hover)', backgroundColor: '#131315' }}
-        transition={{ duration: 0.35, ease: [0.16, 1, 0.3, 1] }}
+        whileHover={{ borderColor: 'var(--color-secondary, #5B7B9A)' }}
+        transition={{ duration: 0.3, ease: [0.16, 1, 0.3, 1] }}
       >
         {/* Project Image Area with Smooth Zoom */}
         <div style={{
@@ -733,10 +803,10 @@ const ProjectCard = ({ project, onClick }) => {
 
         {/* Metadata Role & Domain Tags */}
         <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', zIndex: 2 }}>
-          <span className="font-mono" style={{ fontSize: '9.5px', color: 'var(--text-muted)', textTransform: 'uppercase', letterSpacing: '1px' }}>
+          <span className="font-sans" style={{ fontSize: '11px', color: 'var(--color-text-muted)', letterSpacing: '0.02em' }}>
             {project.role || "Developer"}
           </span>
-          <span className="font-mono" style={{ fontSize: '9px', color: 'var(--text-secondary)', background: 'rgba(255,255,255,0.01)', border: '1px solid var(--border-strong)', borderRadius: '4px', padding: '2px 8px' }}>
+          <span className="font-sans" style={{ fontSize: '11px', fontWeight: '500', color: 'var(--color-secondary, #5B7B9A)', background: 'rgba(91, 123, 154, 0.08)', border: '1px solid rgba(91, 123, 154, 0.2)', borderRadius: '4px', padding: '2px 8px' }}>
             {project.category}
           </span>
         </div>
@@ -744,7 +814,7 @@ const ProjectCard = ({ project, onClick }) => {
         {/* Case Study Summary */}
         <div style={{ flex: 1, zIndex: 2, display: 'flex', flexDirection: 'column', gap: '14px' }}>
           <div>
-            <h3 className="font-heading" style={{ fontSize: '18px', fontWeight: '400', marginBottom: '8px', color: 'var(--text-primary)' }}>
+            <h3 className="font-sans" style={{ fontSize: '18px', fontWeight: '500', marginBottom: '8px', color: 'var(--color-text, #EDEAE0)' }}>
               {project.name}
             </h3>
             <p style={{

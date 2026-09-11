@@ -1,8 +1,14 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Eye, Download, X, ArrowLeft, ArrowRight, BookOpen, Clock, FileText, Globe } from 'lucide-react';
 import Link from 'next/link';
 import WordReveal from './WordReveal';
+import gsap from 'gsap';
+import { ScrollTrigger } from 'gsap/ScrollTrigger';
+
+if (typeof window !== 'undefined') {
+  gsap.registerPlugin(ScrollTrigger);
+}
 
 const AnantaShowcase = ({ limit }) => {
   const [selectedBook, setSelectedBook] = useState(null);
@@ -67,24 +73,55 @@ const AnantaShowcase = ({ limit }) => {
     }
   };
 
+  const booksGridRef = useRef(null);
+
+  useEffect(() => {
+    const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    if (prefersReducedMotion || !booksGridRef.current) return;
+
+    const bookCards = booksGridRef.current.querySelectorAll('.book-entry-card');
+    if (!bookCards.length) return;
+
+    const ctx = gsap.context(() => {
+      gsap.fromTo(
+        bookCards,
+        { opacity: 0, y: 20 },
+        {
+          opacity: 1,
+          y: 0,
+          duration: 0.7,
+          stagger: 0.08,
+          ease: 'power2.out',
+          scrollTrigger: {
+            trigger: booksGridRef.current,
+            start: 'top 85%',
+            toggleActions: 'play none none none',
+            once: true
+          }
+        }
+      );
+    }, booksGridRef);
+
+    return () => ctx.revert();
+  }, []);
+
   return (
-    <section id="books" style={{ padding: '120px 0', borderBottom: '1px solid var(--border-subtle)', background: '#050505' }}>
+    <section id="books" style={{ padding: '120px 0', borderBottom: '1px solid var(--border-subtle)', background: 'var(--color-base, #13151C)' }}>
       <div className="container">
         <div style={{ textAlign: 'center', marginBottom: '80px' }}>
-          <span className="section-tag">Sci-Fi Duology</span>
-          <h2 className="font-heading" style={{ fontSize: 'clamp(32px, 5vw, 54px)', lineHeight: '1.1', marginBottom: '16px' }}>
-            <WordReveal text="Books" />
+          <span className="font-sans" style={{ fontSize: '12px', fontWeight: '500', color: 'var(--color-accent, #B8862F)', letterSpacing: '0.04em', textTransform: 'uppercase', marginBottom: '12px', display: 'block' }}>
+            Sci-Fi Duology
+          </span>
+          <h2 className="font-serif" style={{ fontSize: 'clamp(32px, 5vw, 54px)', fontWeight: '300', lineHeight: '1.1', marginBottom: '16px', color: 'var(--color-text, #EDEAE0)' }}>
+            Books
           </h2>
-          <p style={{ color: 'var(--text-secondary)', fontSize: '16px', maxWidth: '600px', margin: '0 auto', fontWeight: '400' }}>
+          <p className="font-serif" style={{ color: 'rgba(237, 234, 224, 0.75)', fontSize: '16px', maxWidth: '600px', margin: '0 auto', fontWeight: '300', lineHeight: '1.6' }}>
             A story about loops, memory, and reality. Mapping existential queries onto technological allegories.
           </p>
         </div>
 
-        <motion.div
-          variants={containerVariants}
-          initial="hidden"
-          whileInView="visible"
-          viewport={{ once: true, margin: "-10%" }}
+        <div
+          ref={booksGridRef}
           style={{
             display: 'grid',
             gridTemplateColumns: 'repeat(2, 1fr)',
@@ -95,10 +132,9 @@ const AnantaShowcase = ({ limit }) => {
           className="books-duology-grid"
         >
           {books.slice(0, limit || books.length).map((book, idx) => (
-            <motion.div
+            <div
               key={idx}
-              variants={cardVariants}
-              className="surface-card book-item-card"
+              className="surface-card book-entry-card"
               onClick={() => setSelectedBook(book)}
               style={{
                 display: 'flex',
@@ -106,7 +142,12 @@ const AnantaShowcase = ({ limit }) => {
                 gap: '24px',
                 alignItems: 'stretch',
                 cursor: 'pointer',
-                transition: 'transform 0.3s ease'
+                background: 'var(--color-panel, #1C1F2B)',
+                border: '1px solid var(--border-subtle)',
+                borderRadius: '6px',
+                padding: '28px',
+                opacity: 0,
+                transition: 'border-color 0.3s ease, transform 0.3s ease'
               }}
             >
               {/* Cover Showcase Container */}
@@ -162,26 +203,25 @@ const AnantaShowcase = ({ limit }) => {
               {/* Text Info */}
               <div style={{ flex: 1, display: 'flex', flexDirection: 'column', zIndex: 2 }}>
                 <div>
-                  <span className="font-mono" style={{ fontSize: '11px', color: 'var(--text-muted)', letterSpacing: '1.5px', display: 'block', marginBottom: '6px' }}>
-                    {book.volume} // BOOK {book.id} OF DUOLOGY
+                  <span className="font-sans" style={{ fontSize: '11px', fontWeight: '500', color: 'var(--color-accent, #B8862F)', letterSpacing: '0.04em', textTransform: 'uppercase', display: 'block', marginBottom: '8px' }}>
+                    {book.volume} • BOOK {book.id} OF DUOLOGY
                   </span>
-                  <h3 className="font-heading" style={{ fontSize: '22px', marginBottom: '12px', color: 'var(--text-primary)' }}>
+                  <h3 className="font-serif" style={{ fontSize: '22px', fontWeight: '400', marginBottom: '12px', color: 'var(--color-text, #EDEAE0)' }}>
                     {book.title}
                   </h3>
-                  <p style={{ color: 'var(--text-secondary)', fontSize: '14px', lineHeight: '1.6', marginBottom: '24px', fontWeight: '300' }}>
+                  <p className="font-serif" style={{ color: 'rgba(237, 234, 224, 0.75)', fontSize: '14px', lineHeight: '1.6', marginBottom: '24px', fontWeight: '300' }}>
                     {book.description}
                   </p>
                 </div>
                 
                 {/* Visual Action Indicator */}
-                <div style={{ marginTop: 'auto', display: 'flex', alignItems: 'center', gap: '8px', color: 'var(--text-primary)', fontFamily: 'JetBrains Mono, monospace', fontSize: '11px', textTransform: 'uppercase', letterSpacing: '1px' }}>
+                <div style={{ marginTop: 'auto', display: 'flex', alignItems: 'center', gap: '8px', color: 'var(--color-accent, #B8862F)', fontFamily: 'Instrument Sans, sans-serif', fontSize: '12px', fontWeight: '500' }}>
                   <span>Explore Publication Details</span>
-                  <span className="indicator-arrow" style={{ transition: 'transform 0.3s ease' }}>&rarr;</span>
                 </div>
               </div>
-            </motion.div>
+            </div>
           ))}
-        </motion.div>
+        </div>
 
         {limit && books.length > limit && (
           <div style={{ textAlign: 'center', marginTop: '56px' }}>

@@ -1,20 +1,53 @@
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Syne:wght@700;800&family=JetBrains+Mono:wght@400;500;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;0,9..144,600;1,9..144,400&family=Instrument+Sans:ital,wght@0,400;0,500;0,600;1,400&family=JetBrains+Mono:wght@400;500&display=swap');
 
 :root {
-  /* Minimal Editorial Color Palette */
-  --bg-dark-950: #0A0A0B; /* Core matte black background */
-  --bg-dark-900: #121214; /* Elevation 1 subsurface */
-  --bg-dark-800: #18181B; /* Elevation 2 elevation / modals */
+  /* Design System Color Tokens */
+  --color-base: #13151C;      /* Ink Navy */
+  --color-panel: #1C1F2B;     /* Panel Subsurface */
+  --color-text: #EDEAE0;      /* Warm Paper White */
+  --color-accent: #B8862F;    /* Aged Brass */
+  --color-secondary: #5B7B9A; /* Muted Steel Blue */
+  --color-text-muted: rgba(237, 234, 224, 0.55);
 
-  /* Typography Zinc/Silver Colors */
-  --text-primary: #F4F4F5;
-  --text-secondary: #A1A1AA;
-  --text-muted: #71717A;
+  /* Mapped Tokens */
+  --bg-dark-950: #13151C;
+  --bg-dark-900: #1C1F2B;
+  --bg-dark-800: #242838;
 
-  /* Refined Architectural Borders */
-  --border-subtle: rgba(255, 255, 255, 0.04);
-  --border-strong: rgba(255, 255, 255, 0.08);
-  --border-hover: rgba(255, 255, 255, 0.15);
+  --text-primary: #EDEAE0;
+  --text-secondary: rgba(237, 234, 224, 0.72);
+  --text-muted: rgba(237, 234, 224, 0.55);
+
+  --border-subtle: rgba(237, 234, 224, 0.08);
+  --border-strong: rgba(237, 234, 224, 0.16);
+  --border-hover: #B8862F;
+}
+
+.font-serif, .font-author, .font-heading {
+  font-family: 'Fraunces', Georgia, serif;
+}
+
+.font-sans, .font-technical {
+  font-family: 'Instrument Sans', system-ui, -apple-system, sans-serif;
+}
+
+.font-mono {
+  font-family: 'JetBrains Mono', monospace;
+}
+
+/* Vengeance UI FlipText CSS Rules */
+.flip-char {
+  animation: flip-anim var(--flip-duration, 2.2s) cubic-bezier(0.16, 1, 0.3, 1) var(--flip-delay, 0s) var(--flip-iteration, infinite);
+  color: var(--color-accent, #B8862F);
+}
+
+@keyframes flip-anim {
+  0%, 80%, 100% {
+    transform: rotateX(0deg);
+  }
+  40% {
+    transform: rotateX(360deg);
+  }
 }
 
 *,

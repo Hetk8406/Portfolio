@@ -11,6 +11,9 @@ export default function BooksPage() {
   const profileData = userData?.userProfileData;
 
   useEffect(() => {
+    const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    if (prefersReducedMotion) return;
+
     // Initialize Lenis smooth scroll
     const lenis = new Lenis({
       duration: 1.1,
@@ -36,7 +39,7 @@ export default function BooksPage() {
   }, []);
 
   return (
-    <div style={{ background: 'var(--bg-dark-950)', minHeight: '100vh', position: 'relative' }}>
+    <div style={{ background: 'var(--color-base, #13151C)', minHeight: '100vh', position: 'relative' }}>
       <Navigation />
 
       {/* Spacer to push content below fixed navigation */}
@@ -44,37 +47,7 @@ export default function BooksPage() {
 
       <AnantaShowcase />
 
-      <KeepInteractionWarm />
-
       <ContactFooter userData={profileData} />
     </div>
   );
-}
-
-// Performant hover coordinate tracking utility
-function KeepInteractionWarm() {
-  useEffect(() => {
-    const handleMouseMove = (e) => {
-      const cards = document.querySelectorAll('.surface-card');
-      cards.forEach((card) => {
-        const rect = card.getBoundingClientRect();
-        if (
-          e.clientX >= rect.left &&
-          e.clientX <= rect.right &&
-          e.clientY >= rect.top &&
-          e.clientY <= rect.bottom
-        ) {
-          const x = e.clientX - rect.left;
-          const y = e.clientY - rect.top;
-          card.style.setProperty('--mouse-x', `${x}px`);
-          card.style.setProperty('--mouse-y', `${y}px`);
-        }
-      });
-    };
-
-    window.addEventListener('mousemove', handleMouseMove);
-    return () => window.removeEventListener('mousemove', handleMouseMove);
-  }, []);
-
-  return null;
 }
