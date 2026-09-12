@@ -143,11 +143,39 @@ const HeroSection = () => {
                   lineHeight: '1.65',
                   color: 'rgba(237, 234, 224, 0.75)',
                   maxWidth: '540px',
-                  marginBottom: '32px'
+                  marginBottom: '20px'
                 }}
               >
                 Het Kikani crafts high-performance full-stack architectures, integrates predictive machine learning models, and authors sci-fi literature exploring recursive identity and thermodynamic decay.
               </p>
+
+              {/* Education Trajectory Status Lines */}
+              <div
+                className="font-sans"
+                style={{
+                  display: 'flex',
+                  flexDirection: 'column',
+                  gap: '8px',
+                  fontSize: '12.5px',
+                  color: 'rgba(237, 234, 224, 0.85)',
+                  background: 'rgba(28, 31, 43, 0.5)',
+                  borderLeft: '2px solid var(--color-secondary, #5B7B9A)',
+                  padding: '10px 16px',
+                  borderRadius: '0 4px 4px 0',
+                  maxWidth: '540px',
+                  marginBottom: '28px',
+                  lineHeight: '1.5'
+                }}
+              >
+                <div>
+                  <span style={{ color: 'var(--color-accent, #B8862F)', fontWeight: '600', marginRight: '6px' }}>• Currently:</span>
+                  <span>Pursuing B.E. Computer Science Engineering (Data Science) @ SAL College of Engineering/GTU</span>
+                </div>
+                <div>
+                  <span style={{ color: '#5B7B9A', fontWeight: '600', marginRight: '6px' }}>✓ Previously:</span>
+                  <span>Diploma in Computer Engineering @ LJ Polytechnic</span>
+                </div>
+              </div>
 
               <div style={{ display: 'flex', gap: '16px', flexWrap: 'wrap', alignItems: 'center' }}>
                 <a
