@@ -234,6 +234,29 @@
             "Python": 1.7,
             "HTML": 1.5
           }
+        },
+        {
+          "name": "Sign Language Detection",
+          "role": "Creator",
+          "category": "Artificial Intelligence (AI)",
+          "description": "Computer Vision & Deep Learning system classifying sign language gestures in real time using neural networks.",
+          "url": "https://github.com/Hetk8406/AI-Project--Sign-Language",
+          "languages": {
+            "Python": 85.2,
+            "Jupyter Notebook": 14.8
+          }
+        },
+        {
+          "name": "Flight Price Prediction",
+          "role": "Creator",
+          "category": "Data Science",
+          "description": "Predictive machine learning regression model forecasting airline ticket pricing based on route, schedule, and carrier parameters.",
+          "url": "https://github.com/Hetk8406/Flight-Price-Prediction",
+          "languages": {
+            "Jupyter Notebook": 94.5,
+            "Python": 4.1,
+            "CSS": 1.4
+          }
         }
       ]
     }

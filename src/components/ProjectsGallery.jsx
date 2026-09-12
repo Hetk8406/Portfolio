@@ -310,6 +310,31 @@ const ProjectsGallery = ({ userData, limit }) => {
         "House Price Pridiction -Ames/HPP-6.png"
       ],
       fullDescription: "An advanced Machine Learning regression project implementing high-dimensional feature engineering and regularized regression pipelines (Ridge, Lasso, ElasticNet) alongside gradient boosting estimators to predict residential sale prices from the Ames Housing Dataset."
+    },
+    "Sign Language Detection": {
+      image: null,
+      fit: "cover",
+      position: "center",
+      impact: "Computer Vision & Deep Learning system classifying sign language gestures in real time.",
+      tags: ["Python", "OpenCV", "TensorFlow", "Keras", "Deep Learning"],
+      demoUrl: null,
+      screenshots: [],
+      fullDescription: "A real-time Computer Vision and Deep Learning system engineered to detect and classify American Sign Language (ASL) gestures. Processes live video streams, extracts key hand gesture landmarks, and classifies signs using custom trained neural network architectures."
+    },
+    "Flight Price Prediction": {
+      image: "Flight Price Prediction/DS11-1.png",
+      fit: "cover",
+      position: "center",
+      impact: "Predictive machine learning regression model forecasting airline ticket pricing based on flight parameters.",
+      tags: ["Python", "Scikit-Learn", "Random Forest", "Feature Engineering", "Jupyter"],
+      demoUrl: null,
+      screenshots: [
+        "Flight Price Prediction/DS11-1.png",
+        "Flight Price Prediction/DS11-2.png",
+        "Flight Price Prediction/DS11-3.png",
+        "Flight Price Prediction/DS11-4.png"
+      ],
+      fullDescription: "An exploratory data science regression project designed to analyze historical flight ticket prices across Indian airlines. Implements extensive feature extraction (departure/arrival times, stops, duration, carrier), trains ensemble regressor models (Random Forests, Extra Trees), and delivers accurate fare estimation predictions."
     }
   };
 
