@@ -131,45 +131,45 @@ const ProjectsGallery = ({ userData, limit }) => {
   // Keyed mock details with screenshot lists matching project names
   const projectMocksMap = {
     "QuantCore": {
-      image: "1.png",
+      image: "QuantCore/1.png",
       fit: "cover",
       position: "center",
       impact: "Algorithmic forecasting of equity prices using sequence regression models.",
       tags: ["Python", "LSTM", "Pandas", "Scikit-Learn"],
       demoUrl: null,
-      screenshots: ["1.png", "2.jpg", "3.jpg", "4.jpg", "5.jpg", "6.jpg"],
+      screenshots: ["QuantCore/1.png", "QuantCore/2.jpg", "QuantCore/3.jpg", "QuantCore/4.jpg", "QuantCore/5.jpg", "QuantCore/6.jpg"],
       fullDescription: "An advanced algorithmic forecasting engine designed to predict equity price movements in the Indian Stock Market. Built using Deep Learning LSTM sequence models, the system processes historical tick data, computes volatility metrics, and runs predictive regressions to map trading signals."
     },
     "LegalPal": {
-      image: "legalpal.png",
+      image: "LegalPal/legalpal.png",
       fit: "cover",
       position: "center",
       impact: "Full-stack legal assistant platform built with high-throughput inference nodes.",
       tags: ["React", "Python", "FastAPI", "LLM Integration"],
       screenshots: [
-        "legalpal-dashboard.png",
-        "legalpal-chat.png",
-        "legalpal-chat2.png",
-        "legalpal-chatAI.png",
-        "legalpal-ChatAI2.png",
-        "legalpal-docanalzer.png",
-        "legalpal-docanalzer (2).png",
-        "legalpal-IPCpage.png",
-        "legalpal-mocktrail.png"
+        "LegalPal/legalpal-dashboard.png",
+        "LegalPal/legalpal-chat.png",
+        "LegalPal/legalpal-chat2.png",
+        "LegalPal/legalpal-chatAI.png",
+        "LegalPal/legalpal-ChatAI2.png",
+        "LegalPal/legalpal-docanalzer.png",
+        "LegalPal/legalpal-docanalzer (2).png",
+        "LegalPal/legalpal-IPCpage.png",
+        "LegalPal/legalpal-mocktrail.png"
       ],
       fullDescription: "A complete full-stack infrastructure for the LegalPal legal assistance assistant. Integrates high-throughput inference nodes with customized legal context indexing, allowing lawyers and clients to draft contracts, analyze statutes, and query regulations with high precision."
     },
     "Finora": {
-      image: "finora-logo.png",
+      image: "Finora/finora-logo.png",
       fit: "contain",
       position: "center",
       impact: "Comprehensive personal finance and budget management mobile app.",
       tags: ["React Native", "Expo", "SQLite", "Chart.js"],
       demoUrl: null,
       screenshots: [
-        "finora-logo.png",
-        "finora-page1.png",
-        "finora-page2.png"
+        "Finora/finora-logo.png",
+        "Finora/finora-page1.png",
+        "Finora/finora-page2.png"
       ],
       fullDescription: "A modern personal finance and expense tracking mobile application designed to help users structure budgets, track expenses, and visualize financial habits in real-time. Employs secure local storage capabilities, custom categorization, budget capping alert thresholds, and interactive graphical analytics outputs."
     },
@@ -321,16 +321,16 @@ const ProjectsGallery = ({ userData, limit }) => {
       fullDescription: "An advanced Machine Learning regression project implementing high-dimensional feature engineering and regularized regression pipelines (Ridge, Lasso, ElasticNet) alongside gradient boosting estimators to predict residential sale prices from the Ames Housing Dataset."
     },
     "Sign Language Detection": {
-      image: "1.png",
+      image: "Screenshot/1.png",
       fit: "cover",
       position: "center",
       impact: "Computer Vision & Deep Learning system classifying sign language gestures in real time.",
       tags: ["Python", "OpenCV", "TensorFlow", "Keras", "Deep Learning"],
       demoUrl: null,
       screenshots: [
-        "1.png",
-        "2.png",
-        "3.png"
+        "Screenshot/1.png",
+        "Screenshot/2.png",
+        "Screenshot/3.png"
       ],
       fullDescription: "A real-time Computer Vision and Deep Learning system engineered to detect and classify American Sign Language (ASL) gestures. Processes live video streams, extracts key hand gesture landmarks, and classifies signs using custom trained neural network architectures."
     },
