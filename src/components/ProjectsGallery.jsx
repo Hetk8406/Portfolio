@@ -20,6 +20,7 @@ const ProjectImage = ({ imagePath, repoUrl, alt, style, className, animate, tran
     if (path.startsWith('http://') || path.startsWith('https://')) return [path];
 
     const candidates = [];
+    const filename = path.split('/').pop();
 
     if (url) {
       const match = url.match(/github\.com\/([^\/]+)\/([^\/]+)/);
@@ -27,9 +28,19 @@ const ProjectImage = ({ imagePath, repoUrl, alt, style, className, animate, tran
         const owner = match[1];
         const repo = match[2].replace(/\.git$/, '');
         const encodedPath = encodeURI(path);
-        // Raw GitHub URLs for main and master branches
-        candidates.push(`https://raw.githubusercontent.com/${owner}/${repo}/main/${encodedPath}`);
-        candidates.push(`https://raw.githubusercontent.com/${owner}/${repo}/master/${encodedPath}`);
+        const encodedFilename = encodeURIComponent(filename);
+
+        const branches = ['main', 'master'];
+        const subpaths = [encodedPath, encodedFilename, `screenshots/${encodedFilename}`, `images/${encodedFilename}`, `assets/${encodedFilename}`];
+
+        for (const branch of branches) {
+          for (const sub of subpaths) {
+            const candidateUrl = `https://raw.githubusercontent.com/${owner}/${repo}/${branch}/${sub}`;
+            if (!candidates.includes(candidateUrl)) {
+              candidates.push(candidateUrl);
+            }
+          }
+        }
       }
     }
 
