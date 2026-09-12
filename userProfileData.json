@@ -154,89 +154,6 @@
           }
         },
         {
-          "name": "FoundIt!",
-          "role": "Core Contributor",
-          "category": "Web Apps",
-          "description": "Dedicated GitHub organization for the Lost & Found System architecture and repositories.",
-          "url": "https://github.com/lostfound-system/FoundIt-App",
-          "languages": {
-            "TypeScript": 98.8,
-            "CSS": 0.9,
-            "JavaScript": 0.2
-          }
-        },
-        {
-          "name": "ConceptLens",
-          "role": "Core Contributor",
-          "category": "Web Apps",
-          "description": "Organization for ConceptLens system repositories and exploration tools.",
-          "url": "https://github.com/conceptlens-system/CONCEPTLENS-v4.0",
-          "languages": {
-            "TypeScript": 82,
-            "Python": 17.2,
-            "JavaScript": 0.3,
-            "CSS": 0.3,
-            "PowerShell": 0.1,
-            "Batchfile": 0.1,
-            "Dockerfile": 0
-          }
-        },
-        {
-          "name": "Bank Marketing Predictor",
-          "role": "Creator",
-          "category": "Data Science",
-          "description": "Predictive classification system modeling client term-deposit subscriptions using socio-economic indicators and campaign attributes.",
-          "url": "https://github.com/Hetk8406/Portuguese-Bank-Marketing-Prediction--Data-Science-Project-1",
-          "languages": {
-            "Jupyter Notebook": 83,
-            "HTML": 5.5,
-            "Python": 5.2,
-            "JavaScript": 3.3,
-            "CSS": 3
-          }
-        },
-        {
-          "name": "Cellphone Price Prediction",
-          "role": "Creator",
-          "category": "Data Science",
-          "description": "Predictive classification system modeling cellphone prices based on technical specifications and hardware parameters.",
-          "url": "https://github.com/Hetk8406/Cellphone-Price-Prediction--Data-Science-Project-2",
-          "languages": {
-            "Jupyter Notebook": 94,
-            "HTML": 1.9,
-            "Python": 1.7,
-            "JavaScript": 1.6,
-            "CSS": 0.8
-          }
-        },
-        {
-          "name": "FIFA 20 Football Player Analysis",
-          "role": "Creator",
-          "category": "Data Science",
-          "description": "Exploratory player clustering and analytics system evaluating athletic attributes and value estimations for FIFA Football datasets.",
-          "url": "https://github.com/Hetk8406/FIFA-20-Football-Player-Analysis--Data-Science-Project-3",
-          "languages": {
-            "Jupyter Notebook": 88.7,
-            "HTML": 5.4,
-            "JavaScript": 3.2,
-            "Python": 1.4,
-            "CSS": 1.3
-          }
-        },
-        {
-          "name": "Bike Rental Demand Prediction",
-          "role": "Creator",
-          "category": "Data Science",
-          "description": "Predictive analytics modeling bike rental demands dynamically using environmental and seasonal factors.",
-          "url": "https://github.com/Hetk8406/Bike-Rental-Prediction--Data-Science-Project-4",
-          "languages": {
-            "Jupyter Notebook": 93.3,
-            "HTML": 1.8,
-            "JavaScript": 3.7,
-            "CSS": 1.2
-          }
-        },
-        {
           "name": "RiceLeaf Disease Detection",
           "role": "Creator",
           "category": "Data Science",
@@ -258,18 +175,6 @@
             "Python": 61,
             "Jupyter Notebook": 34.2,
             "CSS": 4.8
-          }
-        },
-        {
-          "name": "Forest Cover Prediction",
-          "role": "Creator",
-          "category": "Data Science",
-          "description": "Predictive classification system modeling forest cover types using cartographic variables.",
-          "url": "https://github.com/Hetk8406/Forest-Cover-Prediction--Data-Science-Project-7",
-          "languages": {
-            "Jupyter Notebook": 91.5,
-            "Python": 6.2,
-            "CSS": 2.3
           }
         },
         {

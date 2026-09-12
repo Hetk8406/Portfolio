@@ -22,6 +22,9 @@ const ProjectImage = ({ imagePath, repoUrl, alt, style, className, animate, tran
     const candidates = [];
     const filename = path.split('/').pop();
 
+    // Prioritize local static asset first for instantaneous 0ms loading
+    candidates.push(`/images/projects/${path}`);
+
     if (url) {
       const match = url.match(/github\.com\/([^\/]+)\/([^\/]+)/);
       if (match) {
@@ -43,9 +46,6 @@ const ProjectImage = ({ imagePath, repoUrl, alt, style, className, animate, tran
         }
       }
     }
-
-    // Local fallback
-    candidates.push(`/images/projects/${path}`);
 
     return candidates;
   };
@@ -119,27 +119,24 @@ const ProjectsGallery = ({ userData, limit }) => {
   const [activeCategory, setActiveCategory] = useState("All");
   const categories = ["All", "Web Apps", "Mobile Apps", "Data Science", "Artificial Intelligence (AI)", "Machine Learning Engineering"];
 
-  // Index-based mock details with screenshot lists
-  const projectMocks = [
-    {
-      // Index 0 → repositories[0] (currently "QuantCore")
+  // Keyed mock details with screenshot lists matching project names
+  const projectMocksMap = {
+    "QuantCore": {
       image: "QuantCore/quantcore.png",
       fit: "cover",
       position: "center",
       impact: "Algorithmic forecasting of equity prices using sequence regression models.",
       tags: ["Python", "LSTM", "Pandas", "Scikit-Learn"],
       demoUrl: null,
-      screenshots: ["QuantCore/quantcore.png"], // Add screenshots here later
+      screenshots: ["QuantCore/quantcore.png"],
       fullDescription: "An advanced algorithmic forecasting engine designed to predict equity price movements in the Indian Stock Market. Built using Deep Learning LSTM sequence models, the system processes historical tick data, computes volatility metrics, and runs predictive regressions to map trading signals."
     },
-    {
-      // Index 1 → repositories[1] (currently "LegalPal")
+    "LegalPal": {
       image: "LegalPal/legalpal.png",
       fit: "cover",
       position: "center",
       impact: "Full-stack legal assistant platform built with high-throughput inference nodes.",
       tags: ["React", "Python", "FastAPI", "LLM Integration"],
-      // demoUrl: "https://lawyerai.vercel.app",
       screenshots: [
         "LegalPal/legalpal-dashboard.png",
         "LegalPal/legalpal-chat.png",
@@ -153,8 +150,7 @@ const ProjectsGallery = ({ userData, limit }) => {
       ],
       fullDescription: "A complete full-stack infrastructure for the LegalPal legal assistance assistant. Integrates high-throughput inference nodes with customized legal context indexing, allowing lawyers and clients to draft contracts, analyze statutes, and query regulations with high precision."
     },
-    {
-      // Index 2 → repositories[4] (currently "Finora")
+    "Finora": {
       image: "Finora/finora-logo.png",
       fit: "contain",
       position: "center",
@@ -168,19 +164,7 @@ const ProjectsGallery = ({ userData, limit }) => {
       ],
       fullDescription: "A modern personal finance and expense tracking mobile application designed to help users structure budgets, track expenses, and visualize financial habits in real-time. Employs secure local storage capabilities, custom categorization, budget capping alert thresholds, and interactive graphical analytics outputs."
     },
-    {
-      // Index 3 → repositories[2] (currently "FoundIt!")
-      image: null,
-      fit: "cover",
-      position: "center",
-      impact: "Distributed architecture for categorizing and mapping lost assets.",
-      tags: ["JavaScript", "HTML", "Node.js", "Express"],
-      demoUrl: null,
-      screenshots: [],
-      fullDescription: "A distributed lost-and-found system designed for large campuses. Employs categorizing networks and real-time mapping databases to report, index, match, and return lost assets securely and efficiently."
-    },
-    {
-      // Index 4 → repositories[3] (currently "ConceptLens")
+    "ConceptLens": {
       image: null,
       fit: "cover",
       position: "center",
@@ -190,75 +174,7 @@ const ProjectsGallery = ({ userData, limit }) => {
       screenshots: [],
       fullDescription: "An interactive, visual concept-mapping node network. Allows researchers to input text datasets and automatically generate node-relationship schemas using Graph databases and dynamic D3.js physics renders."
     },
-    {
-      // Index 5 → repositories[5] (currently "Bank Marketing Predictor")
-      image: "Bank Marketing Prediction/DS _project 1-1.png",
-      fit: "cover",
-      position: "center",
-      impact: "Classifying and predicting client subscription conversion rates for banking campaigns.",
-      tags: ["Python", "Scikit-Learn", "XGBoost", "SMOTE", "Seaborn"],
-      demoUrl: null,
-      screenshots: [
-        "Bank Marketing Prediction/DS _project 1-1.png",
-        "Bank Marketing Prediction/DS _project 1-2.png",
-        "Bank Marketing Prediction/DS _project 1-3.png",
-        "Bank Marketing Prediction/DS _project 1-4.png",
-        "Bank Marketing Prediction/DS _project 1-5.png",
-        "Bank Marketing Prediction/DS _project 1-6.png",
-        "Bank Marketing Prediction/DS _project 1-7.png",
-        "Bank Marketing Prediction/DS _project 1-8.png",
-        "Bank Marketing Prediction/DS _project 1-9.png"
-      ],
-      fullDescription: "A high-performance machine learning classifier designed to predict client subscriptions to long-term deposits for a Portuguese banking institution. The system leverages extensive socio-economic datasets, resolves class imbalance using SMOTE techniques, trains ensemble classifiers (Random Forests, XGBoost, and LightGBM), and delivers actionable campaign insights using SHAP explainability matrices."
-    },
-    {
-      // Index 6 → repositories[6] (currently "Cellphone Price Prediction")
-      image: "CellPhone Price Prediction/DS2-Cellphone.png",
-      fit: "cover",
-      position: "center",
-      impact: "Classifying cellphone price segments dynamically using hardware specifications.",
-      tags: ["Python", "Machine Learning", "Scikit-Learn", "Data Analysis"],
-      demoUrl: null,
-      screenshots: [
-        "CellPhone Price Prediction/DS2-Cellphone.png"
-      ],
-      fullDescription: "A comprehensive data science project that evaluates cellphone technical specifications (RAM, internal memory, processor speed, camera quality, battery capacity) to classify devices into accurate price ranges using classification algorithms."
-    },
-    {
-      // Index 7 → repositories[7] (currently "FIFA 20 Football Player Analysis")
-      image: "FIFA Player Clustering/DS3_project-1.png",
-      fit: "cover",
-      position: "center",
-      impact: "Clustering and analyzing player performances using K-Means and attribute dimensionalities.",
-      tags: ["Python", "Machine Learning", "K-Means Clustering", "Data Visualisation", "D3.js / Chart.js"],
-      demoUrl: null,
-      screenshots: [
-        "FIFA Player Clustering/DS3_project-1.png",
-        "FIFA Player Clustering/DS3_project-2.png",
-        "FIFA Player Clustering/DS3_project-3.png",
-        "FIFA Player Clustering/DS3_project-4.png",
-        "FIFA Player Clustering/DS3_project-5.png",
-        "FIFA Player Clustering/DS3_project-6.png",
-        "FIFA Player Clustering/DS3_project-7.png"
-      ],
-      fullDescription: "An interactive exploratory data analysis and clustering engine built to evaluate player attributes, wage structures, and potential ratings across a database of football players. Features dimensionality reduction and unsupervised clustering visualizers to classify player traits."
-    },
-    {
-      // Index 8 → repositories[8] (currently "Bike Rental Demand Prediction")
-      image: "Bike Rental Demand Prediction/DS4-Project-1.png",
-      fit: "cover",
-      position: "center",
-      impact: "Modeling and forecasting daily bike sharing demands dynamically.",
-      tags: ["Python", "Machine Learning", "Regression Analysis", "Data Visualisation", "JavaScript"],
-      demoUrl: null,
-      screenshots: [
-        "Bike Rental Demand Prediction/DS4-Project-1.png",
-        "Bike Rental Demand Prediction/DS4-Project-2.png"
-      ],
-      fullDescription: "A predictive regression analysis system built to model daily bike rental sharing demands. Leverages historical weather trends, seasonal parameters, and user demographic data to build robust demand forecasting models."
-    },
-    {
-      // Index 9 → repositories[9] (currently "RiceLeaf Disease Detection")
+    "RiceLeaf Disease Detection": {
       image: "RiceLeaf Disease Detection/DS5-Project-1.png",
       fit: "cover",
       position: "center",
@@ -277,8 +193,7 @@ const ProjectsGallery = ({ userData, limit }) => {
       ],
       fullDescription: "A deep learning computer vision model trained to classify multiple types of rice leaf diseases (Bacterial leaf blight, Brown spot, and Leaf smut). Includes an interactive dashboard to upload leaf images and get instant diagnostic reports and treatment guidelines."
     },
-    {
-      // Index 10 → repositories[10] (currently "Customer Transaction Prediction")
+    "Customer Transaction Prediction": {
       image: "Customer Transaction Prediction/DS6-Project-1.png",
       fit: "cover",
       position: "center",
@@ -297,31 +212,7 @@ const ProjectsGallery = ({ userData, limit }) => {
       ],
       fullDescription: "A predictive machine learning classifier designed to identify whether a customer will complete a transaction. Leverages light gradient-boosted machines, random forests, and deep feature exploration pipelines, providing businesses with real-time transactional forecasting and conversion analytics."
     },
-    {
-      // Index 11 → repositories[11] (currently "Forest Cover Prediction")
-      image: "Forest cover prediction/DS7-Project-1.png",
-      fit: "cover",
-      position: "center",
-      impact: "Diagnostic classification of forest cover types based on cartographic and geological variables.",
-      tags: ["Python", "Machine Learning", "Random Forest", "Data Visualisation", "Jupyter"],
-      demoUrl: null,
-      screenshots: [
-        "Forest cover prediction/DS7-Project-1.png",
-        "Forest cover prediction/DS7-Project-2.png",
-        "Forest cover prediction/DS7-Project-3.png",
-        "Forest cover prediction/DS7-Project-4.png",
-        "Forest cover prediction/DS7-Project-5.png",
-        "Forest cover prediction/DS7-Project-6.png",
-        "Forest cover prediction/DS7-Project-7.png",
-        "Forest cover prediction/DS7-Project-8.png",
-        "Forest cover prediction/DS7-Project-9.png",
-        "Forest cover prediction/DS7-Project-10.png",
-        "Forest cover prediction/DS7-Project-11.png"
-      ],
-      fullDescription: "An exploratory data analysis and predictive modeling pipeline to classify forest cover types using cartographic variables (elevation, aspect, slope, soil type, and distance to hydrology/roads/fire points). Trains Random Forest classifiers, optimizes hyperparameters, and generates detailed visualization maps of forest zones."
-    },
-    {
-      // Index 12 → repositories[12] (currently "Home Loan Default")
+    "Home Loan Default": {
       image: "Home Loan Default/DS8-Project-1.png",
       fit: "cover",
       position: "center",
@@ -341,8 +232,7 @@ const ProjectsGallery = ({ userData, limit }) => {
       ],
       fullDescription: "An end-to-end data science classification project designed to identify high-risk home loan applicants and predict default probabilities. Processes historical demographic, credit history, and loan request metrics, implements feature scaling and class balance methods, trains classification pipelines, and generates analytical risk dashboards."
     },
-    {
-      // Index 13 → repositories[13] (currently "Flipkart Project Classifier")
+    "Flipkart Project Classifier": {
       image: "Flipkart/Flipkart-1.png",
       fit: "cover",
       position: "center",
@@ -366,8 +256,7 @@ const ProjectsGallery = ({ userData, limit }) => {
       ],
       fullDescription: "An end-to-end Computer Vision capstone project built to classify products from the Flipkart catalog. Integrates deep Convolutional Neural Networks (CNNs) using TensorFlow/Keras to analyze product images and accurately predict target categories, streamlining e-commerce queries."
     },
-    {
-      // Index 14 → repositories[14] (currently "Customer Churn Predictor REST API")
+    "Customer Churn Predictor REST API": {
       image: "Customer Churn Analytics/CCA-1.png",
       fit: "cover",
       position: "center",
@@ -387,8 +276,7 @@ const ProjectsGallery = ({ userData, limit }) => {
       ],
       fullDescription: "An end-to-end Machine Learning capstone project designed to predict customer churn. Integrates advanced exploratory data analysis with hyperparameter-optimized classification models (XGBoost/RandomForest) to identify target churn risks, packaged and deployed via containerized FastAPI REST endpoints."
     },
-    {
-      // Index 15 → repositories[15] (currently "Liver Patient Prediction")
+    "Liver Patient Prediction": {
       image: "Liver Patient Prediction/DS9-1.png",
       fit: "cover",
       position: "center",
@@ -406,8 +294,7 @@ const ProjectsGallery = ({ userData, limit }) => {
       ],
       fullDescription: "A clinical data science classification project focused on early liver disease diagnosis. Evaluates patient blood biomarkers (bilirubin, albumin, proteins, enzymes) and demographic features using supervised classification pipelines (Random Forests, Support Vector Classifiers), enabling predictive diagnostic decision support."
     },
-    {
-      // Index 16 → repositories[16] (currently "House Price Prediction")
+    "House Price Prediction": {
       image: "House Price Pridiction -Ames/HPP-1.png",
       fit: "cover",
       position: "center",
@@ -424,12 +311,12 @@ const ProjectsGallery = ({ userData, limit }) => {
       ],
       fullDescription: "An advanced Machine Learning regression project implementing high-dimensional feature engineering and regularized regression pipelines (Ridge, Lasso, ElasticNet) alongside gradient boosting estimators to predict residential sale prices from the Ames Housing Dataset."
     }
-  ];
+  };
 
   // Merge repositories with mock config
-  const projects = repositories.map((repo, idx) => ({
+  const projects = repositories.map((repo) => ({
     ...repo,
-    mock: projectMocks[idx] || { image: null, fit: "cover", position: "center", impact: repo.description, tags: [], screenshots: [], fullDescription: repo.description }
+    mock: projectMocksMap[repo.name] || { image: null, fit: "cover", position: "center", impact: repo.description, tags: [], screenshots: [], fullDescription: repo.description }
   }));
 
   // Apply limit or filters
