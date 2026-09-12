@@ -10,6 +10,94 @@ if (typeof window !== 'undefined') {
   gsap.registerPlugin(ScrollTrigger);
 }
 
+// Smart GitHub Raw & Local Image Resolution Component
+const ProjectImage = ({ imagePath, repoUrl, alt, style, className, animate, transition, onClick, onError }) => {
+  const [srcIndex, setSrcIndex] = useState(0);
+  const [hasError, setHasError] = useState(false);
+
+  const getCandidateSources = (path, url) => {
+    if (!path) return [];
+    if (path.startsWith('http://') || path.startsWith('https://')) return [path];
+
+    const candidates = [];
+
+    if (url) {
+      const match = url.match(/github\.com\/([^\/]+)\/([^\/]+)/);
+      if (match) {
+        const owner = match[1];
+        const repo = match[2].replace(/\.git$/, '');
+        const encodedPath = encodeURI(path);
+        // Raw GitHub URLs for main and master branches
+        candidates.push(`https://raw.githubusercontent.com/${owner}/${repo}/main/${encodedPath}`);
+        candidates.push(`https://raw.githubusercontent.com/${owner}/${repo}/master/${encodedPath}`);
+      }
+    }
+
+    // Local fallback
+    candidates.push(`/images/projects/${path}`);
+
+    return candidates;
+  };
+
+  const sources = getCandidateSources(imagePath, repoUrl);
+
+  const handleImageError = (e) => {
+    if (srcIndex < sources.length - 1) {
+      setSrcIndex(prev => prev + 1);
+    } else {
+      setHasError(true);
+      if (onError) onError(e);
+    }
+  };
+
+  if (!imagePath || hasError || sources.length === 0) {
+    return (
+      <div style={{
+        width: '100%',
+        height: '100%',
+        display: 'flex',
+        alignItems: 'center',
+        justifyContent: 'center',
+        background: 'var(--color-panel, #1C1F2B)',
+        color: 'var(--color-secondary, #5B7B9A)',
+        fontSize: '11px',
+        letterSpacing: '0.04em',
+        fontFamily: 'Instrument Sans, sans-serif'
+      }}>
+        <span>{alt || "Project Image"}</span>
+      </div>
+    );
+  }
+
+  if (animate) {
+    return (
+      <motion.img
+        key={sources[srcIndex]}
+        src={sources[srcIndex]}
+        alt={alt || "Project"}
+        onError={handleImageError}
+        animate={animate}
+        transition={transition}
+        style={style}
+        className={className}
+        onClick={onClick}
+      />
+    );
+  }
+
+  return (
+    <img
+      key={sources[srcIndex]}
+      src={sources[srcIndex]}
+      alt={alt || "Project"}
+      onError={handleImageError}
+      style={style}
+      className={className}
+      onClick={onClick}
+    />
+  );
+};
+
 const ProjectsGallery = ({ userData, limit }) => {
   const repositories = userData?.github?.repositories || [];
 
@@ -758,47 +846,28 @@ const ProjectCard = ({ project, onClick }) => {
         {/* Project Image Area with Smooth Zoom */}
         <div style={{
           height: '160px',
-          background: 'var(--bg-dark-950)',
+          background: 'var(--color-base, #13151C)',
           borderRadius: '4px',
           border: '1px solid var(--border-subtle)',
           overflow: 'hidden',
           zIndex: 2,
           position: 'relative'
         }}>
-          {hasImage ? (
-            <motion.img
-              src={`/images/projects/${details.image}`}
-              alt={project.name}
-              onError={() => setImgError(true)}
-              animate={{ scale: isHovered ? 1.04 : 1 }}
-              transition={{ duration: 0.4, ease: [0.16, 1, 0.3, 1] }}
-              style={{
-                width: '100%',
-                height: '100%',
-                objectFit: details.fit || 'cover',
-                objectPosition: details.position || 'center',
-                display: 'block'
-              }}
-            />
-          ) : (
-            <div style={{
+          <ProjectImage
+            imagePath={details.image}
+            repoUrl={project.url}
+            alt={project.name}
+            onError={() => setImgError(true)}
+            animate={{ scale: isHovered ? 1.04 : 1 }}
+            transition={{ duration: 0.4, ease: [0.16, 1, 0.3, 1] }}
+            style={{
               width: '100%',
               height: '100%',
-              display: 'flex',
-              alignItems: 'center',
-              justifyContent: 'center',
-              background: 'var(--bg-dark-900)'
-            }}>
-              <span className="font-mono" style={{
-                fontSize: '11px',
-                color: 'rgba(255,255,255,0.06)',
-                letterSpacing: '2px',
-                textTransform: 'uppercase'
-              }}>
-                {project.name}
-              </span>
-            </div>
-          )}
+              objectFit: details.fit || 'cover',
+              objectPosition: details.position || 'center',
+              display: 'block'
+            }}
+          />
         </div>
 
         {/* Metadata Role & Domain Tags */}
@@ -993,8 +1062,9 @@ const ProjectDetailModal = ({ project, onClose }) => {
           overflow: 'hidden'
         }}>
           {details.image ? (
-            <img
-              src={`/images/projects/${details.image}`}
+            <ProjectImage
+              imagePath={details.image}
+              repoUrl={project.url}
               alt={project.name}
               style={{
                 width: '100%',
@@ -1007,7 +1077,7 @@ const ProjectDetailModal = ({ project, onClose }) => {
             <div style={{
               width: '100%',
               height: '100%',
-              background: 'var(--bg-dark-900)'
+              background: 'var(--color-panel, #1C1F2B)'
             }} />
           )}
 
@@ -1220,8 +1290,9 @@ const ProjectDetailModal = ({ project, onClose }) => {
                     onMouseEnter={(e) => e.currentTarget.style.borderColor = 'rgba(0, 240, 255, 0.25)'}
                     onMouseLeave={(e) => e.currentTarget.style.borderColor = 'rgba(255,255,255,0.04)'}
                   >
-                    <img
-                      src={`/images/projects/${src}`}
+                    <ProjectImage
+                      imagePath={src}
+                      repoUrl={project.url}
                       alt={`Screenshot ${sIdx + 1}`}
                       style={{
                         width: '100%',
@@ -1311,8 +1382,9 @@ const ProjectDetailModal = ({ project, onClose }) => {
               style={{ maxWidth: '85vw', maxHeight: '85vh', display: 'flex', flexDirection: 'column', alignItems: 'center' }}
               onClick={(e) => e.stopPropagation()}
             >
-              <img
-                src={`/images/projects/${details.screenshots[activeImageIndex]}`}
+              <ProjectImage
+                imagePath={details.screenshots[activeImageIndex]}
+                repoUrl={project.url}
                 alt={`Screenshot ${activeImageIndex + 1}`}
                 style={{
                   maxWidth: '100%',
