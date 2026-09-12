@@ -5,6 +5,7 @@ import Lenis from 'lenis';
 import Navigation from '../components/Navigation';
 import HeroSection from '../components/HeroSection';
 import ProjectsGallery from '../components/ProjectsGallery';
+import TechStackSection from '../components/TechStackSection';
 import AnantaShowcase from '../components/AnantaShowcase';
 import ContactFooter from '../components/ContactFooter';
 import userData from '../../userProfileData.json';
@@ -44,6 +45,8 @@ export default function Home() {
       <HeroSection />
       
       <ProjectsGallery userData={profileData} limit={6} />
+
+      <TechStackSection userData={profileData} />
       
       <AnantaShowcase />
       
