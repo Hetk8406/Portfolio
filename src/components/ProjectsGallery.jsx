@@ -22,9 +22,6 @@ const ProjectImage = ({ imagePath, repoUrl, alt, style, className, animate, tran
     const candidates = [];
     const filename = path.split('/').pop();
 
-    // Prioritize local static asset first for instantaneous 0ms loading
-    candidates.push(`/images/projects/${path}`);
-
     if (url) {
       const match = url.match(/github\.com\/([^\/]+)\/([^\/]+)/);
       if (match) {
@@ -34,7 +31,14 @@ const ProjectImage = ({ imagePath, repoUrl, alt, style, className, animate, tran
         const encodedFilename = encodeURIComponent(filename);
 
         const branches = ['main', 'master'];
-        const subpaths = [encodedPath, encodedFilename, `screenshots/${encodedFilename}`, `images/${encodedFilename}`, `assets/${encodedFilename}`];
+        const subpaths = [
+          encodedPath,
+          encodedFilename,
+          `Screenshot/${encodedFilename}`,
+          `screenshots/${encodedFilename}`,
+          `images/${encodedFilename}`,
+          `assets/${encodedFilename}`
+        ];
 
         for (const branch of branches) {
           for (const sub of subpaths) {
@@ -46,6 +50,9 @@ const ProjectImage = ({ imagePath, repoUrl, alt, style, className, animate, tran
         }
       }
     }
+
+    // Fallback to local image if present
+    candidates.push(`/images/projects/${path}`);
 
     return candidates;
   };
@@ -312,13 +319,17 @@ const ProjectsGallery = ({ userData, limit }) => {
       fullDescription: "An advanced Machine Learning regression project implementing high-dimensional feature engineering and regularized regression pipelines (Ridge, Lasso, ElasticNet) alongside gradient boosting estimators to predict residential sale prices from the Ames Housing Dataset."
     },
     "Sign Language Detection": {
-      image: null,
+      image: "1.png",
       fit: "cover",
       position: "center",
       impact: "Computer Vision & Deep Learning system classifying sign language gestures in real time.",
       tags: ["Python", "OpenCV", "TensorFlow", "Keras", "Deep Learning"],
       demoUrl: null,
-      screenshots: [],
+      screenshots: [
+        "1.png",
+        "2.png",
+        "3.png"
+      ],
       fullDescription: "A real-time Computer Vision and Deep Learning system engineered to detect and classify American Sign Language (ASL) gestures. Processes live video streams, extracts key hand gesture landmarks, and classifies signs using custom trained neural network architectures."
     },
     "Flight Price Prediction": {
