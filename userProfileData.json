@@ -162,10 +162,10 @@
           "role": "Creator",
           "category": "Data Science",
           "description": "Deep Learning image classification system identifying crop diseases in rice leaves to aid agricultural diagnostics.",
-          "url": "https://github.com/Hetk8406/Rice-Leaf-Disease-Detection--Data-Science-Project-5",
+          "url": "https://github.com/Hetk8406/RiceLeaf-Disease-Detection",
           "languages": {
             "Jupyter Notebook": 97.2,
-            "Python": 2.7,
+            "Python": 2.6,
             "CSS": 0.1
           }
         },
@@ -174,11 +174,11 @@
           "role": "Creator",
           "category": "Data Science",
           "description": "Predictive forecasting system leveraging machine learning classification models to determine potential customer transaction conversions.",
-          "url": "https://github.com/Hetk8406/Customer-Transaction-Prediction--Data-Science-Project-6",
+          "url": "https://github.com/Hetk8406/Customer-Transaction-Prediction",
           "languages": {
-            "Python": 61,
-            "Jupyter Notebook": 34.2,
-            "CSS": 4.8
+            "Jupyter Notebook": 89.7,
+            "Python": 9.6,
+            "CSS": 0.7
           }
         },
         {
@@ -186,11 +186,13 @@
           "role": "Creator",
           "category": "Data Science",
           "description": "Predictive classification modeling home loan default risks using financial and demographic indicators.",
-          "url": "https://github.com/Hetk8406/Home-Loan-Default--Data-Science-Project-8",
+          "url": "https://github.com/Hetk8406/Home-Loan-Default",
           "languages": {
-            "Jupyter Notebook": 92.8,
-            "Python": 5.6,
-            "CSS": 1.6
+            "Jupyter Notebook": 91.9,
+            "HTML": 3.4,
+            "JavaScript": 2,
+            "Python": 1.5,
+            "CSS": 1.3
           }
         },
         {
@@ -220,11 +222,10 @@
           "role": "Creator",
           "category": "Data Science",
           "description": "Predictive healthcare analytics classification system predicting liver disease risks using patient clinical biomarkers.",
-          "url": "https://github.com/Hetk8406/Liver-Patient-Prediction-Data-Science-Project-9",
+          "url": "https://github.com/Hetk8406/Liver-Patient-Prediction",
           "languages": {
-            "Jupyter Notebook": 95.4,
-            "Python": 3.2,
-            "CSS": 1.4
+            "Jupyter Notebook": 95.3,
+            "Python": 4.7
           }
         },
         {
