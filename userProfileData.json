@@ -118,11 +118,13 @@
           "role": "Creator",
           "category": "Machine Learning Engineering",
           "description": "Predicting Indian stock market prices using machine learning algortihms.",
-          "url": "https://github.com/Hetk8406/Indian-Stock-Predictor",
+          "url": "https://github.com/Hetk8406/QuantCore",
           "languages": {
-            "JavaScript": 79.5,
-            "Python": 18.9,
-            "Other": 1.6
+            "JavaScript": 81.1,
+            "Python": 17.3,
+            "CSS": 0.7,
+            "HTML": 0.6,
+            "Batchfile": 0.3
           }
         },
         {
