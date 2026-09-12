@@ -34,6 +34,8 @@ const ProjectImage = ({ imagePath, repoUrl, alt, style, className, animate, tran
         const subpaths = [
           encodedPath,
           encodedFilename,
+          `${repo}/${encodedFilename}`,
+          `${repo}/${filename}`,
           `Screenshot/${encodedFilename}`,
           `screenshots/${encodedFilename}`,
           `images/${encodedFilename}`,
@@ -129,45 +131,45 @@ const ProjectsGallery = ({ userData, limit }) => {
   // Keyed mock details with screenshot lists matching project names
   const projectMocksMap = {
     "QuantCore": {
-      image: "QuantCore/quantcore.png",
+      image: "1.png",
       fit: "cover",
       position: "center",
       impact: "Algorithmic forecasting of equity prices using sequence regression models.",
       tags: ["Python", "LSTM", "Pandas", "Scikit-Learn"],
       demoUrl: null,
-      screenshots: ["QuantCore/quantcore.png"],
+      screenshots: ["1.png", "2.jpg", "3.jpg", "4.jpg", "5.jpg", "6.jpg"],
       fullDescription: "An advanced algorithmic forecasting engine designed to predict equity price movements in the Indian Stock Market. Built using Deep Learning LSTM sequence models, the system processes historical tick data, computes volatility metrics, and runs predictive regressions to map trading signals."
     },
     "LegalPal": {
-      image: "LegalPal/legalpal.png",
+      image: "legalpal.png",
       fit: "cover",
       position: "center",
       impact: "Full-stack legal assistant platform built with high-throughput inference nodes.",
       tags: ["React", "Python", "FastAPI", "LLM Integration"],
       screenshots: [
-        "LegalPal/legalpal-dashboard.png",
-        "LegalPal/legalpal-chat.png",
-        "LegalPal/legalpal-chat2.png",
-        "LegalPal/legalpal-chatAI.png",
-        "LegalPal/legalpal-ChatAI2.png",
-        "LegalPal/legalpal-docanalzer.png",
-        "LegalPal/legalpal-docanalzer (2).png",
-        "LegalPal/legalpal-IPCpage.png",
-        "LegalPal/legalpal-mocktrail.png"
+        "legalpal-dashboard.png",
+        "legalpal-chat.png",
+        "legalpal-chat2.png",
+        "legalpal-chatAI.png",
+        "legalpal-ChatAI2.png",
+        "legalpal-docanalzer.png",
+        "legalpal-docanalzer (2).png",
+        "legalpal-IPCpage.png",
+        "legalpal-mocktrail.png"
       ],
       fullDescription: "A complete full-stack infrastructure for the LegalPal legal assistance assistant. Integrates high-throughput inference nodes with customized legal context indexing, allowing lawyers and clients to draft contracts, analyze statutes, and query regulations with high precision."
     },
     "Finora": {
-      image: "Finora/finora-logo.png",
+      image: "finora-logo.png",
       fit: "contain",
       position: "center",
       impact: "Comprehensive personal finance and budget management mobile app.",
       tags: ["React Native", "Expo", "SQLite", "Chart.js"],
       demoUrl: null,
       screenshots: [
-        "Finora/finora-logo.png",
-        "Finora/finora-page1.png",
-        "Finora/finora-page2.png"
+        "finora-logo.png",
+        "finora-page1.png",
+        "finora-page2.png"
       ],
       fullDescription: "A modern personal finance and expense tracking mobile application designed to help users structure budgets, track expenses, and visualize financial habits in real-time. Employs secure local storage capabilities, custom categorization, budget capping alert thresholds, and interactive graphical analytics outputs."
     },

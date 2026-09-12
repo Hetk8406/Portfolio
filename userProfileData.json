@@ -132,10 +132,10 @@
           "description": "Organization housing the complete full-stack infrastructure for the LAWYER.AI legal assistance platform.",
           "url": "https://github.com/Hetk8406/LegalPal",
           "languages": {
-            "JavaScript": 99,
+            "JavaScript": 98.9,
             "Python": 0.8,
-            "CSS": 0.1,
-            "HTML": 0
+            "HTML": 0.2,
+            "CSS": 0.1
           }
         },
         {
@@ -145,12 +145,14 @@
           "description": "Personal finance management and tracking application designed for mobile devices.",
           "url": "https://github.com/Hetk8406/Finora",
           "languages": {
-            "Dart": 58.3,
+            "Dart": 58.2,
             "C++": 20.1,
             "CMake": 15.5,
             "HTML": 2.6,
             "Swift": 2.2,
-            "C": 1.2
+            "C": 1.2,
+            "Kotlin": 0.1,
+            "Objective-C": 0
           }
         },
         {
@@ -242,8 +244,8 @@
           "description": "Computer Vision & Deep Learning system classifying sign language gestures in real time using neural networks.",
           "url": "https://github.com/Hetk8406/AI-Project--Sign-Language",
           "languages": {
-            "Python": 85.2,
-            "Jupyter Notebook": 14.8
+            "Jupyter Notebook": 99.7,
+            "Python": 0.3
           }
         },
         {
@@ -253,9 +255,9 @@
           "description": "Predictive machine learning regression model forecasting airline ticket pricing based on route, schedule, and carrier parameters.",
           "url": "https://github.com/Hetk8406/Flight-Price-Prediction",
           "languages": {
-            "Jupyter Notebook": 94.5,
-            "Python": 4.1,
-            "CSS": 1.4
+            "Jupyter Notebook": 97.2,
+            "Python": 2.2,
+            "CSS": 0.7
           }
         }
       ]
