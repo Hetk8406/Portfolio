@@ -69,20 +69,21 @@ const HeroSection = () => {
         alignItems: 'center',
         background: 'var(--color-base, #13151C)',
         color: 'var(--color-text, #EDEAE0)',
-        padding: '140px 0 100px',
+        padding: '120px 0 80px',
         overflow: 'hidden'
       }}
     >
-      <div style={{ maxWidth: '1120px', margin: '0 auto', padding: '0 32px', width: '100%' }}>
+      <div style={{ maxWidth: '1120px', margin: '0 auto', padding: '0 20px', width: '100%', boxSizing: 'border-box' }}>
         <div style={{
           display: 'grid',
           gridTemplateColumns: '1fr 300px',
-          gap: '56px',
-          alignItems: 'center'
+          gap: '48px',
+          alignItems: 'center',
+          width: '100%'
         }} className="hero-grid">
 
           {/* Left Column */}
-          <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'flex-start' }}>
+          <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'flex-start', width: '100%' }}>
 
             {/* 1. Kicker line */}
             <div
@@ -104,25 +105,28 @@ const HeroSection = () => {
             <h1
               className="font-serif"
               style={{
-                fontSize: 'clamp(32px, 3.8vw, 50px)',
+                fontSize: 'clamp(26px, 4.5vw, 48px)',
                 fontWeight: '300',
                 lineHeight: '1.22',
                 letterSpacing: '-0.02em',
                 color: 'var(--color-text, #EDEAE0)',
                 marginBottom: '24px',
-                textAlign: 'left'
+                textAlign: 'left',
+                width: '100%',
+                wordBreak: 'break-word',
+                overflowWrap: 'break-word'
               }}
             >
               {wordsArray.map((word, idx) => (
                 <span
                   key={idx}
                   ref={(el) => (wordsRef.current[idx] = el)}
-                  style={{ display: 'inline-block', opacity: 0, marginRight: '0.28em' }}
+                  style={{ display: 'inline-block', opacity: 0, marginRight: '0.22em' }}
                 >
                   {word}
                 </span>
               ))}
-              <span style={{ display: 'inline-block' }}>
+              <span style={{ display: 'inline-block', maxWidth: '100%' }}>
                 <FlipText
                   className="font-serif font-normal"
                   duration={2.2}
@@ -138,7 +142,7 @@ const HeroSection = () => {
               <p
                 className="font-serif"
                 style={{
-                  fontSize: '16px',
+                  fontSize: '15.5px',
                   fontWeight: '300',
                   lineHeight: '1.65',
                   color: 'rgba(237, 234, 224, 0.75)',
@@ -160,11 +164,13 @@ const HeroSection = () => {
                   color: 'rgba(237, 234, 224, 0.85)',
                   background: 'rgba(28, 31, 43, 0.5)',
                   borderLeft: '2px solid var(--color-secondary, #5B7B9A)',
-                  padding: '10px 16px',
+                  padding: '10px 14px',
                   borderRadius: '0 4px 4px 0',
                   maxWidth: '540px',
+                  width: '100%',
                   marginBottom: '28px',
-                  lineHeight: '1.5'
+                  lineHeight: '1.5',
+                  boxSizing: 'border-box'
                 }}
               >
                 <div>
@@ -177,14 +183,15 @@ const HeroSection = () => {
                 </div>
               </div>
 
-              <div style={{ display: 'flex', gap: '16px', flexWrap: 'wrap', alignItems: 'center' }}>
+              <div style={{ display: 'flex', gap: '12px', flexWrap: 'wrap', alignItems: 'center', width: '100%' }}>
                 <a
                   href="#work"
-                  className="font-sans"
+                  className="font-sans hero-cta-btn"
                   style={{
                     display: 'inline-flex',
                     alignItems: 'center',
-                    padding: '12px 28px',
+                    justifyContent: 'center',
+                    padding: '12px 24px',
                     borderRadius: '4px',
                     background: 'var(--color-text, #EDEAE0)',
                     color: 'var(--color-base, #13151C)',
@@ -208,11 +215,12 @@ const HeroSection = () => {
 
                 <a
                   href="#books"
-                  className="font-sans"
+                  className="font-sans hero-cta-btn"
                   style={{
                     display: 'inline-flex',
                     alignItems: 'center',
-                    padding: '12px 28px',
+                    justifyContent: 'center',
+                    padding: '12px 24px',
                     borderRadius: '4px',
                     background: 'transparent',
                     color: 'var(--color-accent, #B8862F)',
@@ -421,10 +429,16 @@ const HeroSection = () => {
         @media (max-width: 868px) {
           .hero-grid {
             grid-template-columns: 1fr !important;
-            gap: 40px !important;
+            gap: 36px !important;
           }
           .hero-right-col {
-            margin-top: 20px !important;
+            margin-top: 10px !important;
+            max-width: 100% !important;
+          }
+        }
+        @media (max-width: 540px) {
+          .hero-grid h1 {
+            fontSize: clamp(26px, 7vw, 36px) !important;
           }
         }
       `}</style>
